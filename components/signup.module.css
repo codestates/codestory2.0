@@ -1,0 +1,109 @@
+/* Signup */
+
+#signup-background {
+  width: 100%;
+  height: 38rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup-logo {
+  position: relative;
+  margin-bottom: -2rem;
+  width: 20rem;
+  z-index: 10;
+}
+
+#signup-container {
+  position: relative;
+  margin-bottom: -4.5rem;
+  width: 20rem;
+  height: 24rem;
+  background-color: #fccb03;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+#signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#signup-input-id {
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 14rem;
+  height: 2.5rem;
+  border: #ffffff;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#signup-input-id:focus {
+  outline: 2px inset #fcad03;
+}
+
+.signup-input-password {
+  padding: 1rem;
+  width: 14rem;
+  height: 2.5rem;
+  border: #ffffff;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#signup-input-password:focus {
+  outline: 2px inset #fcad03;
+}
+
+#signup-valid {
+  margin: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+}
+
+#signup-invalid {
+  margin: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  color: red;
+}
+
+#signup-btn {
+  width: 14rem;
+  height: 2.5rem;
+  background-color: #232321;
+  color:#ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#signup-signin {
+  margin-top: 0.7rem;
+  font-size: 15px;
+  font-weight: 700;
+  align-self: center;
+  cursor: pointer;
+}
+
+.warn-box {
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  color: red;
+}
