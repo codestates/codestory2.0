@@ -1,6 +1,7 @@
-import { Link } from 'next/link';
+import styles from './gamegui.module.css';
+import Image from 'next/.image';
 
-export default function GameGui({ wd }) {
+export default function GameGui({ stage, wd }) {
 
   const guiHash = {
     '0': [],
@@ -20,31 +21,31 @@ export default function GameGui({ wd }) {
   };
 
   return (
-    <div className="container">
-      <div className="box">
-        <div className="titlebar">
-          <span className="titlebar-title">folder</span>
-          <span className="titlebar-workingdirectory">{ wd }</span>
-          <div className="close">&times;</div>
+    <div className={styles.container}>
+      <div className={styles.box}>
+        <div className={styles.titlebar}>
+          <span className={styles.titlebar_title}>folder</span>
+          <span className={styles.titlebar_workingdirectory}>{wd}</span>
+          <div className={styles.close}>&times;</div>
         </div>
-        <div className="gui">
-          <div className="left">
-            <div className="directory">
+        <div className={styles.gui}>
+          <div className={styles.left}>
+            <div className={styles.directory}>
               Recent <br/>
               Home <br/>
               Desktop <br/>
               Documents <br/>
             </div>
           </div>
-          <div className="right">
+          <div className={styles.right}>
             {
               guiHash[stage]
                 .map(([fileName, type], idx) => {
                   if (idx < 9) {
                     return (
-                      <div className="filebox" key={idx}>
-                        <img className="file-img" src={{ folder: 'folder_icon.png', file: 'file_icon.png' }[type]} alt="file icon"/>
-                        <div className="filename">{fileName}</div>
+                      <div className={styles.filebox} key={idx}>
+                        <Image className={styles.file_img} src={{ folder: 'folder_icon.png', file: 'file_icon.png' }[type]} alt="file icon"/>
+                        <div className={styles.filename}>{fileName}</div>
                       </div>
                     );
                   }
