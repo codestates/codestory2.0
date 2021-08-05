@@ -1,0 +1,129 @@
+/* Game Gui */
+
+#gamegui-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gamegui-box {
+  width: 35vw;
+  min-width: 20rem;
+  max-width: 27rem;
+  height: 27rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #ffffff;
+}
+
+#gamegui-titlebar {
+  min-width: 20rem;
+  max-width: 27rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4d4d4d;
+}
+
+#gamegui-titlebar-title {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+#gamegui-titlebar-workingdirectory {
+  color: #ffffff;
+}
+
+#gamegui-test-add {
+  
+  font-size: 13px;
+  width: 10rem;
+  height: 1.2rem;
+  background-color: #ffffff;
+}
+
+#gamegui-test-delete {
+  font-size: 12px;
+  width: 3rem;
+  height: 1.2rem;
+  background-color: #ffffff;
+  font-weight: 700;
+}
+
+#gamegui-close {
+  margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  background-color: tomato;
+  align-self: flex-end;
+  border-radius: 2rem;
+  text-align: center;
+  font-size: 30px;
+  line-height: 15px;
+  color: #000;
+  cursor: pointer;
+}
+
+#gamegui-gui {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#gamegui-left {
+  width: 7vw;
+  min-width: 5rem;
+  max-width: 17rem;
+  height: 25.3rem;
+  background-color: #e7e7e7;
+  z-index: 1;
+}
+
+#gamegui-directory {
+  margin-left: 7px;
+  position: relative;
+  top: 0.7rem;
+  font-size: 1vw;
+  text-align: left;
+  line-height: 3.5vh;
+  color: #636363;
+}
+
+#gamegui-right {
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 24rem;
+  height: 25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.gamegui-filebox {
+  margin: 3px;
+  width: 6.5rem;
+  height: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+#gamegui-file-img {
+  position: relative;
+  width: 5.5rem;
+}
+
+#gamegui-filename {
+  position: relative;
+  top: -11px;
+  margin-top: 3px;
+  font-size: 15px;
+  text-align: center;
+}
