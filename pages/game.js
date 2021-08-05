@@ -5,7 +5,7 @@ import Image from 'next/image';
 import GameCli from '../components/GameCli';
 import GameGui from '../components/GameGui';
 import axios from 'axios';
-import styles from '../components/game.module.css';
+import styles from '../styles/game.module.css';
 
 const Game = ({ userInfo, userView, rankingHandler }) => {
 
