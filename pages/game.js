@@ -6,7 +6,7 @@ const Game = () => {
     <Layout>
       <div>
         <h1>game</h1>
-			</div>
+      </div>
     </Layout>
   );
 };
