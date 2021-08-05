@@ -63,7 +63,7 @@
   margin-top: 0;
 }
 
-.display-wrapper {
+.display_wrapper {
   display: flex;
 }
 
@@ -93,7 +93,7 @@
   z-index: 5;
 }
 
-.input-commands {
+.input_commands {
   position: relative;
   margin-top: 5px;
   margin-left: 5px;
@@ -106,7 +106,7 @@
   border: none;
 }
 
-.input-command:focus {
+.input_command:focus {
   outline: none;
 }
 

@@ -65,15 +65,15 @@ export default function GameCli({ stage, handleStageChange, isWaiting, handleWai
           <div className={styles.maximum}>□</div>
         </div>
       </div>
-      <div className={styles.display-wrapper}>
+      <div className={styles.display_wrapper}>
         <div className={styles.display}>
           {cli.map((line, i) => <div key={i}>{line}</div>)}
           {isWaiting
             ? <div>잠시 기다려주세요</div>
-            : <div className={styles.input-wrapper}>
+            : <div className={styles.input_wrapper}>
               {isPassword ? 'Password:' : `${wd} $`}
               <input
-                className={styles.input-commands}
+                className={styles.input_commands}
                 type="text"
                 placeholder={isPassword ? '' : '명령어를 입력하세요'}
                 value={isPassword ? '' : command}
