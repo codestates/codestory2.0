@@ -1,5 +1,5 @@
 import styles from './gamegui.module.css';
-import Image from 'next/.image';
+import Image from 'next/image';
 
 export default function GameGui({ stage, wd }) {
 
