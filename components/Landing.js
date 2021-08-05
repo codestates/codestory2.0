@@ -14,11 +14,6 @@ export default function Landing({ loginClick }) {
     };
   }, [y]);
   
-  // useEffect(() => {
-  //     const WOW = require('wowjs');
-  //     new WOW.WOW({ live: false }).init();
-  // }, []);
-  
   const handleNavigation = (e) => {
     const window = e.currentTarget.scrollY;
     if (window >= 650 && window < 2000) {
