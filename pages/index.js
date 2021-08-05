@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
@@ -78,7 +78,7 @@ export default function Home({ isLogin, username }) {
   </Route>*/}
       </BrowserView>
     </Layout>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
@@ -96,6 +96,6 @@ export async function getServerSideProps(context) {
       props: {
         isLogin: false
       }
-    }
+    };
   }
 }

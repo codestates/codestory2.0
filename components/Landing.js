@@ -13,7 +13,7 @@ export default function Landing({ loginClick }) {
       window.removeEventListener('scroll', (e) => handleNavigation(e));
     };
   }, [y]);
-  
+
   const handleNavigation = (e) => {
     const window = e.currentTarget.scrollY;
     if (window >= 650 && window < 2000) {
