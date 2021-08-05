@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 // import { useLocation } from 'react-router-dom';
 import Link from 'next/link';
 import axios from 'axios';

@@ -10,5 +10,5 @@ export default function Layout({ children }) {
       </Head>
       {children}
     </>
-  )
+  );
 }
