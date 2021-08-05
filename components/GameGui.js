@@ -5,7 +5,7 @@ export default function GameGui({ wd }) {
       <div className="box">
         <div className="titlebar">
           <span className="titlebar-title">folder</span>
-					<span className="titlebar-workingdirectory">{ wd }</span>
+          <span className="titlebar-workingdirectory">{ wd }</span>
           <div className="close">&times;</div>
         </div>
         <div className="gui">
