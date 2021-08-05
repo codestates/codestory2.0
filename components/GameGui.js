@@ -21,6 +21,6 @@ export default function GameGui() {
           </div>
         </div>
       </div>
-		</div>
+    </div>
   );
 }; 
