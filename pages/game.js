@@ -1,13 +1,18 @@
 import Layout from '../components/Layout';
-import Image from 'next/image';
-import styles from '../styles/game.module.css';
+import Script from 'next/script';
+import fs from 'fs';
 
-const Game = () => {
-
+export default function Game({ game }) {
   return (
     <Layout>
+      <Script>{game}</Script>
     </Layout>
   );
 };
 
-export default Game;
+export async function getServerSideProps(context) {
+  const game = fs.readFileSync('games/linux.js', { encoding: 'utf8' });
+  return {
+    props: { game }
+  };
+}
