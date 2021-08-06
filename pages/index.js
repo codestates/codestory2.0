@@ -41,34 +41,6 @@ export default function Home({ isLogin, username }) {
         loginClick={loginClick}
       />
       <Footer />
-      {/* <Route path="/gamestart">
-          <GameStart
-            loginClick={loginClick}
-            setIsLogin={setIsLogin}
-          />
-        </Route>
-        <Route path="/ranking">
-          <Ranking
-            ranking={ranking}
-            rankingHandler={rankingHandler}
-          />
-        </Route>
-        <Route path="/profile">
-          <Profile
-            userInfo={userInfo}
-            userView={userView}
-            followingList={followingList}
-            ranking={ranking}
-            rankingHandler={rankingHandler}
-          />
-        </Route>
-        <Route path="/game">
-          <Game
-            userInfo={userInfo}
-            userView={userView}
-            rankingHandler={rankingHandler}
-          />
-  </Route>*/}
     </Layout>
   );
 }
