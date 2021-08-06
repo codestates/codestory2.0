@@ -1,4 +1,4 @@
-const { isAuthorizedJwt } = require('../../lib/json-token');
+const { isAuthorizedJwt, generateAccessToken, sendAccessToken } = require('../../lib/json-token');
 const { isAuthorizedOauth } = require('../../lib/oauth-token');
 const models = require('../../lib/models');
 const crypto = require('crypto');
@@ -60,15 +60,13 @@ export default async function user(req, res) {
       const data = await models.users.findOne({ where : { userId: username } });
       if (data) {
         res.status(400).json({ message:'Bad Request' });
-      }else {
+      } else {
         const time = Date.now();
         crypto.randomBytes(64, (err, buf) => {
           const newSalt = buf.toString('base64');
           crypto.pbkdf2(password, newSalt, 98235, 64, 'sha512', async (err, key) => {
-            const newPassword=key.toString('base64');
-            console.log('newSalt: ', newSalt);
-            console.log('newPassword', newPassword);
-            const result= await models.users.create({
+            const newPassword = key.toString('base64');
+            const result = await models.users.create({
               pictureurl: '../?',
               userId: username,
               password: newPassword,
@@ -76,30 +74,25 @@ export default async function user(req, res) {
               coin:0,
               createdAt: time,
               updatedAt: time,
-
+              itemProtection: 0,
+              itemLife: 0,
+              itemTime: 0,
+              itemAnswer: 0,
+              itemAvatar: null,
+              itemPet: null
             });
-            key.toString('base64');
+            delete result.dataValues.password;
+            const accessToken = await generateAccessToken(result.dataValues);
+            sendAccessToken(res, accessToken);
+            // res.status(200).json({ data : result.dataValues }); 암호화 상태 확인 코드.
           });
         });
-
-
-        const result = await models.users.create({
-          pictureurl: '../?',
-          userId : username,
-          password : password,
-          coin : 0,
-          createdAt : time,
-          updatedAt : time
-        });
-        delete result.dataValues.password;
-        const accessToken = generateAccessToken(result.dataValues);
-        sendAccessToken(res, accessToken);
       }  
     }
     catch (error) {
       res.status(500).json({ message: 'Sorry Can\'t process your request' });
       throw error;
-    }break;
+    } break;
   
   default:
     res.status(404).json({ message: `You can't use ${req.method} method.` });
