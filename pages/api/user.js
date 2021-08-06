@@ -84,7 +84,6 @@ export default async function user(req, res) {
             delete result.dataValues.salt;
             const accessToken = await generateAccessToken(result.dataValues);
             sendAccessToken(res, accessToken);
-            // res.status(200).json({ data : result.dataValues }); 암호화 상태 확인 코드.
           });
         });
       }  
