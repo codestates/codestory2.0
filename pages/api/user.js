@@ -43,7 +43,7 @@ export default async function user(req, res) {
           follower: 0,
           following: 0
         });
-      } else{
+      } else {
         res.status(400).json({ message: 'InvalidToken' });
       }
     }
