@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import styles from './signup.module.css';
 import axios from 'axios';
 
@@ -11,7 +10,6 @@ export default function SignUp({ signupHandler, loginClick }) {
   const [currentPassword2, setCurrentPassword2] = useState({ value: '', valid: false });
   const [validUser, setvalidUser] = useState({ username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
-  const history = useHistory();
 
   useEffect(() => {
     if (validUser.username !== '' && validUser.password !== '') {

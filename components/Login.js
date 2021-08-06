@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import SignUp from './SignUp';
 import styles from './login.module.css';
 import axios from 'axios';
@@ -23,7 +22,6 @@ export default function Login({loginClick}) {
     username: '',
     password: ''
   });
-  const history = useHistory();
   
   const kakaoLoginHandler = async () => {
     window.location.assign(`${kakaoLoginUrl}`);
