@@ -1,0 +1,118 @@
+/* Game */
+
+.background {
+  width: 100%;
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container  {
+  position: absolute;
+  width: 85vw;
+  height: 32rem;
+  top: 15vh;
+  min-width: 50rem;
+  max-width: 70rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fccb03;
+}
+
+.leftside {
+  display: flex;
+  height: 27rem;
+  width: 25rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rightside {
+  display: flex;
+  height: 27rem;
+  width: 25rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 8.5rem;
+  margin: -2rem;
+  font-size: 5rem;
+  color: #e48202;
+} 
+
+.finish_background {
+  width: 100%;
+  height: 115%;
+  background-color: #2c1b05a6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.finish {
+  position: absolute;
+  width: 37rem;
+  height: 17rem;
+  top: 30%;
+  border-radius: 2rem;
+  background-color: #fccb03;
+  z-index: 110;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.congrats_img_left{
+  position: relative;
+  width: 8rem;
+  left: 2rem;
+}
+
+.congrats_img_right{
+  position: relative;
+  width: 8rem;
+  right: 2rem;
+}
+
+.finish_wordbox {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finish_word {
+  position: relative;
+  top: -1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.finish_subword {
+  font-weight: 700;
+}
+
+.finish_btn {
+  position: relative;
+  top: 2.5rem;
+  width: 10rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  font-size: 19px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 3.5rem;
+  cursor: pointer;
+  background-color: #232321;
+  color: #ffffff;
+}
