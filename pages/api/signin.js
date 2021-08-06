@@ -22,6 +22,7 @@ export default async function signin(req, res) {
             const incomingPassword = key.toString('base64');
             if (incomingPassword === userInfo.dataValues.password) {
               delete userInfo.dataValues.password;
+              delete userInfo.dataValues.salt;
               const accessToken = generateAccessToken(userInfo.dataValues);
               sendAccessToken(res, accessToken);
               // res.status(200).json({ data: userInfo.dataValues }); 암호화 상태 확인 코드
