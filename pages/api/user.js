@@ -3,7 +3,6 @@ const { isAuthorizedOauth } = require('../../lib/oauth-token');
 const models = require('../../lib/models');
 const crypto = require('crypto');
 
-
 export default async function user(req, res) {
   switch (req.method) {
   case 'GET':
@@ -26,12 +25,12 @@ export default async function user(req, res) {
           follower,
           following
         });
-      }else if (oauth) {
+      } else if (oauth) {
         let username, photourl;
         if (oauth.data.kakao_account) {
           username = oauth.data.properties.nickname;
           photourl = oauth.data.properties.profile_image;
-        }else {
+        } else {
           username = oauth.data.name;
           photourl = oauth.data.picture;
         }
@@ -44,14 +43,14 @@ export default async function user(req, res) {
           follower: 0,
           following: 0
         });
-      }else{
+      } else{
         res.status(400).json({ message: 'InvalidToken' });
       }
     }
     catch (error) {
       res.status(500).json({ message: 'Sorry Can\'t process your request' });
       throw error;
-    }break;
+    } break;
 
   case 'POST':
     try{
