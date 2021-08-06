@@ -6,10 +6,7 @@ import Layout from '../components/Layout';
 import Nav from '../components/Nav';
 import Landing from '../components/Landing';
 import Footer from '../components/Footer';
-import { BrowserView, MobileView } from 'react-device-detect';
-import MobileError from '../components/MobileError';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 export default function Home({ isLogin, username }) {
 
@@ -36,19 +33,15 @@ export default function Home({ isLogin, username }) {
 
   return (
     <Layout>
-      <MobileView>
-        <MobileError />
-      </MobileView>
-      <BrowserView>
-        <Nav
-          isLogin={isLogin}
-          username={username}
-        />
-        <Landing
-          loginClick={loginClick}
-        />
-        <Footer />
-        {/* <Route path="/gamestart">
+      <Nav
+        isLogin={isLogin}
+        username={username}
+      />
+      <Landing
+        loginClick={loginClick}
+      />
+      <Footer />
+      {/* <Route path="/gamestart">
           <GameStart
             loginClick={loginClick}
             setIsLogin={setIsLogin}
@@ -76,7 +69,6 @@ export default function Home({ isLogin, username }) {
             rankingHandler={rankingHandler}
           />
   </Route>*/}
-      </BrowserView>
     </Layout>
   );
 }
