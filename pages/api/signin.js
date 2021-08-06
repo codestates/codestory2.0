@@ -8,7 +8,6 @@ export default async function signin(req, res) {
     try {
       const password = req.body.password;
       const username = req.body.username;
-      console.log(password);
       const userInfo = await db.users.findOne({
         where: { userId: username }
       });
@@ -24,7 +23,6 @@ export default async function signin(req, res) {
               delete userInfo.dataValues.salt;
               const accessToken = generateAccessToken(userInfo.dataValues);
               sendAccessToken(res, accessToken);
-              // res.status(200).json({ data: userInfo.dataValues }); 암호화 상태 확인 코드
             } else {
               res.status(400).json({ message: 'badrequest' });
             }
