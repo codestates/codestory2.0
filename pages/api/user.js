@@ -26,12 +26,12 @@ export default async function user(req, res) {
           follower,
           following
         });
-      } else if (oauth) {
+      }else if (oauth) {
         let username, photourl;
         if (oauth.data.kakao_account) {
           username = oauth.data.properties.nickname;
           photourl = oauth.data.properties.profile_image;
-        } else {
+        }else {
           username = oauth.data.name;
           photourl = oauth.data.picture;
         }
@@ -44,72 +44,64 @@ export default async function user(req, res) {
           follower: 0,
           following: 0
         });
-      } else {
+      }else{
         res.status(400).json({ message: 'InvalidToken' });
       }
-<<<<<<< HEAD
-      catch (error) {
-        res.status(500).json({ message: 'Sorry Can\'t process your request' });
-        throw error;
-      } break;
-
-    case 'POST':
-      try{
-        const username = req.body.username;
-        const password = req.body.password;
-        const data = await models.users.findOne({ where : { userId: username } });
-        if (data) {
-          res.status(400).json({ message:'Bad Request' });
-        } else {
-          const time = Date.now();
-          crypto.randomBytes(64, (err, buf) => {
-            const newSalt = buf.toString('base64');
-            crypto.pbkdf2(password, newSalt, 98235, 64, 'sha512', async (err, key) => {
-              const newPassword=key.toString('base64');
-              console.log('newSalt: ', newSalt);
-              console.log('newPassword', newPassword)
-              const result= await models.users.create({
-                pictureurl: '../?',
-                userId: username,
-                password: newPassword,
-                salt: newSalt,
-                coin:0,
-                createdAt: time,
-                updatedAt: time,
-
-              })
-              key.toString('base64');
-            });
-          });
-
-
-          const result = await models.users.create({
-            pictureurl: '../?',
-            userId : username,
-            password : password,
-            coin : 0,
-            createdAt : time,
-            updatedAt : time
-          });
-          delete result.dataValues.password;
-          const accessToken = generateAccessToken(result.dataValues);
-          sendAccessToken(res, accessToken);
-        }  
-      }
-      catch (error) {
-        res.status(500).json({ message: 'Sorry Can\'t process your request' });
-        throw error;
-      } break;
-    default:
-      res.status(404).json({ message: `You can't use ${req.method} method.` });
-=======
     }
     catch (error) {
       res.status(500).json({ message: 'Sorry Can\'t process your request' });
       throw error;
-    } break;
+    }break;
+
+  case 'POST':
+    try{
+      const username = req.body.username;
+      const password = req.body.password;
+      const data = await models.users.findOne({ where : { userId: username } });
+      if (data) {
+        res.status(400).json({ message:'Bad Request' });
+      }else {
+        const time = Date.now();
+        crypto.randomBytes(64, (err, buf) => {
+          const newSalt = buf.toString('base64');
+          crypto.pbkdf2(password, newSalt, 98235, 64, 'sha512', async (err, key) => {
+            const newPassword=key.toString('base64');
+            console.log('newSalt: ', newSalt);
+            console.log('newPassword', newPassword);
+            const result= await models.users.create({
+              pictureurl: '../?',
+              userId: username,
+              password: newPassword,
+              salt: newSalt,
+              coin:0,
+              createdAt: time,
+              updatedAt: time,
+
+            });
+            key.toString('base64');
+          });
+        });
+
+
+        const result = await models.users.create({
+          pictureurl: '../?',
+          userId : username,
+          password : password,
+          coin : 0,
+          createdAt : time,
+          updatedAt : time
+        });
+        delete result.dataValues.password;
+        const accessToken = generateAccessToken(result.dataValues);
+        sendAccessToken(res, accessToken);
+      }  
+    }
+    catch (error) {
+      res.status(500).json({ message: 'Sorry Can\'t process your request' });
+      throw error;
+    }break;
+  
   default:
     res.status(404).json({ message: `You can't use ${req.method} method.` });
->>>>>>> 359c9c1174436039387cf159772ee4583087547a
   }
 }
