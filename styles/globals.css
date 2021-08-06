@@ -14,7 +14,7 @@ code {
     monospace;
 }
 /* index.css 끝 */
-
+/* 
 // Document
 // =============================================================================
 
@@ -36,7 +36,7 @@ body {
   line-height: $base-line-height;
   color: $base-font-color;
   background: $body-background;
-}
+} */
 
 /* Nav */
 
