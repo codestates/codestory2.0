@@ -17,7 +17,7 @@ export default function Footer() {
         <span className={styles.division}>|</span>
         <a href="https://github.com/seoyong-lee">이서용(FE)</a>
         <span className={styles.division}>|</span>
-        <a href="https://github.com/Candyroom136/">김정빈(BE)</a>
+        <a href="https://github.com/Candyroom136">김정빈(BE)</a>
         <span className={styles.division}>|</span>
         <a href="https://github.com/ruleBased848">강래준(BE)</a> 
       </span>
