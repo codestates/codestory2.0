@@ -1,0 +1,33 @@
+/* Landing */
+
+@import "../variables";
+
+/* 
+flex, 정렬
+width, height,
+border
+margin, padding,
+background-color
+font
+기타
+*/
+
+.container { 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  background-color: $primary;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
+}
+
+.logo {
+  z-index: 1;
+  pointer-events: none;
+}

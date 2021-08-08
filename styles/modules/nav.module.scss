@@ -1,0 +1,78 @@
+/* Nav */
+
+@import "../variables";
+
+/* 
+flex, 정렬
+width, height,
+border
+margin, padding,
+background-color
+font
+기타
+*/
+
+.background {
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba($gray, .2);
+}
+
+.btn_nav {
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 65px;
+	height: 65px;
+	border-radius: 65px;
+	padding: 20px;
+	background-color: $gray;
+	cursor: pointer;
+}
+
+.btn_nav_bar {
+	width: 36px;
+	height: 3px;
+	border-radius: 10px;
+	background-color: $primary;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 455px;
+	height: 100vh;
+	border-radius: 80px 0 0 80px;
+	background-color: $gray;
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 235px;
+	height: 400px;
+}
+
+.btn_about,
+.btn_game,
+.btn_ranking,
+.btn_mypage,
+.btn_login {
+	border: none;
+	background-color: $gray;
+	font-size: 50px;
+	color: $white;
+	cursor: pointer;
+}
