@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className={styles.container}>
       <span className={styles.repo}>
-        <a href="https://github.com/codestates/codestory2.0/">
+        <a href="https://github.com/codestates/codestory2.0">
           Github Repository
         </a>
       </span>
