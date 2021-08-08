@@ -1,13 +1,38 @@
 /* Footer */
 
+/* 
+flex, 정렬
+width, height,
+border
+margin, padding,
+background-color
+font
+기타
+*/
+
 .container {
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  border-top: 1px solid #666666;
+  padding: 20px 50px;
+}
+
+.repo {
+  color: #686868;
 }
 
 .word {
-  margin-bottom: 1.5rem;
   font-size: 16px;
+  color: #686868;
+}
+
+.name {
+  color: #686868;
+}
+
+.division {
+  margin: 0 10px;
   color: #686868;
 }
