@@ -1,0 +1,81 @@
+/* Nav */
+
+/* 
+flex, 정렬
+width, height,
+border
+margin, padding,
+background-color
+font
+기타
+*/
+
+.background_close {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.background_open {
+	display: flex;
+	justify-content: flex-end;
+	height: 100vh;
+	background-color: #32393C20;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 455px;
+	height: 100vh;
+	border-radius: 80px 0 0 80px;
+	padding: 50px;
+	background-color: #32393C;
+}
+
+.btn_close {
+	width: 65px;
+	height: 65px;
+	border: none;
+	border-radius: 50%;
+	background-color: #1d2224;
+	font-size: 50px;
+	color: white;
+}
+
+.btn_about,
+.btn_game,
+.btn_ranking,
+.btn_mypage,
+.btn_login {
+	border: none;
+	background-color: #32393C;
+	font-size: 50px;
+	color: white;
+}
+
+.close {
+	text-align: center;
+	line-height: 65px;
+	width: 65px;
+	height: 65px;
+	border-radius: 50%;
+	background-color: #1b1e1f;
+	font-size: 60px;
+	color: white;
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 235px;
+	height: 400px;
+	margin-right: 65px;
+}
+
+.space {
+	height: 65px;
+}
