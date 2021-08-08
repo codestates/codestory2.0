@@ -7,7 +7,7 @@
 
 @mixin breakpoint($val) {
   @if $val == extra-small {
-    @media all and (max-width: 520px) {
+    @media all and (max-width: 590px) {
       @content;
     }
   } @else if $val == small {
@@ -15,7 +15,7 @@
       @content;
     }
   } @else if $val == medium {
-    @media all and (max-width: 1024px) {
+    @media all and (max-width: 1110px) {
       @content;
     }
   } @else if $val == large {

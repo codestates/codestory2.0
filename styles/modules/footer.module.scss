@@ -1,6 +1,7 @@
 /* Footer */
 
 @import "../variables";
+@import "../mixins";
 
 /* 
 flex, 정렬
@@ -35,4 +36,32 @@ font
 
 .division {
   margin: 0 10px;
+}
+
+// responsive
+
+@include breakpoint(medium) {
+  .box:nth-child(2) {
+    display: none;
+  }
+  .box:nth-child(3) {
+    width: 100%;
+  }
+}
+
+@include breakpoint(extra-small) {
+  .container {
+    padding: 10px 0px 10px 20px;
+  }
+  .box:nth-child(1) {
+    line-height: 20px;
+    width: 100px;
+  }
+  .box:nth-child(3) {
+    line-height: 20px;
+    width: 180px;
+  }
+  .division {
+    color: $primary;
+  }
 }
