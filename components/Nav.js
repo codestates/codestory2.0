@@ -50,7 +50,7 @@ export default function Nav({ componentHandler }) {
     menuTl.reversed(!menuTl.reversed());
   };
 
-  const clickHandler = ( component ) => {
+  const clickHandler = (component) => {
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
     componentHandler(component);
