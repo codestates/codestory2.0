@@ -141,3 +141,12 @@ button {
   color: $white;
   background-color: $primary-orange;
 }
+
+canvas {
+  z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 25%;
+	width: 50%;
+  height: 80%;
+}

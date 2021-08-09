@@ -1,1 +1,25 @@
 /* Game */
+
+@import "../variables";
+@import "../mixins";
+
+.container { 
+	position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  background-color: $primary;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
+}
+
+.logo {
+  z-index: 1;
+  pointer-events: none;
+}
