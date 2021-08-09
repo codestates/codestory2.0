@@ -14,7 +14,7 @@ export default function Game({ game }) {
         </div>
         <GameFooter /> 
       </div>
-        <Script>{game}</Script>
+      <Script>{game}</Script>
     </Layout>
   );
 };
