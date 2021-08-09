@@ -7,7 +7,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
+	align-items: flex-end;
   height: 100vh;
   width: 100%;
   background-color: $primary;
@@ -17,9 +18,4 @@
   display: flex;
   justify-content: space-between;
   margin: 50px;
-}
-
-.logo {
-  z-index: 1;
-  pointer-events: none;
 }
