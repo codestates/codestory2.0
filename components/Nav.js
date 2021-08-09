@@ -62,7 +62,7 @@ export default function Nav() {
             <div className={styles.btn_nav_bar}
               ref={e => (menuBars['middleBar'] = e)} />
             <div className={styles.btn_nav_bar}
-              ref={e => (menuBars['bottomBar'] = e)}/>
+              ref={e => (menuBars['bottomBar'] = e)} />
           </button>
           <div className={styles.container} 
             ref={e => (menuBars['back'] = e)}
