@@ -79,23 +79,23 @@ export default function Nav({ componentHandler }) {
             <div className={styles.menu}>
               <Link href='/' passHref>
                 <button className={styles.btn_about}
-                  onClick={asPath === '/' ? ()=>clickHandler(<Landing/>) : null}
+                  onClick={asPath === '/' ? () => clickHandler(<Landing/>) : null}
                 >Home</button>
               </Link> 
               <button className={styles.btn_about}
-                onClick={()=>clickHandler(<About/>)}
+                onClick={() => clickHandler(<About/>)}
               >About</button>
               <Link href='/game' passHref>
                 <button className={styles.btn_game}>Game</button>
               </Link>
               <button className={styles.btn_ranking}
-                onClick={()=>clickHandler(<Ranking/>)}
+                onClick={() => clickHandler(<Ranking/>)}
               >Ranking</button>
               <button className={styles.btn_mypage}
-                onClick={()=>clickHandler(<Mypage/>)}
+                onClick={() => clickHandler(<Mypage/>)}
               >My page</button>
               <button className={styles.btn_login}
-                onClick={()=>clickHandler(<Login/>)}
+                onClick={() => clickHandler(<Login/>)}
               >Login</button>
             </div>
           </div> 
