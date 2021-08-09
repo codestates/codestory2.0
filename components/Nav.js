@@ -58,7 +58,7 @@ export default function Nav({ componentHandler }) {
 
   return (
     <>
-      <span className={styles.logo}>
+      <span className={styles.logo} onClick={() => componentHandler(<Landing/>)}>
         Code <br/> Story
       </span>
       <div className={isOpen ? styles.background : null}>
