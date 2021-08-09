@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './landing.module.css';
+import styles from '../styles/modules/landing.module.scss';
 import Image from 'next/image';
 import Nav from './Nav';
 import Footer from './Footer';

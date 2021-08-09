@@ -1,0 +1,67 @@
+/* Footer */
+
+@import "../variables";
+@import "../mixins";
+
+/* 
+flex, 정렬
+width, height,
+border
+margin, padding,
+background-color
+font
+기타
+*/
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  border-top: 1px solid $gray;
+  padding: 20px 50px;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  width: calc((100%-100px) / 3);
+  &:nth-child(1) {
+    justify-content: flex-start;
+  }
+  &:nth-child(3) {
+    justify-content: flex-end;
+  }
+}
+
+.division {
+  margin: 0 10px;
+}
+
+// responsive
+
+@include breakpoint(medium) {
+  .box:nth-child(2) {
+    display: none;
+  }
+  .box:nth-child(3) {
+    width: 100%;
+  }
+}
+
+@include breakpoint(extra-small) {
+  .container {
+    padding: 10px 0px 10px 20px;
+  }
+  .box:nth-child(1) {
+    line-height: 20px;
+    width: 100px;
+  }
+  .box:nth-child(3) {
+    line-height: 20px;
+    width: 180px;
+  }
+  .division {
+    color: $primary;
+  }
+}

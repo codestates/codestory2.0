@@ -2,25 +2,53 @@
 // Variables
 // =============================================================================
 
+// Typography
+// =============================================================================
+
+$sans-serif: 'Ubuntu', Arial, sans-serif;
+$serif: 'Courier', serif;
+$monospace: 'Ubuntu Mono', monospace;
+$base-font-family: $sans-serif;
+$base-font-weight: 400;
+$base-font-weight-bold: 500;
+
+// Colors
+// =============================================================================
+
 // Primary colors
 
 $primary: #fccb03;	
 $primary-orange: #F79724;
 $primary-lightblue: #34A0FC;
 $primary-blue: #2276FF;
-$primary-gray: #32393C;
 
-// Shades of gray
+// basic colors
 
 $black: #000;
-$gray-darkest: #181818;
-$gray-darker: lighten($gray-darkest, 15);
-$gray-dark: lighten($gray-darkest, 30);
-$gray: lighten($gray-darkest, 45);
-$gray-light: lighten($gray-darkest, 60);
-$gray-lighter: lighten($gray-darkest, 75);
-$gray-lightest: lighten($gray-darkest, 85);
 $white: #fff;
+$gray: #32393C;
 
 // Font colors
-$font-basecolor: $gray-darker;
+$base-font-color: $gray;
+
+// page colors
+
+$body-background: $primary;
+
+// Sizes
+// =============================================================================
+
+// Font sizes
+
+$base-font-size: 15px;
+$base-line-height: 1.8;
+
+// Box sizes
+
+$base-border-radius: 4px;
+
+// Effects
+// =============================================================================
+
+$base-transition-speed: .1s;
+

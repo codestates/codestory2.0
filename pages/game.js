@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import styles from '../styles/modules/game.module.scss';
 import Script from 'next/script';
 import fs from 'fs';
 
