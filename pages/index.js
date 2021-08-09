@@ -1,12 +1,22 @@
-import Head from 'next/head';
 import Layout from '../components/Layout';
 import Landing from '../components/Landing';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import { useState } from 'react';
 
 export default function Home() {
 
+  const [component, setComponent] = useState(<Landing />);
+
+  const componentHandler = (e) => {
+    setComponent(e);
+  };
+
   return (
     <Layout>
-      <Landing />
+      <Nav componentHandler={(e)=>componentHandler(e)}/>
+      <Footer />
+      {component}
     </Layout>
   );
 }
