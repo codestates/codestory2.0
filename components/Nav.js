@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import styles from '../styles/modules/nav.module.scss';
-import Image from 'next/image';
 
 export default function Nav() {
 
