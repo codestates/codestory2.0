@@ -17,7 +17,7 @@ font
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-	width: 100%;
+  width: 100%;
   height: 75px;
   // border-top: 1px solid $gray;
   padding: 20px 50px;
@@ -32,7 +32,7 @@ font
 // responsive
 
 @include breakpoint(medium) {
-	.container {
+  .container {
     padding: 20px 30px;
   }
 }
