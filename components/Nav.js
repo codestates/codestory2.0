@@ -44,14 +44,9 @@ export default function Nav() {
 
   return (
     <>
-      <div className={styles.logo}>
-        <Image
-          src="/logotype.svg"
-          alt="Logo type"
-          width={115}
-          height={90}
-        />
-      </div>
+      <span className={styles.logo}>
+        Code <br/> Story
+      </span>
       <div className={isOpen ? styles.background : null}>
         <div className={styles.nav_box}>
           <button className={styles.btn_nav} 
