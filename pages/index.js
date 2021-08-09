@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <Nav componentHandler={(e)=>componentHandler(e)}/>
+      <Nav componentHandler={(e) => componentHandler(e)}/>
       <Footer />
       {component}
     </Layout>
