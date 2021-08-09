@@ -11,12 +11,6 @@ export default function Game({ game }) {
     <Layout>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Image
-            src="/logotype.svg"
-            alt="Logo type"
-            width={115}
-            height={90}
-          />
           <Nav />
         </div>
         <Script>{game}</Script>
