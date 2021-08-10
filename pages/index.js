@@ -7,16 +7,29 @@ import { useState } from 'react';
 export default function Home() {
 
   const [component, setComponent] = useState(<Landing />);
+  const [isWhite, setIsWhite] = useState(false);
+
+  console.log(component.type.name);
 
   const componentHandler = (e) => {
     setComponent(e);
   };
 
+  const colorHandler = (e) => {
+    if (e === 1) {
+      setIsWhite(true);
+    } else {
+      setIsWhite(false);
+    }
+  };
+
   return (
     <Layout>
-      <Nav componentHandler={(e) => componentHandler(e)}/>
-      <Footer />
-      {component}
+      {component.type.name === 'Landing' ? <Landing colorHandler={colorHandler} /> : component}
+      <Footer isWhite={isWhite}/>
+      <Nav componentHandler={(e) => componentHandler(e)} 
+        isWhite={isWhite}
+      />
     </Layout>
   );
 }

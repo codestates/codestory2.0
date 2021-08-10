@@ -13,6 +13,22 @@
   height: 60px;
   border-top: 1px solid $gray;
   padding: 20px 30px;
+  z-index: 5;
+  transition: .4s;
+}
+
+.container_white {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid $white;
+  padding: 20px 30px;
+  z-index: 5;
+  transition: .4s;
 }
 
 .box {
@@ -27,8 +43,74 @@
   }
 }
 
+.repo {
+  transition: .4s;
+}
+
+.repo_white {
+  color: $white;
+  transition: .4s;
+  z-index: 1;
+  &:hover,
+  &:active {
+    color: $gray;
+  }
+  &:focus {
+    color: $primary-blue;
+    outline: none;
+  }
+  &::selection {
+    background-color: $primary-lightblue;
+  }
+}
+
+.word {
+  transition: .4s;
+}
+
+.word_white {
+  transition: .4s;
+  color: $white;
+  z-index: 1;
+  &::selection {
+    background-color: $primary-lightblue;
+  }
+}
+
+.name {
+  transition: .4s;
+}
+
+.name_white {
+  transition: .4s;
+  color: $white;
+  z-index: 1;
+  &:hover,
+  &:active {
+    color: $gray;
+  }
+  &:focus {
+    color: $primary-blue;
+    outline: none;
+  }
+  &::selection {
+    background-color: $primary-lightblue;
+  }
+}
+
 .division {
   margin: 0 10px;
+  transition: .4s;
+}
+
+.division_white {
+  margin: 0 10px;
+  transition: .4s;
+  color: $white;
+  z-index: 1;
+  &::selection {
+    background-color: $primary-lightblue;
+  }
 }
 
 // responsive
@@ -55,6 +137,6 @@
     width: 180px;
   }
   .division {
-    color: $primary;
+    opacity: 0;
   }
 }
