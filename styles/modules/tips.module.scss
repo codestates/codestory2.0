@@ -20,7 +20,7 @@ font
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
   height: 100vh;
   background-color: rgba($gray, .4);
@@ -28,17 +28,15 @@ font
 }
 
 .container {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
   width: 100%;
   height: 60vh;
   z-index: 3;
+  background-color: $white;
 }
 
 .btn_tip {
   position: absolute;
-  bottom: 50px;
+  bottom: 75px;
   right: 65px;
   background-color: transparent;
   font-weight: 600;
@@ -53,7 +51,6 @@ font
   width: 100%;
   height: 60vh;
   padding: 20px 80px;
-  background-color: $white;
 }
 
 .command {
@@ -83,4 +80,24 @@ font
   font-size: $base-font-size * 1.4;
   font-weight: 600;
   cursor: pointer;
+}
+
+@include breakpoint(medium) {
+  .box {
+    margin: auto;
+    padding: 20px 50px;
+  }
+}
+
+@include breakpoint(extra-small) {
+  .btn_tip {
+    position: static;
+  }
+  .command {
+    font-size: $base-font-size * 1.4;
+  }
+  .description,
+  .example {
+    font-size: $base-font-size ;
+  }
 }
