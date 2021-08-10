@@ -50,9 +50,13 @@ export default function Nav({ componentHandler }) {
     menuTl.reversed(!menuTl.reversed());
   };
 
-  const clickHandler = (component) => {
+  const navClickHandler = (component) => {
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
+    componentHandler(component);
+  };
+
+  const logoClickHandler = (component) => {
     componentHandler(component);
   };
 
@@ -61,7 +65,7 @@ export default function Nav({ componentHandler }) {
       <Link href='/' passHref>
         <span className={styles.logo} 
           onClick={asPath === '/' 
-            ? () => clickHandler(<Landing/>) 
+            ? () => logoClickHandler(<Landing/>) 
             : null
           }
         >
@@ -86,20 +90,20 @@ export default function Nav({ componentHandler }) {
             <div className={styles.menu}>
               <Link href='/' passHref>
                 <button className={styles.btn_about}
-                  onClick={asPath === '/' ? () => clickHandler(<Landing/>) : null}
+                  onClick={asPath === '/' ? () => navClickHandler(<Landing/>) : null}
                 >Home</button>
               </Link> 
               <button className={styles.btn_about}
-                onClick={() => clickHandler(<About/>)}
+                onClick={() => navClickHandler(<About/>)}
               >About</button>
               <button className={styles.btn_ranking}
-                onClick={() => clickHandler(<Ranking/>)}
+                onClick={() => navClickHandler(<Ranking/>)}
               >Ranking</button>
               <button className={styles.btn_mypage}
-                onClick={() => clickHandler(<Mypage/>)}
+                onClick={() => navClickHandler(<Mypage/>)}
               >My page</button>
               <button className={styles.btn_login}
-                onClick={() => clickHandler(<Login/>)}
+                onClick={() => navClickHandler(<Login/>)}
               >Login</button>
             </div>
           </div> 
