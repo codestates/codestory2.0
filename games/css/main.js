@@ -1,5 +1,5 @@
 (() => {
-  const container = document.querySelector('#game');
+  const container = document.querySelector('#game_container');
   const canvas = document.createElement('canvas');
   container.append(canvas);
   canvas.style = `
