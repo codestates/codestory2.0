@@ -5,7 +5,7 @@ export default function CSS() {
   return (
     <Layout>
       <div
-        id="game"
+        id="game_container"
         style={{
           width: '720px',
           height: '672.8px',

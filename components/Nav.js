@@ -85,7 +85,7 @@ export default function Nav({ componentHandler }) {
               <button className={styles.btn_about}
                 onClick={() => clickHandler(<About/>)}
               >About</button>
-              <Link href='/game' passHref>
+              <Link href='/linux' passHref>
                 <button className={styles.btn_game}>Game</button>
               </Link>
               <button className={styles.btn_ranking}
