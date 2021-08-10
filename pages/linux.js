@@ -24,8 +24,12 @@ export default function Linux({ game }) {
         <div className={styles.header}>
           <Nav />
         </div>
-        <Tips />
-        <GameFooter /> 
+        <div className={styles.tips}>
+          <Tips />
+        </div>
+        <div className={styles.gamefooter}>
+          <GameFooter /> 
+        </div>
       </div>
       <Script>{game}</Script>
     </Layout>
