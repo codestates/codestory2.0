@@ -36,6 +36,28 @@
 	font-size: 4rem;
 	line-height: 53px;
 	cursor: pointer;
+	z-index: 10;
+	transition: .4s;
+}
+
+.logo_white {
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	width: 115px;
+	height: 90px;
+	font-family: $logo;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 4rem;
+	line-height: 53px;
+	cursor: pointer;
+	z-index: 10;
+	transition: .5s;
+	color: $white;
+	&::selection {
+    background-color: $primary-lightblue;
+  }
 }
 
 .btn_nav {
@@ -52,7 +74,26 @@
 	padding: 14px;
 	background-color: $gray;
 	cursor: pointer;
-	z-index: 10;
+	z-index: 20;
+	transition: .4s;
+}
+
+.btn_nav_white {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 65px;
+	padding: 14px;
+	background-color: $white;
+	cursor: pointer;
+	z-index: 20;
+	transition: .4s;
 }
 
 .btn_nav_bar {
@@ -60,7 +101,15 @@
 	height: 2.3px;
 	border-radius: 1px;
 	background-color: $primary;
-	z-index: 15;
+	z-index: 25;
+}
+
+.btn_nav_bar_white {
+	width: 25px;
+	height: 2.3px;
+	border-radius: 1px;
+	background-color: $primary-blue;
+	z-index: 25;
 }
 
 .container {
@@ -74,7 +123,22 @@
 	height: 100vh;
 	border-radius: 80px 0 0 80px;
 	background-color: $gray;
-	z-index: 5;
+	z-index: 15;
+}
+
+.container_white {
+	position: absolute;
+	top: 0px;
+	right: -420px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 410px;
+	height: 100vh;
+	border-radius: 80px 0 0 80px;
+	background-color: $white;
+	z-index: 15;
+	color: $gray;
 }
 
 .menu {
@@ -86,15 +150,20 @@
 	height: 400px;
 }
 
-.btn_about,
-.btn_game,
-.btn_ranking,
-.btn_mypage,
-.btn_login {
+.btn_word {
 	border: none;
 	background-color: $gray;
 	font-size: 50px;
 	color: $white;
+	cursor: pointer;
+}
+
+.btn_word_white {
+	border: none;
+	background-color: $white;
+	font-size: 50px;
+	font-weight: 500;
+	color: $gray;
 	cursor: pointer;
 }
 

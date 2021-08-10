@@ -2,13 +2,30 @@
 
 @import "../variables";
 
-.container { 
+.background { 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100%;
   background-color: $primary;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary-blue;
 }
 
 .btn_game {
