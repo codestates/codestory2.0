@@ -37,7 +37,7 @@ export default function Tips() {
                     <SwiperSlide key={idx}>
                       <div className={styles.box}>
                         <div className={styles.wrapper}>
-                          <div className={styles.command}>[ {tip.command} ]</div>
+                          <div className={styles.command}>[{tip.command}]</div>
                           <p className={tip.description1 ? styles.description : null}>{tip.description1}</p>
                           <p className={tip.description2 ? styles.description : null}>{tip.description2}</p>
                           <p className={tip.description3 ? styles.description : null}>{tip.description3}</p>
