@@ -8,9 +8,7 @@ export default function Home() {
 
   const [component, setComponent] = useState(<Landing />);
   const [isWhite, setIsWhite] = useState(false);
-
-  console.log(component.type.name);
-
+  
   const componentHandler = (e) => {
     setComponent(e);
   };
