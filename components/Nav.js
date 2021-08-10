@@ -58,9 +58,16 @@ export default function Nav({ componentHandler }) {
 
   return (
     <>
-      <span className={styles.logo} onClick={() => componentHandler(<Landing/>)}>
-        Code <br/> Story
-      </span>
+      <Link href='/' passHref>
+        <span className={styles.logo} 
+          onClick={asPath === '/' 
+            ? () => clickHandler(<Landing/>) 
+            : null
+          }
+        >
+          Code <br/> Story
+        </span>
+      </Link>
       <div className={isOpen ? styles.background : null}>
         <div className={styles.nav_box}>
           <button className={styles.btn_nav} 
@@ -85,9 +92,6 @@ export default function Nav({ componentHandler }) {
               <button className={styles.btn_about}
                 onClick={() => clickHandler(<About/>)}
               >About</button>
-              <Link href='/linux' passHref>
-                <button className={styles.btn_game}>Game</button>
-              </Link>
               <button className={styles.btn_ranking}
                 onClick={() => clickHandler(<Ranking/>)}
               >Ranking</button>
