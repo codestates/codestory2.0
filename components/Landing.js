@@ -12,7 +12,6 @@ export default function Landing({ colorHandler }) {
   const [currentIdx, setCurrentIdx] = useState(0);
 
   const idxHandler = (idx) => {
-    console.log(idx.realIndex);
     setCurrentIdx(idx.realIndex);
     colorHandler(idx.realIndex);
   };
