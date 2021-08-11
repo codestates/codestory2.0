@@ -25,5 +25,3 @@ function MyApp({ Component, pageProps, router }) {
   );
 }
 export default MyApp;
-
-
