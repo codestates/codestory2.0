@@ -11,8 +11,42 @@
   background-color: $primary;
 }
 
+.box_btn {
+  position: absolute;
+  top: -1%;
+  left: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 60px);
+  height: 100%;
+}
+
+.btn_arrow {
+  font-family: $logo;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 5.5rem;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.btn_arrow_white {
+  font-family: $logo;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 5rem;
+  color: $white;
+  cursor: pointer;
+  z-index: 5;
+  &::selection {
+    background-color: $primary-lightblue;
+  }
+}
+
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -21,6 +55,7 @@
 
 .container2 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -29,8 +64,26 @@
 }
 
 .btn_game {
+  position: absolute;
+  top: 75%;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: $gray;
+  color: $white;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.btn_game_white {
+  position: absolute;
+  top: 75%;
   width: 150px;
   height: 50px;
   border-radius: 10px;
   cursor: pointer;
+  z-index: 100;
+  &::selection {
+    background-color: $primary-lightblue;
+  }
 }

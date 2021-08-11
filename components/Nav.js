@@ -70,7 +70,7 @@ export default function Nav({ componentHandler, isWhite }) {
           Code<br/>Story
         </span>
       </Link>
-      <div className={isOpen ? styles.background : null}>
+      <div className={isOpen ? isWhite ? styles.background_white : styles.background : null}>
         <div className={styles.nav_box}>
           <button className={isWhite ? styles.btn_nav_white : styles.btn_nav} 
             onClick={openHandler}

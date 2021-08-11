@@ -20,23 +20,56 @@
 @import "fonts";
 
 .swiper-button-next {
-  position: absolute;
-  right: 30px;
-  color: $white;
   &::after {
     position: absolute;
-    right: 30px;
-    color: $white;
+    right: 25px;
+    opacity: 0;
+    z-index: 100;
+    color: $gray;
   }
 }
 
 .swiper-button-prev {
-  position: absolute;
-  left: 30px;
-  color: $white;
   &::after {
     position: absolute;
-    left: 30px;
-    color: $white;
+    left: 25px;
+    opacity: 0;
+    z-index: 100;
+    color: $gray;
   }
+}
+
+.page-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 400ms, transform 400ms;
+}
+
+#nprogress .bar {
+  background: #fff !important;
+}
+
+#nprogress .spinner-icon {
+  position: fixed;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  width: 60px !important;
+  height: 60px !important;
+  border-top-color: #fff !important;
+  border-left-color: #fff !important;
 }

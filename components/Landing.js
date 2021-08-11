@@ -25,6 +25,10 @@ export default function Landing({ colorHandler }) {
         speed={600}
         onSlideChange={(e) => idxHandler(e.realIndex)}
       >
+        <div className={styles.box_btn}>
+          <div className={currentIdx === 1 ? styles.btn_arrow_white : styles.btn_arrow}>&lt;</div>
+          <div className={currentIdx === 1 ? styles.btn_arrow_white : styles.btn_arrow}>&gt;</div>
+        </div>
         <SwiperSlide>
           <div className={styles.container}>
             <Link href='/linux' passHref>
@@ -35,7 +39,7 @@ export default function Landing({ colorHandler }) {
         <SwiperSlide>
           <div className={styles.container2}>
             <Link href='/css' passHref>
-              <button className={styles.btn_game}>Start CSS</button>
+              <button className={styles.btn_game_white}>Start CSS</button>
             </Link>
           </div>
         </SwiperSlide>
