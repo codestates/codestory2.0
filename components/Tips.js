@@ -31,7 +31,12 @@ export default function Tips() {
                 loop={true}
                 navigation
                 pagination
+                speed={600}
               >
+                <div className={styles.box_btn}>
+                  <div className={styles.btn_arrow}>&lt;</div>
+                  <div className={styles.btn_arrow}>&gt;</div>
+                </div>
                 {tips.map((tip, idx) => {
                   return (
                     <SwiperSlide key={idx}>

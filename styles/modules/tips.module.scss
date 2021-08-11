@@ -3,16 +3,6 @@
 @import "../variables";
 @import "../mixins";
 
-/* 
-flex, 정렬
-width, height,
-border
-margin, padding,
-background-color
-font
-기타
-*/
-
 .background {
   position: fixed;
   top: 0px;
@@ -32,6 +22,26 @@ font
   height: 60vh;
   z-index: 3;
   background-color: $white;
+}
+
+.box_btn {
+  position: absolute;
+  top: -1%;
+  left: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 60px);
+  height: 100%;
+}
+
+.btn_arrow {
+  font-family: $logo;
+  font-weight: 100;
+  font-style: normal;
+  font-size: 5.5rem;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .btn_tip {
