@@ -5,7 +5,6 @@ import Tips from '../components/Tips';
 import styles from '../styles/modules/game.module.scss';
 import Script from 'next/script';
 import fs from 'fs'; // local 확인 시 활성
-import { join } from 'path'; // local 확인 시 활성
 // import axios from 'axios'; // local 확인 시 주석
 
 export default function Linux({ game }) {
@@ -41,7 +40,7 @@ export default function Linux({ game }) {
 export async function getServerSideProps(context) {
   const game = fs.readFileSync('games/linux/main.js', { encoding: 'utf8' }); // local 확인 시 활성
   // const res = await axios.get('https://feat-amplify-deploy.drl7u5zwhcbcc.amplifyapp.com/games/linux/main.js'); // local 확인 시 주석
-  const game = res.data;
+  // const game = res.data; //local 확인 시 주석
   return {
     props: { game }
   };

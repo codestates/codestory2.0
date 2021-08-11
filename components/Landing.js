@@ -11,10 +11,10 @@ export default function Landing({ colorHandler }) {
 
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  // const idxHandler = (idx) => {
-  //   setCurrentIdx(idx);
-  //   colorHandler(idx);
-  // };
+  const idxHandler = (idx) => {
+    setCurrentIdx(idx);
+    colorHandler(idx);
+  };
 
   return (
     <div className={styles.background}>
@@ -23,7 +23,7 @@ export default function Landing({ colorHandler }) {
         loop={true}
         navigation
         speed={600}
-        // onSlideChange={(e) => idxHandler(e.realIndex)}
+        onSlideChange={(e) => idxHandler(e.realIndex)}
       >
         <SwiperSlide>
           <div className={styles.container}>
