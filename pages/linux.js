@@ -37,7 +37,7 @@ export default function Linux({ game }) {
 };
 
 export async function getServerSideProps(context) {
-  const game = fs.readFileSync('public/games/linux/main.js', { encoding: 'utf8' });
+  const game = fs.readFileSync('games/linux/main.js', { encoding: 'utf8' });
   return {
     props: { game }
   };
