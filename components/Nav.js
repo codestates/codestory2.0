@@ -10,7 +10,7 @@ import Ranking from './Ranking';
 import Mypage from './Mypage';
 import Login from './Login';
 
-export default function Nav({ componentHandler }) {
+export default function Nav({ componentHandler, isWhite }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
@@ -27,7 +27,6 @@ export default function Nav({ componentHandler }) {
       .to(menuBars.topBar, {
         width: 30,
         duration: 0.2,
-        backgroundColor: '#ffffff',
         rotation: 45,
         y: 9
       }, 0)
@@ -38,7 +37,6 @@ export default function Nav({ componentHandler }) {
       .to(menuBars.bottomBar,{ 
         width: 30,
         duration: 0.2,  
-        backgroundColor: '#fffffff', 
         rotation: -45, 
         y: -9
       }, 0)
@@ -63,46 +61,46 @@ export default function Nav({ componentHandler }) {
   return (
     <>
       <Link href='/' passHref>
-        <span className={styles.logo} 
+        <span className={isWhite ? styles.logo_white : styles.logo} 
           onClick={asPath === '/' 
             ? () => logoClickHandler(<Landing/>) 
             : null
           }
         >
-          Code <br/> Story
+          Code<br/>Story
         </span>
       </Link>
       <div className={isOpen ? styles.background : null}>
         <div className={styles.nav_box}>
-          <button className={styles.btn_nav} 
+          <button className={isWhite ? styles.btn_nav_white : styles.btn_nav} 
             onClick={openHandler}
           >
-            <div className={styles.btn_nav_bar} 
+            <div className={isWhite ? styles.btn_nav_bar_white : styles.btn_nav_bar} 
               ref={e => (menuBars['topBar'] = e)} />
-            <div className={styles.btn_nav_bar}
+            <div className={isWhite ? styles.btn_nav_bar_white : styles.btn_nav_bar}
               ref={e => (menuBars['middleBar'] = e)} />
-            <div className={styles.btn_nav_bar}
+            <div className={isWhite ? styles.btn_nav_bar_white : styles.btn_nav_bar}
               ref={e => (menuBars['bottomBar'] = e)} />
           </button>
-          <div className={styles.container}
+          <div className={isWhite ? styles.container_white : styles.container}
             ref={e => (menuBars['back'] = e)}
           >
             <div className={styles.menu}>
               <Link href='/' passHref>
-                <button className={styles.btn_about}
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                   onClick={asPath === '/' ? () => navClickHandler(<Landing/>) : null}
                 >Home</button>
               </Link> 
-              <button className={styles.btn_about}
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                 onClick={() => navClickHandler(<About/>)}
               >About</button>
-              <button className={styles.btn_ranking}
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                 onClick={() => navClickHandler(<Ranking/>)}
               >Ranking</button>
-              <button className={styles.btn_mypage}
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                 onClick={() => navClickHandler(<Mypage/>)}
               >My page</button>
-              <button className={styles.btn_login}
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                 onClick={() => navClickHandler(<Login/>)}
               >Login</button>
             </div>
