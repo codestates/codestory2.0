@@ -4,9 +4,9 @@ import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import styles from '../styles/modules/game.module.scss';
 import Script from 'next/script';
-// import fs from 'fs'; // local npm run build 확인 시 활성
-// import { join } from 'path'; // local npm run build 확인 시 활성
-import axios from 'axios'; // local npm run build 확인 시 주석
+// import fs from 'fs'; // local 확인 시 활성
+// import { join } from 'path'; // local 확인 시 활성
+import axios from 'axios'; // local 확인 시 주석
 
 export default function Linux({ game }) {
   return (
@@ -39,8 +39,8 @@ export default function Linux({ game }) {
 };
 
 export async function getServerSideProps(context) {
-  // const game = fs.readFileSync('games/linux/main.js', { encoding: 'utf8' }); local npm run build 확인 시 활성
-  const res = await axios.get('https://codestory2-0-lxmudecxi-codestory2.vercel.app/games/linux/main.js');// local npm run build 확인 시 주석
+  // const game = fs.readFileSync('games/linux/main.js', { encoding: 'utf8' }); // local 확인 시 활성
+  const res = await axios.get('https://codestory2-0-lxmudecxi-codestory2.vercel.app/games/linux/main.js'); // local 확인 시 주석
   const game = res.data;
   return {
     props: { game }
