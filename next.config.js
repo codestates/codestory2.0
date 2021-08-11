@@ -6,7 +6,7 @@ module.exports = withSass({
 });
 
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },

@@ -6,19 +6,19 @@ import { useState } from 'react';
 
 export default function Home() {
 
-  const [component, setComponent] = useState(<Landing />);
-  const [isWhite, setIsWhite] = useState(false);
-  
-  const componentHandler = (e) => {
-    setComponent(e);
-  };
-
   const colorHandler = (e) => {
     if (e === 1) {
       setIsWhite(true);
     } else {
       setIsWhite(false);
     }
+  };
+
+  const [component, setComponent] = useState(<Landing colorHandler={colorHandler} />);
+  const [isWhite, setIsWhite] = useState(false);
+  
+  const componentHandler = (e) => {
+    setComponent(e);
   };
 
   return (

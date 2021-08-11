@@ -12,8 +12,8 @@ export default function Landing({ colorHandler }) {
   const [currentIdx, setCurrentIdx] = useState(0);
 
   const idxHandler = (idx) => {
-    setCurrentIdx(idx);
-    colorHandler(idx);
+    setCurrentIdx(idx.realIndex);
+    colorHandler(idx.realIndex);
   };
 
   return (
@@ -23,7 +23,7 @@ export default function Landing({ colorHandler }) {
         loop={true}
         navigation
         speed={600}
-        onSlideChange={(e) => idxHandler(e.realIndex)}
+        onSlideChange={(idx) => idxHandler(idx)}
       >
         <div className={styles.box_btn}>
           <div className={currentIdx === 1 ? styles.btn_arrow_white : styles.btn_arrow}>&lt;</div>
