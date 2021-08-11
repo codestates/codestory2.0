@@ -1,0 +1,42 @@
+// =============================================================================
+// Home
+// =============================================================================
+
+// Colors
+// =============================================================================
+
+// Imports
+// =============================================================================
+
+// Vendors
+
+@import "vendor/normalize";
+
+// Settings
+
+@import "variables";
+@import "mixins";
+@import "base";
+@import "fonts";
+
+.swiper-button-next {
+  position: absolute;
+  right: 30px;
+  color: $white;
+  &::after {
+    position: absolute;
+    right: 30px;
+    color: $white;
+  }
+}
+
+.swiper-button-prev {
+  position: absolute;
+  left: 30px;
+  color: $white;
+  &::after {
+    position: absolute;
+    left: 30px;
+    color: $white;
+  }
+}
