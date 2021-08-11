@@ -1,9 +1,66 @@
 /* Login */
 
-.container {
+@import "../variables";
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
+}
+
+.background_white {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary-blue;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($gray, .4);
+  transition: .4s;
+  z-index: 50;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 720px;
+  height: 460px;
+  background-color: $white;
+}
+
+.slides {
+  width: 400px;
+  height: 460px;
+  z-index: 100;
+  background-color: $primary;
+}
+
+.page1 {
+  background-color: $primary-blue;
+}
+
+.login_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  height: 460px;
 }
