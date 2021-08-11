@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import styles from '../styles/modules/nav.module.scss';
-import About from './about';
+import About from './About';
 import Landing from './Landing';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
