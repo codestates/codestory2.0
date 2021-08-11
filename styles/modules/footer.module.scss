@@ -128,6 +128,9 @@
   .container {
     padding: 10px 0px 10px 20px;
   }
+  .container_white {
+    padding: 10px 0px 10px 20px;
+  }
   .box:nth-child(1) {
     line-height: 20px;
     width: 100px;
@@ -137,6 +140,9 @@
     width: 180px;
   }
   .division {
+    opacity: 0;
+  }
+  .division_white {
     opacity: 0;
   }
 }
