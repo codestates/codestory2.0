@@ -1,7 +1,17 @@
 import Layout from '../components/Layout';
-import Script from 'next/script';
+import { useEffect } from 'react';
 
 export default function CSS() {
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '/api/css';
+    document.body.append(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <Layout>
       <div
@@ -14,7 +24,6 @@ export default function CSS() {
           top: '82.1px'
         }}
       />
-      <Script src="/api/css" />
     </Layout>
   );
 };
