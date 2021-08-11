@@ -41,7 +41,7 @@ export default function Linux({ game }) {
 export async function getServerSideProps(context) {
   // const game = fs.readFileSync('games/linux/main.js', { encoding: 'utf8' }); local npm run build 확인 시 활성
   const res = await axios.get('https://codestory2-0-lxmudecxi-codestory2.vercel.app/games/linux/main.js');// local npm run build 확인 시 주석
-  const game=res.data
+  const game = res.data;
   return {
     props: { game }
   };
