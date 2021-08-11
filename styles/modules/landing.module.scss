@@ -39,6 +39,9 @@
   color: $white;
   cursor: pointer;
   z-index: 5;
+  &::selection {
+    background-color: $primary-lightblue;
+  }
 }
 
 .container {
@@ -66,6 +69,21 @@
   width: 150px;
   height: 50px;
   border-radius: 10px;
+  background-color: $gray;
+  color: $white;
   cursor: pointer;
   z-index: 100;
+}
+
+.btn_game_white {
+  position: absolute;
+  top: 75%;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 100;
+  &::selection {
+    background-color: $primary-lightblue;
+  }
 }

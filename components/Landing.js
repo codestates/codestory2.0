@@ -39,7 +39,7 @@ export default function Landing({ colorHandler }) {
         <SwiperSlide>
           <div className={styles.container2}>
             <Link href='/css' passHref>
-              <button className={styles.btn_game}>Start CSS</button>
+              <button className={styles.btn_game_white}>Start CSS</button>
             </Link>
           </div>
         </SwiperSlide>
