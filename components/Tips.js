@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/tips.module.scss';
-import tips from '../games/linux/linuxTips';
+import tips from '../public/games/linux/linuxTips';
 
 export default function Tips() {
 
