@@ -23,7 +23,7 @@ export default function Landing({ colorHandler }) {
         loop={true}
         navigation
         speed={600}
-        onSlideChange={(e)=>idxHandler(e.realIndex)}
+        onSlideChange={(e) => idxHandler(e.realIndex)}
       >
         <SwiperSlide>
           <div className={styles.container}>
