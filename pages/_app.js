@@ -6,6 +6,10 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { Amplify, withSSRContext } from 'aws-amplify';
+import awsExports from '../src/aws-exports';
+
+Amplify.configure({ ...awsExports, ssr: true });
 
 Router.events.on('routeChangeStart', () => NProgress.start()); 
 Router.events.on('routeChangeComplete', () => NProgress.done()); 
@@ -21,3 +25,5 @@ function MyApp({ Component, pageProps, router }) {
   );
 }
 export default MyApp;
+
+
