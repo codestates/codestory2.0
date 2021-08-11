@@ -10,6 +10,11 @@
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
   let wd = desktop;
+  let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
+  const firstFolder = new Image();
+  const secondFolder = new Image();
+  firstFolder.src = 'folder_icon.png';
+  secondFolder.src = 'folder_icon.png';
   const textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
   const lengthLimit = 43;
   const lineLimit = 10;
@@ -95,53 +100,65 @@
   function drawBackGround() {
     ctx.beginPath();
     ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#FCCB03';
+    ctx.fillStyle = '#eee';
     ctx.fill();
+    ctx.font = `${fontSize}px Arial`;
+    ctx.fillStyle = 'black';
+    ctx.fillText(leftfolder[0], 0.05 * canvas.width, 0.12 * canvas.height);
+    ctx.fillText(leftfolder[1], 0.05 * canvas.width, 0.2 * canvas.height);
+    ctx.fillText(leftfolder[2], 0.05 * canvas.width, 0.28 * canvas.height);
+    ctx.fillText(leftfolder[3], 0.05 * canvas.width, 0.36 * canvas.height);
     ctx.closePath();
   }
-  function drawScriptBox() {
+  function drawBar() {
     ctx.beginPath();
-    ctx.rect(0.16 * canvas.width, 0.2 * canvas.height, 0.35 * canvas.width, 0.2 * canvas.height);
-    ctx.fillStyle = '#FFFFFF';
+    ctx.rect(0, 0, canvas.width, 0.05 * canvas.height);
+    ctx.fillStyle = 'rgb(63,63,63)';
     ctx.fill();
+    ctx.font = `${fontSize}px Arial`;
+    ctx.fillStyle = 'white';
+    ctx.fillText(wd.name, 0.05 * canvas.width, 0.035 * canvas.height);
     ctx.closePath();
   }
   function drawCLI() {
     ctx.beginPath();
-    ctx.rect(0.16 * canvas.width, 0.5 * canvas.height, 0.35 * canvas.width, 0.2 * canvas.height);
+    ctx.rect(0, 0.75 * canvas.height, canvas.width, 0.25 * canvas.height);
     ctx.fillStyle = '#000000';
     ctx.fill();
     ctx.closePath();
   }
   function drawGUI() {
     ctx.beginPath();
-    ctx.rect(0.6 * canvas.width, 0.2 * canvas.height, 0.35 * canvas.width, 0.5 * canvas.height);
+    ctx.rect(0.25 * canvas.width, 0.05 * canvas.height, 0.75 * canvas.width, 0.7 * canvas.height);
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
     ctx.closePath();
-    const fWidth = 0.05 * canvas.width;
-    const fHeight = 0.15 * canvas.height;
+    const fWidth = 0.2 * canvas.width;
+    const fHeight = 0.2 * canvas.width;
     const toDisplay = Object.keys(wd.children).filter((f) => f[0] !== '.');
-    let fPosition = 0;
+    let fPosition = 1;
+    let gap = 65;
     for (let f of toDisplay) {
       ctx.beginPath();
-      ctx.rect(0.6 * canvas.width, 0.2 * canvas.height + fPosition * fHeight, fWidth, fHeight);
-      ctx.fillStyle = 'pink';
+      let lineX = gap + fPosition * fWidth;
+      let lineY = 0.08 * canvas.height;
+      ctx.drawImage(firstFolder, lineX, lineY, fWidth, fHeight);
       ctx.fill();
       ctx.closePath();
       ctx.font = `${fontSize}px Arial`;
       ctx.fillStyle = '#000000';
-      ctx.fillText(f, 0.6 * canvas.width, 0.2 * canvas.height + fPosition * fHeight);
+      ctx.fillText(f, gap + 55.5 - (f.length) * 3.3 + fPosition * fWidth, 0.3 * canvas.height);
       ++fPosition;
+      gap += 20;
     }
   }
   function drawText() {
     ctx.font = `${fontSize}px Arial`;
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = 'white';
     let linePosition = 1;
     for (let i = Math.max(textArr.length - lineLimit, 0); i < textArr.length; ++i) {
       for (let j = 0; j < textArr[i].length; j += lengthLimit) {
-        ctx.fillText(textArr[i].slice(j, j + lengthLimit), 0.16 * canvas.width, 0.5 * canvas.height + linePosition * fontSize);
+        ctx.fillText(textArr[i].slice(j, j + lengthLimit), 0.02 * canvas.width, 0.77 * canvas.height + linePosition * fontSize);
         ++linePosition;
       }
     }
@@ -151,7 +168,7 @@
     canvas.width = Number(gameContainer.style.width.match(/\d+/)[0]);
     canvas.height = Number(gameContainer.style.height.match(/\d+/)[0]);
     drawBackGround();
-    drawScriptBox();
+    drawBar();
     drawCLI();
     drawGUI();
     drawText();
