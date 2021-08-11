@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-codestory2-dev-154141-authRole",
+            "UnauthRoleArn": "arn:aws:iam::284763407492:role/amplify-codestory2-dev-154141-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::284763407492:role/amplify-codestory2-dev-154141-authRole",
+            "Region": "ap-northeast-2",
+            "DeploymentBucketName": "amplify-codestory2-dev-154141-deployment",
+            "UnauthRoleName": "amplify-codestory2-dev-154141-unauthRole",
+            "StackName": "amplify-codestory2-dev-154141",
+            "StackId": "arn:aws:cloudformation:ap-northeast-2:284763407492:stack/amplify-codestory2-dev-154141/31554dc0-fa6f-11eb-994c-066b5e07a30a",
+            "AmplifyAppId": "drl7u5zwhcbcc"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "drl7u5zwhcbcc",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
