@@ -68,7 +68,7 @@
             wd.children[commandArr[i]] = newDir;
           }
         } break;
-      case 'touch' :
+      case 'touch':
         for (let i = 1; i < commandArr.length; ++i) {
           if (!(Object.keys(wd.children).includes(commandArr[i]))) {
             const newFile = { name: commandArr[i], type: 'file', content:'' };
@@ -170,7 +170,7 @@
               textArr.push(`mv: cannot stat '${commandArr[1]}': No such file or directory`);
             }
           } else {
-            textArr.push(`mv: missing destination file operand after '${commandArr[1]}'`)
+            textArr.push(`mv: missing destination file operand after '${commandArr[1]}'`);
           }
         } else {
           textArr.push(`mv: missing file operand` );
