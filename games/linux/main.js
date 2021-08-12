@@ -71,7 +71,7 @@
       case 'touch':
         for (let i = 1; i < commandArr.length; ++i) {
           if (!(Object.keys(wd.children).includes(commandArr[i]))) {
-            const newFile = { name: commandArr[i], type: 'file', content:'' };
+            const newFile = { name: commandArr[i], type: 'file', content: '' };
             wd.children[commandArr[i]] = newFile;
           }
         }
