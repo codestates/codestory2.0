@@ -154,7 +154,7 @@
                       wd.children[commandArr[2]].children[commandArr[1]] = Object.assign({}, wd.children[commandArr[1]]);
                       delete wd.children[commandArr[1]];
                     } else {
-                      textArr.push(`mv: cannot overwrite directory '${commandArr[2]}/${commandArr[1]}' with non-directory`)
+                      textArr.push(`mv: cannot overwrite directory '${commandArr[2]}/${commandArr[1]}' with non-directory`);
                     }
                   } else {
                     wd.children[commandArr[2]].children[commandArr[1]] = Object.assign({}, wd.children[commandArr[1]]);
@@ -167,13 +167,13 @@
                 delete wd.children[commandArr[1]]; 
               }
             } else {
-              textArr.push(`mv: cannot stat '${commandArr[1]}': No such file or directory`)
+              textArr.push(`mv: cannot stat '${commandArr[1]}': No such file or directory`);
             }
           } else {
             textArr.push(`mv: missing destination file operand after '${commandArr[1]}'`)
           }
         } else {
-          textArr.push(`mv: missing file operand` )
+          textArr.push(`mv: missing file operand` );
         }break;
       default:
         textArr.push(`bash: command not found: ${commandArr[0]}`);
