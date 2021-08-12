@@ -1,6 +1,7 @@
 /* Login */
 
 @import "../variables";
+@import "../mixins";
 
 .background {
   position: absolute;
@@ -32,7 +33,6 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba($gray, .4);
-  transition: .4s;
   z-index: 50;
 }
 
@@ -40,27 +40,193 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 720px;
+  width: 700px;
   height: 460px;
+  border-radius: 20px;
   background-color: $white;
 }
 
 .slides {
-  width: 400px;
+  width: 380px;
   height: 460px;
   z-index: 100;
+  border-radius: 20px 0 0 20px;
   background-color: $primary;
+  overflow: hidden;
 }
 
 .page1 {
-  background-color: $primary-blue;
+  width: 380px;
+  height: 460px;
+  border-radius: 20px 0 0 20px;
+  background-color: $primary;
 }
 
-.login_box {
+.page2 {
+  width: 380px;
+  height: 460px;
+  border-radius: 20px 0 0 20px;
+  background-color: tomato;
+}
+
+.page3 {
+  width: 380px;
+  height: 460px;
+  border-radius: 20px 0 0 20px;
+  background-color: $primary-orange;
+}
+
+.page4 {
+  width: 380px;
+  height: 460px;
+  border-radius: 20px 0 0 20px;
+  background-color: $primary-lightblue;
+}
+
+.box_right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 320px;
   height: 460px;
+}
+
+.btn_close {
+  position: relative;
+  right: 10px;
+  top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.btn_close_bar {
+  width: 2px;
+  height: 20px;
+  transform: rotate(45deg);
+  background-color: rgba($gray, .8);
+  margin-left: -2px;
+  &:nth-child(2) {
+    transform: rotate(-45deg);
+    margin-right: -2px;
+  }
+}
+
+.word {
+  position: absolute;
+  top: 210px;
+  font-family: $sans-serif;
+  font-size: 1.5rem;
+}
+
+.word2 {
+  position: absolute;
+  top: 300px;
+  color: rgba($gray, .6);
+  font-size: 16px;
+}
+
+.box_login {
+  position: absolute;
+  top: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  height: 250px;
+}
+
+.box_id {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.word_id {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba($gray, .6);
+}
+
+.input_id {
+  border: none;
+  border-bottom: 1px solid rgba($gray, .2);
+  margin: 1px 0;
+  font-size: 16px;
+  width: 200px;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $primary;
+    transition: .4s;
+  }
+}
+
+.box_pw {
+  position: absolute;
+  top: 53px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.word_pw {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba($gray, .6);
+} 
+
+.input_pw {
+  border: none;
+  border-bottom: 1px solid rgba($gray, .2);
+  margin: 1px 0;
+  font-size: 16px;
+  width: 200px;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $primary;
+    transition: .4s;
+  }
+}
+
+.btn_login {
+  position: absolute;
+  top: 130px;
+  width: 100px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: rgba($gray, .8);
+  font-size: 14px;
+  text-align: center;
+  line-height: 25px;
+  color: $white;
+  cursor: pointer;
+}
+
+.box_login img {
+  top: 100px;
+  width: 160px;
+  height: 70px;
+  margin-top: 100px;
+  cursor: pointer;
+}
+
+// responsive
+
+@include breakpoint(small) {
+  .container {
+    width: 320px;
+    height: 460px;
+    border-radius: 20px;
+  }
+  .slides {
+    display: none;
+  }
 }
