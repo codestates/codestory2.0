@@ -108,7 +108,7 @@
           }
         } else {
           for(let folder in wd.children){
-            if(folder[0] !== '.'){
+            if (folder[0] !== '.') {
               list = `${list} ${folder}`;
             }
           }
@@ -173,8 +173,8 @@
             textArr.push(`mv: missing destination file operand after '${commandArr[1]}'`);
           }
         } else {
-          textArr.push(`mv: missing file operand` );
-        }break;
+          textArr.push(`mv: missing file operand`);
+        } break;
       default:
         textArr.push(`bash: command not found: ${commandArr[0]}`);
       }
