@@ -102,7 +102,7 @@
         } break;
       case 'ls':
         let list = '';
-        if(commandArr[1] === '-a') {
+        if (commandArr[1] === '-a') {
           for(let folder in wd.children){
             list = `${list} ${folder}`;
           }
