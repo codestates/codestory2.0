@@ -3,10 +3,19 @@ import Nav from '../components/Nav';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import styles from '../styles/modules/game.module.scss';
-import Script from 'next/script';
-import fs from 'fs';
+import { useEffect } from 'react';
 
-export default function Linux({ game }) {
+export default function Linux() {
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = '/api/linux';
+    document.body.append(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -30,14 +39,6 @@ export default function Linux({ game }) {
           <GameFooter /> 
         </div>
       </div>
-      <Script>{game}</Script>
     </Layout>
   );
 };
-
-export async function getServerSideProps(context) {
-  const game = fs.readFileSync('games/linux/main.js', { encoding: 'utf8' });
-  return {
-    props: { game }
-  };
-}
