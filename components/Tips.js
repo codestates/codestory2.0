@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/tips.module.scss';
-import tips from '../games/linux/linuxTips';
 
-export default function Tips() {
+export default function Tips({ gametips }) {
 
   const [isOpen, setIsOpen] = useState(false);
+
+  let tips = gametips;
 
   const openHandler = () => {
     setIsOpen(!isOpen);
