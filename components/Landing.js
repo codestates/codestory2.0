@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/landing.module.scss';
 
-
 export default function Landing({ colorHandler }) {
 
   SwiperCore.use([Navigation, Pagination]);
