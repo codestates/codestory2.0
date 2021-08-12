@@ -2,8 +2,9 @@ import Layout from '../components/Layout';
 import Nav from '../components/Nav';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
-import styles from '../styles/modules/game.module.scss';
+import styles from '../styles/modules/linuxgame.module.scss';
 import { useEffect } from 'react';
+import tips from '../games/linux/linuxTips';
 
 export default function Linux() {
 
@@ -33,7 +34,7 @@ export default function Linux() {
           />
         </div>
         <div className={styles.tips}>
-          <Tips />
+          <Tips gametips={tips}/>
         </div>
         <div className={styles.gamefooter}>
           <GameFooter /> 
