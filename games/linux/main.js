@@ -136,7 +136,7 @@
         } else if (commandArr[1]) {
           textArr.push(`cat: ${commandArr[1]}: No such file or directory`);
         } break;
-      case 'mv' :
+      case 'mv':
         if (commandArr[1]) {
           if (commandArr[2]) {
             if (wd.children[commandArr[1]]) {
@@ -149,7 +149,7 @@
                     textArr.push(`mv: cannot overwrite non-directory '${commandArr[2]}' with directory '${commandArr[1]}'`);
                   }
                 } else if (wd.children[commandArr[2]].type === 'folder') {
-                  if(wd.children[commandArr[2]].children[commandArr[1]]) {
+                  if (wd.children[commandArr[2]].children[commandArr[1]]) {
                     if (wd.children[commandArr[2]].children[commandArr[1]].type === 'file') {
                       wd.children[commandArr[2]].children[commandArr[1]] = Object.assign({}, wd.children[commandArr[1]]);
                       delete wd.children[commandArr[1]];
