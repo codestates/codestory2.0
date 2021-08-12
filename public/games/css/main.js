@@ -21,8 +21,6 @@
 
   // container
   const container = document.querySelector('#game_container');
-  const left = Number(container.style.left.match(/\d+/)[0]);
-  const top = Number(container.style.top.match(/\d+/)[0]);
 
   // canvas
   const canvas = document.createElement('canvas');
@@ -30,11 +28,15 @@
 all: unset;
 background-color: #E0E0E0;
 `;
+  let left = 0;
+  let top = 0;
   canvas.width = 720;
   canvas.height = 672.8;
-  canvas.addEventListener('click', (e) => {
-    textarea.value = `left:${e.clientX - left}px;\ntop:${e.clientY - top}px;\n${textarea.value.replace(/(left|top)\s*:\s*\w*\s*;?\s*/g, '')}`;
-  });
+  canvas.addEventListener('click', (e) => textarea.value = (
+`left: ${e.clientX - left}px;
+top: ${e.clientY - top}px;
+${textarea.value.replace(/(left|top)\s*:\s*\S+\s*;?\s*/g, '')}`
+  ));
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = 'black';
   ctx.font = '40px Arial';
@@ -200,5 +202,7 @@ background-color: #E0E0E0;
     wallCollisionHandler();
     switchOnHandler();
     endingHandler();
+    left = canvas.getBoundingClientRect().left;
+    top = canvas.getBoundingClientRect().top;
   }, 10);
 })();
