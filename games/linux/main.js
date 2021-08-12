@@ -13,9 +13,13 @@
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const firstFolder = new Image();
   const secondFolder = new Image();
+  const firstFile = new Image();
+  const secondFile = new Image();
   firstFolder.src = 'folder_icon.png';
   secondFolder.src = 'folder_icon.png';
-  const textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
+  firstFile.src = 'file_icon.png';
+  secondFile.src = 'file_icon.png';
+  let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
   const lengthLimit = 43;
   const lineLimit = 10;
   const fontSize = 16;
@@ -86,6 +90,26 @@
             }
           }
         } break;
+      case 'ls':
+        let list = '';
+        if( commandArr[1] === '-a') {
+          for(let folder in wd.children){
+            list = `${list} ${folder}`
+          }
+        } else {
+          for(let folder in wd.children){
+            if(folder[0]!=='.'){
+              list = `${list} ${folder}`
+            }
+          }
+        } 
+        textArr.push(list);
+        break;
+      case 'clear':
+        textArr.pop();
+        break;
+      case 'touch' :
+
       default:
         textArr.push(`bash: command not found: ${commandArr[0]}`);
       }
