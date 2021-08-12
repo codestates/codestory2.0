@@ -104,12 +104,12 @@
         let list = '';
         if(commandArr[1] === '-a') {
           for(let folder in wd.children){
-            list = `${list} ${folder}`
+            list = `${list} ${folder}`;
           }
         } else {
           for(let folder in wd.children){
             if(folder[0] !== '.'){
-              list = `${list} ${folder}`
+              list = `${list} ${folder}`;
             }
           }
         } 
@@ -125,7 +125,7 @@
         let currentDirectory = wd;
         while (currentDirectory.children['..']) {
           currentDirectory = currentDirectory.children['..'];
-          currentLocation = `${currentDirectory.name}/${currentLocation}`
+          currentLocation = `${currentDirectory.name}/${currentLocation}`;
         }
         textArr.push(currentLocation);
         break;
@@ -151,7 +151,7 @@
                 } else if (wd.children[commandArr[2]].type === 'folder') {
                   if(wd.children[commandArr[2]].children[commandArr[1]]) {
                     if (wd.children[commandArr[2]].children[commandArr[1]].type === 'file') {
-                      wd.children[commandArr[2]].children[commandArr[1]] = Object.assign ({}, wd.children[commandArr[1]]);
+                      wd.children[commandArr[2]].children[commandArr[1]] = Object.assign({}, wd.children[commandArr[1]]);
                       delete wd.children[commandArr[1]];
                     } else {
                       textArr.push(`mv: cannot overwrite directory '${commandArr[2]}/${commandArr[1]}' with non-directory`)
