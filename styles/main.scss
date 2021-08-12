@@ -39,6 +39,10 @@
   }
 }
 
+.swiper-pagination-bullet-active {
+  background-color: $white !important;
+}
+
 .page-enter {
   opacity: 0;
   transform: scale(0.9);
