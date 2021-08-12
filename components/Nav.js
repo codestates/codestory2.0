@@ -8,9 +8,8 @@ import About from './About';
 import Landing from './Landing';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
-import Login from './Login';
 
-export default function Nav({ componentHandler, isWhite }) {
+export default function Nav({ componentHandler, isWhite, loginOpenHandler }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
@@ -58,6 +57,12 @@ export default function Nav({ componentHandler, isWhite }) {
     componentHandler(component);
   };
 
+  const loginClickHandler = () => {
+    setIsOpen(!isOpen);
+    menuTl.reversed(!menuTl.reversed());
+    loginOpenHandler();
+  };
+
   return (
     <>
       <Link href='/' passHref>
@@ -101,7 +106,7 @@ export default function Nav({ componentHandler, isWhite }) {
                 onClick={() => navClickHandler(<Mypage/>)}
               >My page</button>
               <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<Login/>)}
+                onClick={() => loginClickHandler()}
               >Login</button>
             </div>
           </div> 
