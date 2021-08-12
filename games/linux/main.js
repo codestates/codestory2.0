@@ -162,7 +162,7 @@
                   }
                 }
               } else {
-                wd.children[commandArr[2]] =  Object.assign({}, wd.children[commandArr[1]]);
+                wd.children[commandArr[2]] = Object.assign({}, wd.children[commandArr[1]]);
                 wd.children[commandArr[2]].name = commandArr[2];
                 delete wd.children[commandArr[1]]; 
               }
