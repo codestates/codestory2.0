@@ -146,7 +146,7 @@
                     wd.children[commandArr[2]].content = wd.children[commandArr[1]].content;
                     delete wd.children[commandArr[1]];
                   } else if (wd.children[commandArr[1]].type === 'folder') {
-                    textArr.push(`mv: cannot overwrite non-directory '${commandArr[2]}' with directory '${commandArr[1]}'`)
+                    textArr.push(`mv: cannot overwrite non-directory '${commandArr[2]}' with directory '${commandArr[1]}'`);
                   }
                 } else if (wd.children[commandArr[2]].type === 'folder') {
                   if(wd.children[commandArr[2]].children[commandArr[1]]) {
