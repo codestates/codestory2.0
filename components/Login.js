@@ -57,8 +57,8 @@ export default function Login({ isWhite, loginOpenHandler }) {
               <div className={styles.btn_login}>Sign In</div>
               <Image
                 src={btn_google}
-                width='140'
-                alt='btn_google'
+                width="140"
+                alt="btn_google"
               />
             </div>
           </div>
