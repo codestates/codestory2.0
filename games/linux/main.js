@@ -4,11 +4,13 @@
   const gameContainer = document.querySelector('#game_container');
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
-  const homeDir = { name: '~', children: { '.': null, Desktop: null } };
-  const desktop = { name: 'Desktop', children: { '.': null, '..': homeDir } };
+  const homeDir = { name: '~', type: 'folder', children: { '.': null, Desktop: null } };
+  const desktop = { name: 'Desktop', type: 'folder', children: { '.': null, '..': homeDir } };
+  const hello = { name: 'hello.js', type: 'file', content: 'hello coding' };
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
+  desktop.children['hello.js'] = hello;
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const firstFolder = new Image();
@@ -61,11 +63,19 @@
           if (Object.keys(wd.children).includes(commandArr[i])) {
             textArr.push(`mkdir: ${commandArr[i]}: File exists`);
           } else {
-            const newDir = { name: commandArr[i], children: { '.': null, '..': wd } };
+            const newDir = { name: commandArr[i], type: 'folder', children: { '.': null, '..': wd } };
             newDir.children['.'] = newDir;
             wd.children[commandArr[i]] = newDir;
           }
         } break;
+      case 'touch' :
+        for (let i = 1; i < commandArr.length; ++i) {
+          if (!(Object.keys(wd.children).includes(commandArr[i]))) {
+            const newFile = {name: commandArr[i], type: 'file', content:''}
+            wd.children[commandArr[i]] = newFile;
+          }
+        }
+        break;
       case 'rm':
         const options = [];
         for (let i = 1; i < commandArr.length; ++i) {
@@ -92,13 +102,13 @@
         } break;
       case 'ls':
         let list = '';
-        if( commandArr[1] === '-a') {
+        if(commandArr[1] === '-a') {
           for(let folder in wd.children){
             list = `${list} ${folder}`
           }
         } else {
           for(let folder in wd.children){
-            if(folder[0]!=='.'){
+            if(folder[0] !== '.'){
               list = `${list} ${folder}`
             }
           }
@@ -106,10 +116,66 @@
         textArr.push(list);
         break;
       case 'clear':
-        textArr.pop();
+        if (commandArr.length === 1) {
+          textArr = [`Last login: ${new Date().toUTCString()}`];
+          break;
+        }
+      case 'pwd':
+        let currentLocation = wd.name;
+        let currentDirectory = wd;
+        while (currentDirectory.children['..']) {
+          currentDirectory = currentDirectory.children['..'];
+          currentLocation = `${currentDirectory.name}/${currentLocation}`
+        }
+        textArr.push(currentLocation);
         break;
-      case 'touch' :
-
+      case 'cat':
+        if (commandArr[1] && wd.children[commandArr[1]]) {
+          const content = wd.children[commandArr[1]].content;
+          textArr.push(content);
+        } else if (commandArr[1]) {
+          textArr.push(`cat: ${commandArr[1]}: No such file or directory`);
+        } break;
+      case 'mv' :
+        if (commandArr[1]) {
+          if (commandArr[2]) {
+            if (wd.children[commandArr[1]]) {
+              if (wd.children[commandArr[2]]) {
+                if (wd.children[commandArr[2]].type === 'file') {
+                  if (wd.children[commandArr[1]].type === 'file') {
+                    wd.children[commandArr[2]].content = wd.children[commandArr[1]].content;
+                    delete wd.children[commandArr[1]];
+                  } else if (wd.children[commandArr[1]].type === 'folder') {
+                    textArr.push(`mv: cannot overwrite non-directory '${commandArr[2]}' with directory '${commandArr[1]}'`)
+                  }
+                } else if (wd.children[commandArr[2]].type === 'folder') {
+                  if(wd.children[commandArr[2]].children[commandArr[1]]) {
+                    if (wd.children[commandArr[2]].children[commandArr[1]].type === 'file') {
+                      wd.children[commandArr[2]].children[commandArr[1]] = Object.assign ({}, wd.children[commandArr[1]]);
+                      delete wd.children[commandArr[1]];
+                    } else {
+                      textArr.push(`mv: cannot overwrite directory '${commandArr[2]}/${commandArr[1]}' with non-directory`)
+                    }
+                  } else {
+                    wd.children[commandArr[2]].children[commandArr[1]] = Object.assign({}, wd.children[commandArr[1]]);
+                    delete wd.children[commandArr[1]];
+                  }
+                }
+              } else {
+                wd.children[commandArr[2]] =  Object.assign({}, wd.children[commandArr[1]]);
+                wd.children[commandArr[2]].name = commandArr[2];
+                console.log(wd.children[commandArr[2]]);
+                delete wd.children[commandArr[1]]; 
+              }
+            } else {
+              textArr.push(`mv: cannot stat '${commandArr[1]}': No such file or directory`)
+            }
+          } else {
+            textArr.push(`mv: missing destination file operand after '${commandArr[1]}'`)
+          }
+        } else {
+          textArr.push(`mv: missing file operand` )
+        }break;
       default:
         textArr.push(`bash: command not found: ${commandArr[0]}`);
       }
@@ -166,7 +232,11 @@
       ctx.beginPath();
       let lineX = gap + fPosition * fWidth;
       let lineY = 0.08 * canvas.height;
-      ctx.drawImage(firstFolder, lineX, lineY, fWidth, fHeight);
+      if (wd.children[f].type === 'folder') {
+        ctx.drawImage(firstFolder, lineX, lineY, fWidth, fHeight);
+      } else if (wd.children[f].type === 'file') {
+        ctx.drawImage(firstFile, lineX, lineY, fWidth, fHeight);
+      }
       ctx.fill();
       ctx.closePath();
       ctx.font = `${fontSize}px Arial`;
