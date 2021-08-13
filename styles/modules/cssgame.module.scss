@@ -1,4 +1,4 @@
-/* Game */
+/* CSS Game */
 
 @import "../variables";
 @import "../mixins";
@@ -11,9 +11,10 @@
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-color: $primary;
+  background-color: $primary-blue;
 }
 
 .game {
+  position: relative;
   margin: auto;
 }
