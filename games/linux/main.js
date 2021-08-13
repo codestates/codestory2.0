@@ -103,11 +103,11 @@
       case 'ls':
         let list = '';
         if (commandArr[1] === '-a') {
-          for(let folder in wd.children){
+          for (let folder in wd.children) {
             list = `${list} ${folder}`;
           }
         } else {
-          for(let folder in wd.children){
+          for (let folder in wd.children) {
             if (folder[0] !== '.') {
               list = `${list} ${folder}`;
             }
