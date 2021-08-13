@@ -273,8 +273,8 @@
         textArr.push(`bash: command not found: ${commandArr[0]}`);
       }
       if (sudo !== 1) {
-        textArr.push(`${wd.name} $ `); break;
-      }
+        textArr.push(`${wd.name} $ `);
+      } break;
     case 16:
     case 20:
       break;
