@@ -53,6 +53,16 @@
   cursor: pointer;
 }
 
+.btn_tip_white {
+  position: absolute;
+  bottom: 75px;
+  right: 65px;
+  background-color: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  color: $white;
+}
+
 .box {
   display: flex;
   flex-direction: column;

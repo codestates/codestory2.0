@@ -1,14 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import styles from '../styles/modules/nav.module.scss';
+import About from './About';
+import Landing from './Landing';
+import Ranking from './Ranking';
+import Mypage from './Mypage';
+import Linux_game from './Linux_game';
+import Css_game from '../components/Css_game';
 
-export default function Nav({ isWhite, loginOpenHandler }) {
+export default function Nav({ componentHandler, isWhite, loginOpenHandler, colorHandler }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
   const menuBars = {};
+  const { asPath } = useRouter();
 
   useEffect(() => {
     menuTl
@@ -47,9 +55,15 @@ export default function Nav({ isWhite, loginOpenHandler }) {
     menuTl.reversed(!menuTl.reversed());
   };
 
-  const clickHandler = () => {
+  const navClickHandler = (component) => {
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
+    componentHandler(component);
+    colorHandler(1);
+  };
+
+  const logoClickHandler = (component) => {
+    componentHandler(component);
   };
 
   const loginClickHandler = () => {
@@ -61,7 +75,12 @@ export default function Nav({ isWhite, loginOpenHandler }) {
   return (
     <>
       <Link href='/' passHref>
-        <span className={isWhite ? styles.logo_white : styles.logo}>
+        <span className={isWhite ? styles.logo_white : styles.logo} 
+          onClick={asPath === '/' 
+            ? () => logoClickHandler(<Landing/>) 
+            : null
+          }
+        >
           Code<br/>Story
         </span>
       </Link>
@@ -83,28 +102,25 @@ export default function Nav({ isWhite, loginOpenHandler }) {
             <div className={styles.menu}>
               <Link href='/' passHref>
                 <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={clickHandler}>
-                  Home
-                </button>
+                  onClick={asPath === '/'
+                    ? () => navClickHandler(<Landing/>)
+                    : asPath === 'linux'
+                      ? () => navClickHandler(<Linux_game />)
+                      : asPath === 'css'
+                        ? () => navClickHandler(<Css_game />)
+                        : null
+                  }
+                >Home</button>
               </Link> 
-              <Link href='/about' passHref>
-                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={clickHandler}>
-                  About
-                </button>
-              </Link>
-              <Link href='/ranking' passHref>
-                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={clickHandler}>
-                  Ranking
-                </button>
-              </Link>
-              <Link href='/mypage' passHref>
-                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={clickHandler}>
-                  My Page
-                </button>
-              </Link>
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                onClick={() => navClickHandler(<About />)}
+              >About</button>
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                onClick={() => navClickHandler(<Ranking />)}
+              >Ranking</button>
+              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                onClick={() => navClickHandler(<Mypage />)}
+              >My page</button>
               <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                 onClick={() => loginClickHandler()}
               >Login</button>

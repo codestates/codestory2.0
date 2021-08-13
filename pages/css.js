@@ -1,25 +1,31 @@
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
-import styles from '../styles/modules/cssgame.module.scss';
-import { useEffect, useState } from 'react';
+import styles from '../styles/modules/css.module.scss';
+import { useState } from 'react';
 import tips from '../games/css/cssTips';
 import Login from '../components/Login';
+import Css_game from '../components/Css_game';
 
 export default function CSS() {
 
+  const [component, setComponent] = useState(<Css_game />);
+  const [isWhite, setIsWhite] = useState(true);
   const [isLoginOpen, setLoginOpen] = useState(false);
-  const isWhite = true;
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = '/api/css';
-    document.body.append(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  const colorHandler = (e) => {
+    if (e === 1) {
+      setIsWhite(true);
+    } else if (e === 0) {
+      setIsWhite(false);
+    }
+  };
+
+  const componentHandler = (e) => {
+    setComponent(e);
+  };
 
   const loginOpenHandler = () => {
     setLoginOpen(!isLoginOpen);
@@ -28,29 +34,25 @@ export default function CSS() {
   return (
     <Layout>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <Nav isWhite={isWhite}
-            loginOpenHandler={loginOpenHandler}/>
-        </div>
-        <div className={styles.game}>
-          <div
-            id="game_container"
-            style={{
-              width: '720px',
-              height: '672.8px',
-              left: '360px',
-              top: '82.1px'
-            }}
-          />
-        </div>
+        <Nav componentHandler={(e) => componentHandler(e)} 
+          isWhite={isWhite}
+          loginOpenHandler={loginOpenHandler}
+          colorHandler={colorHandler}
+        />
+        {component}
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         <div className={styles.tips}>
-          <Tips gametips={tips}/>
-        </div>
-        <div className={styles.gamefooter}>
-          <GameFooter /> 
+          {component.type.name === 'Css_game' 
+            ? <Tips gametips={tips}
+              isWhite={isWhite}/>
+            : null
+          }
         </div>
       </div>
+      {component.type.name === 'Css_game' 
+        ? <GameFooter isWhite={isWhite}/> 
+        : <Footer isWhite={isWhite}/>
+      }
     </Layout>
   );
 };
