@@ -4,23 +4,21 @@
   const gameContainer = document.querySelector('#game_container');
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
-  const homeDir = { name: '~', type: 'folder', children: { '.': null, Desktop: null } };
-  const desktop = { name: 'Desktop', type: 'folder', children: { '.': null, '..': homeDir } };
-  const hello = { name: 'hello.js', type: 'file', content: 'hello coding' };
+  const homeDir = { name: '~', type: 'folder', sudo: true, children: { '.': null, Desktop: null } };
+  const desktop = { name: 'Desktop', type: 'folder', sudo: false, children: { '.': null, '..': homeDir } };
+  const hello = { name: 'hello.js', type: 'file', sudo: true, content: 'hello coding' };
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
   desktop.children['hello.js'] = hello;
+  let sudo = 0;
+  const linuxPassword = '12345678';
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const firstFolder = new Image();
-  const secondFolder = new Image();
   const firstFile = new Image();
-  const secondFile = new Image();
   firstFolder.src = 'folder_icon.png';
-  secondFolder.src = 'folder_icon.png';
   firstFile.src = 'file_icon.png';
-  secondFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
   const lengthLimit = 43;
   const lineLimit = 10;
@@ -29,14 +27,50 @@
   function keyDownHandler(e) {
     switch (e.keyCode) {
     case 8:
-      if (textArr[textArr.length - 1].length > wd.name.length + 3) {
+      if (sudo !==1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
+        textArr[textArr.length - 1] = textArr[textArr.length - 1].slice(0, -1);
+      } else if (sudo ===1 && textArr[textArr.length - 1].length > 25) {
         textArr[textArr.length - 1] = textArr[textArr.length - 1].slice(0, -1);
       } break;
     case 13:
-      const commandArr = textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g) || [];
+      let commandArr = [];
+      if (sudo === 2 && textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g)[0] === 'sudo') {
+        commandArr = textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g) || [];
+        commandArr.shift();
+      } else if (sudo === 1 && textArr[textArr.length - 1].match(/\S+/g)[0] === '[sudo]') {
+        const passwordArr = textArr[textArr.length - 1].match(/\S+/g) || [];
+        if (passwordArr[4] === linuxPassword) {
+          commandArr = textArr[textArr.length - 2].slice(wd.name.length + 3).match(/\S+/g) || [];
+          commandArr.shift();
+          sudo = 2;
+        } else {
+          commandArr = [];
+          sudo = 0;
+        }
+      } else {
+        commandArr = textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g) || [];
+      }
       switch (commandArr[0]) {
       case undefined:
         break;
+      case 'sudo':
+        if (commandArr[1]) {
+          if(sudo === 0) {
+            const sudoMessage = '[sudo] password for you: '
+            textArr.push(sudoMessage);
+            let isFirstEnter = 0;
+            if (isFirstEnter !== 0) {
+              textArr[textArr.length - 1] += e.key === 'Unidentified' ? '' : e.key;
+            } else {
+              isFirstEnter =1;
+            }
+            sudo = 1;
+          } else if (sudo === 2) {
+            commandArr.shift();
+          }
+        } else {
+          textArr.push(`please input command after sudo`);
+        } break;
       case 'cd':
         if (!commandArr[1] || commandArr[1] === '~') {
           wd = homeDir;
@@ -63,7 +97,7 @@
           if (Object.keys(wd.children).includes(commandArr[i])) {
             textArr.push(`mkdir: ${commandArr[i]}: File exists`);
           } else {
-            const newDir = { name: commandArr[i], type: 'folder', children: { '.': null, '..': wd } };
+            const newDir = { name: commandArr[i], type: 'folder', sudo: false, children: { '.': null, '..': wd } };
             newDir.children['.'] = newDir;
             wd.children[commandArr[i]] = newDir;
           }
@@ -71,7 +105,7 @@
       case 'touch':
         for (let i = 1; i < commandArr.length; ++i) {
           if (!(Object.keys(wd.children).includes(commandArr[i]))) {
-            const newFile = { name: commandArr[i], type: 'file', content: '' };
+            const newFile = { name: commandArr[i], type: 'file', sudo: false, content: '' };
             wd.children[commandArr[i]] = newFile;
           }
         }
@@ -80,25 +114,58 @@
         const options = [];
         for (let i = 1; i < commandArr.length; ++i) {
           if (commandArr[i][0] === '-' && commandArr[i].length > 1) {
-            options.push(...commandArr[i].slice(1).split(''));
+            for (let j = 1; j < commandArr[i].length; j++) {
+              if (!options.includes(commandArr[i][j])) {
+                options.push(commandArr[i][j])
+              }
+            }
           }
         }
         if (options.includes('-')) {
           textArr.push('rm: illegal option -- -');
           break;
         }
-        for (let i = 1; i < commandArr.length; ++i) {
-          if (commandArr[i][0] !== '-' || commandArr[i].length === 1) {
+        if (options.length === 1 && options[0] === 'r') {
+          for (let i = 1; i < commandArr.length; ++i) {
+            if ((commandArr[i][0] !== '-' || commandArr[i].length === 1)) {
+              if (!Object.keys(wd.children).includes(commandArr[i])) {
+                textArr.push(`rm: ${commandArr[i]}: No such file or directry`);
+              } else if (commandArr[i] === '.' || commandArr[i] === '..') {
+                textArr.push(`rm: refusing to remove '.' or '..' directory: skipping '.'`);
+              } else {
+                if (wd.children[commandArr[i]].sudo === false || sudo === 2) {
+                  delete wd.children[`${commandArr[i]}`];
+                } else {
+                  textArr.push(`bash: rm: ${commandArr[i]}: Permission denied`);
+                }
+              }
+            } 
+          } 
+        } else if (options.length >1 && options[0] !=='r') {
+          let wrongOption ='';
+          for (let i = 0; i < options.length; i++) {
+            if (options[i] !== 'r' ) {
+              wrongOption = options[i];
+              break;
+            }
+          }
+          textArr.push(`rm: invalid option -- '${options[i]}'`);
+        } else if (options.length === 0) {
+          for (let i = 1; i < commandArr.length; ++i) {
             if (!Object.keys(wd.children).includes(commandArr[i])) {
               textArr.push(`rm: ${commandArr[i]}: No such file or directry`);
             } else if (wd.children[commandArr[i]].children && !options.includes('r')) {
               textArr.push(`rm: ${commandArr[i]}: is a directory`);
             } else if (commandArr[i] === '.' || commandArr[i] === '..') {
-
+              textArr.push(`rm: refusing to remove '.' or '..' directory: skipping '.'`);
             } else {
-              delete wd.children[`${commandArr[i]}`];
+              if ( wd.children[commandArr[i]].sudo === false || sudo === 2) {
+                delete wd.children[`${commandArr[i]}`];
+              } else {
+                textArr.push(`bash: rm: ${commandArr[i]}: Permission denied`);
+              }
             }
-          }
+          } 
         } break;
       case 'ls':
         let list = '';
@@ -175,10 +242,39 @@
         } else {
           textArr.push(`mv: missing file operand`);
         } break;
+      case 'cp':
+        if (commandArr[1]) {
+          if (commandArr[2]) {
+            if (wd.children[commandArr[1]]) {
+              if (wd.children[commandArr[1]].type === 'file') {
+                if (wd.children[commandArr[2]] && wd.children[commandArr[2]].type === 'folder') {
+                  wd.children[commandArr[2]].children[commandArr[1]] = Object.assign({}, wd.children[commandArr[1]]);
+                } else {
+                  if (commandArr[1] !== commandArr[2]) {
+                    wd.children[commandArr[2]] = Object.assign({}, wd.children[commandArr[1]]);
+                    wd.children[commandArr[2]].name = commandArr[2];
+                  } else {
+                    textArr.push(`cp: '${commandArr[1]}' and '${commandArr[2]}' are the same file`);
+                  }
+                }
+              } else {
+               textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
+              }
+            } else {
+              textArr.push(`cp: cannot stat '${commandArr[1]}': No such file or directory`);
+            }
+          } else {
+            textArr.push(`cp: missing destination file operand after '${commandArr[1]}'`);
+          }
+        } else {
+          textArr.push(`cp: missing file operand`);
+        } break;
       default:
         textArr.push(`bash: command not found: ${commandArr[0]}`);
       }
-      textArr.push(`${wd.name} $ `); break;
+      if (sudo !== 1) {
+        textArr.push(`${wd.name} $ `); break;
+      }
     case 16:
     case 20:
       break;
