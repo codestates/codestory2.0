@@ -6,7 +6,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-// import { Amplify, withSSRContext } from 'aws-amplify';
+// import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
 // import awsExports from '../src/aws-exports';
 
 // Amplify.configure({ ...awsExports, ssr: true });
