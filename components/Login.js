@@ -4,12 +4,12 @@ import styles from '../styles/modules/login.module.scss';
 import Image from 'next/image';
 import btn_google from '../public/btn_google.svg';
 
-export default function Login({ isWhite, loginOpenHandler }) {
+export default function Login({ loginOpenHandler }) {
 
   SwiperCore.use([EffectFade, Pagination, Autoplay]);
 
   return (
-    <div className={isWhite? styles.background_white : styles.background}>
+    <div className={styles.background}>
       <div className={styles.modal}>
         <div className={styles.container}>
           <div className={styles.slides}>

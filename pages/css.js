@@ -3,10 +3,14 @@ import Nav from '../components/Nav';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import styles from '../styles/modules/cssgame.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import tips from '../games/css/cssTips';
+import Login from '../components/Login';
 
 export default function CSS() {
+
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  const isWhite = true;
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -17,11 +21,16 @@ export default function CSS() {
     };
   }, []);
 
+  const loginOpenHandler = () => {
+    setLoginOpen(!isLoginOpen);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Nav />
+          <Nav isWhite={isWhite}
+            loginOpenHandler={loginOpenHandler}/>
         </div>
         <div className={styles.game}>
           <div
@@ -34,6 +43,7 @@ export default function CSS() {
             }}
           />
         </div>
+        {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         <div className={styles.tips}>
           <Tips gametips={tips}/>
         </div>

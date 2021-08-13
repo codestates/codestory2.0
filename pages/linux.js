@@ -3,10 +3,14 @@ import Nav from '../components/Nav';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import styles from '../styles/modules/linuxgame.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import tips from '../games/linux/linuxTips';
+import Login from '../components/Login';
 
 export default function Linux() {
+
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  const isWhite = false;
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -17,11 +21,16 @@ export default function Linux() {
     };
   }, []);
 
+  const loginOpenHandler = () => {
+    setLoginOpen(!isLoginOpen);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Nav />
+          <Nav isWhite={isWhite}
+            loginOpenHandler={loginOpenHandler}/>
         </div>
         <div className={styles.game}>
           <div
@@ -33,6 +42,7 @@ export default function Linux() {
             }}
           />
         </div>
+        {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         <div className={styles.tips}>
           <Tips gametips={tips}/>
         </div>
