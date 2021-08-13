@@ -62,7 +62,7 @@
             if (isFirstEnter !== 0) {
               textArr[textArr.length - 1] += e.key === 'Unidentified' ? '' : e.key;
             } else {
-              isFirstEnter =1;
+              isFirstEnter = 1;
             }
             sudo = 1;
           } else if (sudo === 2) {
@@ -142,9 +142,9 @@
             } 
           } 
         } else if (options.length >1 && options[0] !=='r') {
-          let wrongOption ='';
+          let wrongOption = '';
           for (let i = 0; i < options.length; i++) {
-            if (options[i] !== 'r' ) {
+            if (options[i] !== 'r') {
               wrongOption = options[i];
               break;
             }
@@ -159,13 +159,13 @@
             } else if (commandArr[i] === '.' || commandArr[i] === '..') {
               textArr.push(`rm: refusing to remove '.' or '..' directory: skipping '.'`);
             } else {
-              if ( wd.children[commandArr[i]].sudo === false || sudo === 2) {
+              if (wd.children[commandArr[i]].sudo === false || sudo === 2) {
                 delete wd.children[`${commandArr[i]}`];
               } else {
                 textArr.push(`bash: rm: ${commandArr[i]}: Permission denied`);
               }
             }
-          } 
+          }
         } break;
       case 'ls':
         let list = '';
@@ -273,8 +273,8 @@
         textArr.push(`bash: command not found: ${commandArr[0]}`);
       }
       if (sudo !== 1) {
-        textArr.push(`${wd.name} $ `); break;
-      }
+        textArr.push(`${wd.name} $ `);
+      } break;
     case 16:
     case 20:
       break;
