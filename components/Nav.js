@@ -1,20 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import styles from '../styles/modules/nav.module.scss';
-import About from './About';
-import Landing from './Landing';
-import Ranking from './Ranking';
-import Mypage from './Mypage';
 
-export default function Nav({ componentHandler, isWhite, loginOpenHandler }) {
+export default function Nav({ isWhite, loginOpenHandler }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
   const menuBars = {};
-  const { asPath } = useRouter();
 
   useEffect(() => {
     menuTl
@@ -40,21 +34,22 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler }) {
         y: -9
       }, 0)
       .reverse();
-  }, []);
+  }, [
+    menuBars.back,
+    menuBars.bottomBar,
+    menuBars.middleBar,
+    menuBars.topBar,
+    menuTl
+  ]);
 
   const openHandler = () => {
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
   };
 
-  const navClickHandler = (component) => {
+  const clickHandler = () => {
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
-    componentHandler(component);
-  };
-
-  const logoClickHandler = (component) => {
-    componentHandler(component);
   };
 
   const loginClickHandler = () => {
@@ -66,12 +61,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler }) {
   return (
     <>
       <Link href='/' passHref>
-        <span className={isWhite ? styles.logo_white : styles.logo} 
-          onClick={asPath === '/' 
-            ? () => logoClickHandler(<Landing/>) 
-            : null
-          }
-        >
+        <span className={isWhite ? styles.logo_white : styles.logo}>
           Code<br/>Story
         </span>
       </Link>
@@ -93,18 +83,28 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler }) {
             <div className={styles.menu}>
               <Link href='/' passHref>
                 <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={asPath === '/' ? () => navClickHandler(<Landing/>) : null}
-                >Home</button>
+                  onClick={clickHandler}>
+                  Home
+                </button>
               </Link> 
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<About/>)}
-              >About</button>
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<Ranking/>)}
-              >Ranking</button>
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<Mypage/>)}
-              >My page</button>
+              <Link href='/about' passHref>
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                  onClick={clickHandler}>
+                  About
+                </button>
+              </Link>
+              <Link href='/ranking' passHref>
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                  onClick={clickHandler}>
+                  Ranking
+                </button>
+              </Link>
+              <Link href='/mypage' passHref>
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                  onClick={clickHandler}>
+                  My Page
+                </button>
+              </Link>
               <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                 onClick={() => loginClickHandler()}
               >Login</button>
