@@ -18,7 +18,7 @@ export default function Linux_game() {
         id="game_container"
         style={{
           width: '670px',
-          height: '720px',
+          height: '775px',
           zIndex: 10
         }}
       />
