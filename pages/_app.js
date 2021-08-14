@@ -18,7 +18,7 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp({ Component, pageProps, router }) {
   return (
     <SwitchTransition mode="out-in">
-      <CSSTransition key={router.pathname} classNames="page" timeout={300}>
+      <CSSTransition key={router.pathname} classNames="page" timeout={500}>
         <Component {...pageProps} />
       </CSSTransition>
     </SwitchTransition>

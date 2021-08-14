@@ -4,6 +4,8 @@
 @import "../mixins";
 
 .container {
+  position: absolute;
+  bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -16,6 +18,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.word_white {
+  color: $white;
 }
 
 // responsive
