@@ -77,3 +77,24 @@
   border-top-color: #fff !important;
   border-left-color: #fff !important;
 }
+
+#game_container {
+  width: 670px;
+  height: 775px;
+}
+
+@include breakpoint(medium) {
+  #game_container {
+    top: 10px;
+    width: 503px;
+    height: 582px;
+  }
+}
+
+@include breakpoint(extra-small) {
+  #game_container {
+    top: 0px;
+    width: 335px;
+    height: 338px;
+  }
+}

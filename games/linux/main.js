@@ -2,7 +2,6 @@
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#game_container');
-  const container = document.querySelector('.linux_game_game__3T5m2');
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
   const homeDir = { name: '~', type: 'folder', sudo: true, children: { '.': null, Desktop: null } };
@@ -27,8 +26,8 @@
   window.addEventListener('resize', setSize);
   document.addEventListener('keydown', keyDownHandler);
   function setSize() {
-    canvasWidth = container.clientWidth;
-    canvasHeight = container.clientHeight;
+    canvasWidth = gameContainer.clientWidth;
+    canvasHeight = gameContainer.clientHeight;
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     if (canvas.width > 360 && canvas.width < 660) {
