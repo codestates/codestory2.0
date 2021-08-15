@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/tips.module.scss';
 
-export default function Tips({ gametips }) {
+export default function Tips({ gametips, isWhite }) {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Tips({ gametips }) {
 
   return (
     <>
-      <h1 className={styles.btn_tip} 
+      <h1 className={isWhite ? styles.btn_tip_white : styles.btn_tip} 
         onClick={openHandler}
       > How to Play
       </h1>

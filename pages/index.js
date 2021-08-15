@@ -7,15 +7,20 @@ import { useState } from 'react';
 
 export default function Home() {
 
-  const [isWhite, setIsWhite] = useState(false);
-  const [isLoginOpen, setLoginOpen] = useState(false);
-
   const colorHandler = (e) => {
     if (e === 1) {
       setIsWhite(true);
-    } else {
+    } else if (e === 0) {
       setIsWhite(false);
     }
+  };
+
+  const [component, setComponent] = useState(<Landing colorHandler={colorHandler} />);
+  const [isWhite, setIsWhite] = useState(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  
+  const componentHandler = (e) => {
+    setComponent(e);
   };
 
   const loginOpenHandler = () => {
@@ -24,11 +29,13 @@ export default function Home() {
 
   return (
     <Layout>
-      <Landing colorHandler={colorHandler} />
-      {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
+      {component.type.name === 'Landing' ? <Landing colorHandler={colorHandler} /> : component }
+      {isLoginOpen ? <Login isWhite={isWhite} loginOpenHandler={loginOpenHandler}/> : null}
       <Footer isWhite={isWhite}/>
-      <Nav isWhite={isWhite}
+      <Nav componentHandler={(e) => componentHandler(e)} 
+        isWhite={isWhite}
         loginOpenHandler={loginOpenHandler}
+        colorHandler={colorHandler}
       />
     </Layout>
   );
