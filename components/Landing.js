@@ -31,21 +31,21 @@ export default function Landing({ colorHandler }) {
         </div>
         <SwiperSlide>
           <div className={styles.container}>
-            <Link href='/linux' passHref>
+            <Link href="/linux" passHref>
               <button className={styles.btn_game}>Start Linux CLI</button>
             </Link>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className={styles.container2}>
-            <Link href='/css' passHref>
+            <Link href="/css" passHref>
               <button className={styles.btn_game_white}>Start CSS</button>
             </Link>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className={styles.container3}>
-            <Link href='/' passHref>
+            <Link href="/" passHref>
               <button className={styles.btn_game}>Start JS</button>
             </Link>
           </div>

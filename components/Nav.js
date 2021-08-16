@@ -91,7 +91,8 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
       <div className={isOpen 
         ? isWhite 
           ? styles.background_white 
-          : styles.background : null}
+          : styles.background 
+        : null}
       >
         <div className={styles.nav_box}>
           <button className={isWhite ? styles.btn_nav_white : styles.btn_nav} 
@@ -109,21 +110,21 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
           >
             <div className={styles.menu_box}
               style={isOpen 
-                ? {display: 'block'} 
+                ? { display: 'block' } 
                 : null}>
               <div className={styles.menu} 
                 style={isOpen 
-                  ? {opacity: 1} 
+                  ? { opacity: 1 } 
                   : null}
               >
-                <Link href='/' passHref>
+                <Link href="/" passHref>
                   <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                     onClick={asPath === '/'
                       ? () => navClickHandler(<Landing colorHandler={colorHandler} />)
                       : asPath === 'linux'
-                        ? () => navClickHandler(<Linux_game colorHandler={colorHandler}/>)
+                        ? () => navClickHandler(<Linux_game colorHandler={colorHandler} />)
                         : asPath === 'css'
-                          ? () => navClickHandler(<Css_game colorHandler={colorHandler}/>)
+                          ? () => navClickHandler(<Css_game colorHandler={colorHandler} />)
                           : null
                     }
                   >Home</button>
