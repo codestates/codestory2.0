@@ -8,7 +8,7 @@ export default function Landing({ colorHandler }) {
 
   SwiperCore.use([Navigation, Pagination]);
 
-  const [currentIdx, setCurrentIdx] = useState(null);
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   const idxHandler = (idx) => {
     setCurrentIdx(idx.realIndex);
