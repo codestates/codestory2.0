@@ -8,7 +8,7 @@ export default function Landing({ colorHandler }) {
 
   SwiperCore.use([Navigation, Pagination]);
 
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [currentIdx, setCurrentIdx] = useState(null);
 
   const idxHandler = (idx) => {
     setCurrentIdx(idx.realIndex);
@@ -21,6 +21,7 @@ export default function Landing({ colorHandler }) {
         slidesPerView={1}
         loop={true}
         navigation
+        allowTouchMove={false}
         speed={600}
         onSlideChange={(idx) => idxHandler(idx)}
       >
@@ -39,6 +40,13 @@ export default function Landing({ colorHandler }) {
           <div className={styles.container2}>
             <Link href='/css' passHref>
               <button className={styles.btn_game_white}>Start CSS</button>
+            </Link>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className={styles.container3}>
+            <Link href='/' passHref>
+              <button className={styles.btn_game}>Start JS</button>
             </Link>
           </div>
         </SwiperSlide>

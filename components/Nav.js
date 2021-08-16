@@ -22,7 +22,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
     menuTl
       .to(menuBars.back, {
         duration: 0.25,
-        x: -420,
+        width: 420,
         opacity: 1
       }, 0)
       .to(menuBars.topBar, {
@@ -59,7 +59,11 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
     componentHandler(component);
-    colorHandler(1);
+    if (component.type.name === 'About' ||
+      component.type.name === 'Ranking' ||
+      component.type.name === 'Mypage') {
+      colorHandler(1);
+    }
   };
 
   const logoClickHandler = (component) => {
@@ -77,14 +81,18 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
       <Link href='/' passHref>
         <span className={isWhite ? styles.logo_white : styles.logo} 
           onClick={asPath === '/' 
-            ? () => logoClickHandler(<Landing/>) 
+            ? () => logoClickHandler(<Landing colorHandler={colorHandler}/>) 
             : null
           }
         >
           Code<br/>Story
         </span>
       </Link>
-      <div className={isOpen ? isWhite ? styles.background_white : styles.background : null}>
+      <div className={isOpen 
+        ? isWhite 
+          ? styles.background_white 
+          : styles.background : null}
+      >
         <div className={styles.nav_box}>
           <button className={isWhite ? styles.btn_nav_white : styles.btn_nav} 
             onClick={openHandler}
@@ -99,33 +107,42 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
           <div className={isWhite ? styles.container_white : styles.container}
             ref={e => (menuBars['back'] = e)}
           >
-            <div className={styles.menu}>
-              <Link href='/' passHref>
+            <div className={styles.menu_box}
+              style={isOpen 
+                ? {display: 'block'} 
+                : null}>
+              <div className={styles.menu} 
+                style={isOpen 
+                  ? {opacity: 1} 
+                  : null}
+              >
+                <Link href='/' passHref>
+                  <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                    onClick={asPath === '/'
+                      ? () => navClickHandler(<Landing colorHandler={colorHandler} />)
+                      : asPath === 'linux'
+                        ? () => navClickHandler(<Linux_game colorHandler={colorHandler}/>)
+                        : asPath === 'css'
+                          ? () => navClickHandler(<Css_game colorHandler={colorHandler}/>)
+                          : null
+                    }
+                  >Home</button>
+                </Link> 
                 <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={asPath === '/'
-                    ? () => navClickHandler(<Landing/>)
-                    : asPath === 'linux'
-                      ? () => navClickHandler(<Linux_game />)
-                      : asPath === 'css'
-                        ? () => navClickHandler(<Css_game />)
-                        : null
-                  }
-                >Home</button>
-              </Link> 
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<About />)}
-              >About</button>
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<Ranking />)}
-              >Ranking</button>
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => navClickHandler(<Mypage />)}
-              >My page</button>
-              <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                onClick={() => loginClickHandler()}
-              >Login</button>
-            </div>
-          </div> 
+                  onClick={() => navClickHandler(<About />)}
+                >About</button>
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                  onClick={() => navClickHandler(<Ranking />)}
+                >Ranking</button>
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                  onClick={() => navClickHandler(<Mypage />)}
+                >My page</button>
+                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                  onClick={() => loginClickHandler()}
+                >Login</button>
+              </div>
+            </div> 
+          </div>
         </div>
       </div>  
     </>
