@@ -21,9 +21,26 @@
   firstFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
   const lengthLimit = 43;
-  const lineLimit = 10;
-  const fontSize = 16;
+  let lineLimit = 10;
+  let fontSize = 16;
+  window.addEventListener('resize', setSize);
   document.addEventListener('keydown', keyDownHandler);
+  function setSize() {
+    canvasWidth = gameContainer.clientWidth;
+    canvasHeight = gameContainer.clientHeight;
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    if (canvas.width > 360 && canvas.width < 660) {
+      fontSize = 13;
+      lineLimit = 7;
+    } else if (canvas.width < 360) {
+      fontSize = 10;
+      lineLimit = 6;
+    } else {
+      fontSize = 16;
+      lineLimit = 10;
+    }
+  }
   function keyDownHandler(e) {
     switch (e.keyCode) {
     case 8:
@@ -258,7 +275,7 @@
                   }
                 }
               } else {
-               textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
+                textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
               }
             } else {
               textArr.push(`cp: cannot stat '${commandArr[1]}': No such file or directory`);
@@ -322,7 +339,7 @@
     const fHeight = 0.2 * canvas.width;
     const toDisplay = Object.keys(wd.children).filter((f) => f[0] !== '.');
     let fPosition = 1;
-    let gap = 65;
+    let gap = fWidth * 0.35;
     for (let f of toDisplay) {
       ctx.beginPath();
       let lineX = gap + fPosition * fWidth;
@@ -336,9 +353,9 @@
       ctx.closePath();
       ctx.font = `${fontSize}px Arial`;
       ctx.fillStyle = '#000000';
-      ctx.fillText(f, gap + 55.5 - (f.length) * 3.3 + fPosition * fWidth, 0.3 * canvas.height);
+      ctx.fillText(f, gap + fWidth * 0.43 - (f.length) * 3.3 + fPosition * fWidth, 0.3 * canvas.height);
       ++fPosition;
-      gap += 20;
+      gap += fWidth * 0.25;
     }
   }
   function drawText() {
@@ -354,8 +371,7 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = Number(gameContainer.style.width.match(/\d+/)[0]);
-    canvas.height = Number(gameContainer.style.height.match(/\d+/)[0]);
+    setSize();
     drawBackGround();
     drawBar();
     drawCLI();
