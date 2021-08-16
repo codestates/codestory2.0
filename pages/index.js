@@ -10,7 +10,7 @@ export default function Home() {
   const colorHandler = (e) => {
     if (e === 1) {
       setIsWhite(true);
-    } else if (e === 0) {
+    } else if (e === 0 || e === 2) {
       setIsWhite(false);
     }
   };
