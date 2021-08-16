@@ -188,13 +188,24 @@
     background-color: $white;
     transition: .3s;
   }
+  .logo {
+    font-size: 40px;
+    line-height: 38px;
+    transition: .3s;
+    margin-top: -4px;
+  }
+  .logo_white {
+    font-size: 40px;
+    line-height: 38px;
+    transition: .3s;
+    margin-top: -4px;
+  }
   .container {
     border-radius: 0;
   }
   .container_white {
     border-radius: 0;
   }
-
   .menu {
     position: absolute;
     top: calc(50% - 200px);
