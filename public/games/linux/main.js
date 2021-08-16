@@ -54,6 +54,8 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
+  const lengthLimit = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]) * 0.1);
+  const lineLimit = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]) * 0.012);
   for(let i=0; i<=6; i++) {
     if(i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
@@ -78,8 +80,6 @@
   firstFolder.src = 'folder_icon.png';
   firstFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
-  const lengthLimit = parseInt(canvas.width * 0.22);
-  const lineLimit = parseInt(canvas.height * 0.07);
   const fontSize = 16;
   document.addEventListener('keydown', keyDownHandler);
   function keyDownHandler(e) {
@@ -371,7 +371,7 @@
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#eee';
     ctx.fill();
-    ctx.font = `${fontSize}px Courier New`;
+    ctx.font = `${canvas.width * 0.035}px Courier New`;
     ctx.fillStyle = 'black';
     ctx.fillText(leftfolder[0], 0.05 * canvas.width, 0.12 * canvas.height);
     ctx.fillText(leftfolder[1], 0.05 * canvas.width, 0.2 * canvas.height);
@@ -425,7 +425,12 @@
       ctx.closePath();
       ctx.font = `${fontSize}px Courier New`;
       ctx.fillStyle = '#000000';
-      ctx.fillText(f, lineX + 0.15 * fWidth, lineY + fHeight);
+      const lengthLimit = parseInt(canvas.width * 0.023);
+      let linePosition = 0;
+      for (let j = 0; j < f.length; j += lengthLimit) {
+        ctx.fillText(f.slice(j, j + lengthLimit), lineX + 0.15 * fWidth, lineY + fHeight + linePosition * fontSize);
+        linePosition ++;
+      }
     }
   }
   function drawCliText() {
@@ -452,7 +457,7 @@
     checkListUl.style.position = 'relative';
     checkListUl.style.left = `-${0.55 * canvas.width}px`;
     checkListUl.style.top = `-${0.90 * canvas.height}px`;
-    checkListUl.style.width = `${0.5 * canvas.width}px`
+    checkListUl.style.width = `${0.5 * canvas.width}px`;
     checkListUl.style.listStyle = 'none';
     firstCheckList.style.border = '1px black solid';
     secondCheckList.style.border = '1px black solid';
