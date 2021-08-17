@@ -54,8 +54,8 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
-  const lengthLimit = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]) * 0.1);
-  const lineLimit = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]) * 0.012);
+  const lengthLimit = parseInt(Number(gameContainer.clientWidth * 0.1));
+  const lineLimit = parseInt(Number(gameContainer.clientHeight * 0.012));
   for (let i = 0; i <= 6; i++) {
     if (i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
@@ -468,8 +468,8 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = Number(gameContainer.style.width.match(/\d+/)[0]);
-    canvas.height = Number(gameContainer.style.height.match(/\d+/)[0]);
+    canvas.width = Number(gameContainer.clientWidth);
+    canvas.height = Number(gameContainer.clientHeight);
     drawCheckList();
     drawBackGround();
     drawBar();
