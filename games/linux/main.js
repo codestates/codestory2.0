@@ -1,10 +1,19 @@
 (() => {
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
-  const gameContainer = document.querySelector('#game_container');
+  const gameContainer = document.querySelector('#linux_game_container');
+  let { width, height } = gameContainer.getBoundingClientRect();
+  // canvas.width = window.innerWidth * 0.5;
+  // canvas.height = window.innerHeigth * 0.7;
+  // canvas.width = width;
+  // canvas.height = height;
   gameContainer.append(canvas);
-  canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-  canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
+  // canvas.width = canvas.parentElement.width;
+  // canvas.height = canvas.parentElement.height;
+  // canvas.width = gameContainer.clientWidth;
+  // canvas.height = gameContainer.clientHeight;
+  // canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+  // canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
@@ -84,6 +93,18 @@
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
   const fontSize = 16;
   document.addEventListener('keydown', keyDownHandler);
+  function setSize() {
+    if (window.innerWidth > 1110 ) {
+      canvas.width = 536;
+      canvas.height = 620;
+    } else if (window.innerWidth > 590) {
+      canvas.width = 429;
+      canvas.height = 496;
+    } else {
+      canvas.width = 335;
+      canvas.height = 388;
+    }
+  }
   function keyDownHandler(e) {
     switch (e.keyCode) {
     case 8:
@@ -318,7 +339,7 @@
                   }
                 }
               } else {
-               textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
+                textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
               }
             } else {
               textArr.push(`cp: cannot stat '${commandArr[1]}': No such file or directory`);
@@ -375,10 +396,10 @@
     ctx.fill();
     ctx.font = `${canvas.width * 0.035}px Courier New`;
     ctx.fillStyle = 'black';
-    ctx.fillText(leftfolder[0], 0.05 * canvas.width, 0.12 * canvas.height);
-    ctx.fillText(leftfolder[1], 0.05 * canvas.width, 0.2 * canvas.height);
-    ctx.fillText(leftfolder[2], 0.05 * canvas.width, 0.28 * canvas.height);
-    ctx.fillText(leftfolder[3], 0.05 * canvas.width, 0.36 * canvas.height);
+    ctx.fillText(leftfolder[0], 0.035 * canvas.width, 0.12 * canvas.height);
+    ctx.fillText(leftfolder[1], 0.035 * canvas.width, 0.2 * canvas.height);
+    ctx.fillText(leftfolder[2], 0.035 * canvas.width, 0.28 * canvas.height);
+    ctx.fillText(leftfolder[3], 0.035 * canvas.width, 0.36 * canvas.height);
     ctx.closePath();
   }
   function drawBar() {
@@ -388,19 +409,19 @@
     ctx.fill();
     ctx.font = `${fontSize}px Courier New`;
     ctx.fillStyle = 'white';
-    ctx.fillText(wd.name, 0.05 * canvas.width, 0.035 * canvas.height);
+    ctx.fillText(wd.name, 0.035 * canvas.width, 0.035 * canvas.height);
     ctx.closePath();
   }
   function drawCLI() {
     ctx.beginPath();
-    ctx.rect(0, 0.75 * canvas.height, canvas.width, 0.25 * canvas.height);
+    ctx.rect(0, 0.7 * canvas.height, canvas.width, 0.3 * canvas.height);
     ctx.fillStyle = '#000000';
     ctx.fill();
     ctx.closePath();
   }
   function drawGUI() {
     ctx.beginPath();
-    ctx.rect(0.25 * canvas.width, 0.05 * canvas.height, 0.75 * canvas.width, 0.7 * canvas.height);
+    ctx.rect(0.25 * canvas.width, 0.05 * canvas.height, 0.75 * canvas.width, 0.75 * canvas.width);
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
     ctx.closePath();
@@ -441,7 +462,7 @@
     let linePosition = 1;
     for (let i = Math.max(textArr.length - lineLimit, 0); i < textArr.length; ++i) {
       for (let j = 0; j < textArr[i].length; j += lengthLimit) {
-        ctx.fillText(textArr[i].slice(j, j + lengthLimit), 0.02 * canvas.width, 0.77 * canvas.height + linePosition * fontSize);
+        ctx.fillText(textArr[i].slice(j, j + lengthLimit), 0.02 * canvas.width, 0.71 * canvas.height + linePosition * fontSize);
         ++linePosition;
       }
     }
@@ -470,8 +491,17 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-    canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
+    // canvas.width = width;
+    // canvas.height = height;
+    // canvas.width = gameContainer.clientWidth;
+    // canvas.height = gameContainer.clientHeight;
+    // canvas.width = gameContainer.width;
+    // canvas.height = gameContainer.height;
+    // canvas.width = gameContainer.getBoundingClientRect().width;
+    // canvas.height = gameContainer.getBoundingClientRect().height;
+    setSize();
+    // canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+    // canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
     drawCheckList();
     drawBackGround();
     drawBar();

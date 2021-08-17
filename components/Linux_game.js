@@ -14,11 +14,7 @@ export default function Linux_game() {
 
   return (
     <div className={styles.game}>
-      <div id="game_container" style={{
-        width: '670px',
-        height: '755px',
-        zIndex: 1
-      }}>
+      <div id="linux_game_container">
       </div>
     </div>
   );

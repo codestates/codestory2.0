@@ -5,23 +5,20 @@
 
 .game {
   position: relative;
-  top: 20px;
-  width: 670px;
-  height: 775px;
+  width: 536px;
+  height: 620px;
   margin: auto;
 }
 
 @include breakpoint(medium) {
   .game {
-    top: 10px;
-    width: 503px;
-    height: 582px;
+    width: 429px;
+    height: 496px;
   }
 }
 
 @include breakpoint(extra-small) {
   .game {
-    top: 0px;
     width: 335px;
     height: 338px;
   }
