@@ -433,7 +433,7 @@
       }
     }
   }
-  function drawCliText() {
+  function drawText() {
     ctx.font = `${fontSize}px Courier New`;
     ctx.fillStyle = 'white';
     let linePosition = 1;
@@ -477,7 +477,7 @@
     drawBar();
     drawCLI();
     drawGUI();
-    drawCliText();
+    drawText();
   }
   setInterval(draw, 10);
 })();
