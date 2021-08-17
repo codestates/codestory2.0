@@ -2,7 +2,12 @@
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#game_container');
+  const body = document.querySelector('body');
+  console.log(body.style);
   gameContainer.append(canvas);
+  canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+  canvas.height = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+  console.log(gameContainer.style.width);
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
@@ -15,16 +20,16 @@
   checkListUl.append(secondCheckList);
   checkListUl.append(thirdCheckList);
   const homeDir = { name: '~', type: 'folder', sudo: true, children: { '.': null, Desktop: null } };
-  const desktop = { name: 'Desktop', type: 'folder', sudo: false, children: { '.': null, '..': homeDir } };
-  const open_me = { name: 'open_me.txt', type: 'file', sudo: false, content: '안녕하세요. 절 여셨군요!' };
-  const move_me = { name: 'move_me.js', type: 'file', sudo: false, content: '절 이동시켜주세요!' };
-  const copy_me = { name: 'copy_me.js', type: 'file', sudo: false, content: '절 복사해주세요!' };
-  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: false, content: '관리자비밀번호: 123456789' };
-  const error = { name: 'error', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
+  const desktop = { name: 'Desktop', type: 'folder', sudo: true, children: { '.': null, '..': homeDir } };
+  const open_me = { name: 'open_me.txt', type: 'file', sudo: true, content: '안녕하세요. 절 여셨군요!' };
+  const move_me = { name: 'move_me.js', type: 'file', sudo: true, content: '절 이동시켜주세요!' };
+  const copy_me = { name: 'copy_me.js', type: 'file', sudo: true, content: '절 복사해주세요!' };
+  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: true, content: '관리자비밀번호: 123456789' };
+  const error = { name: 'error', type: 'folder', sudo: true, children: { '.': null, '..': desktop } };
   const bugKing = { name: 'bugKing.js', type: 'file', sudo: true, content: '음하하, 과연 날 지울수 있을까??' };
   const delete_me_file = { name: 'delete_me.sh', type: 'file', sudo: false, content: '숨겨왔던 나의 메시지. 방가방가' };
   const delete_me_folder = { name: 'Delete_me', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
-  const destination = { name: 'Destination', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
+  const destination = { name: 'Destination', type: 'folder', sudo: true, children: { '.': null, '..': desktop } };
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
@@ -54,25 +59,31 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
-  const lengthLimit = parseInt(gameContainer.clientWidth * 0.1);
-  const lineLimit = parseInt(gameContainer.clientHeight * 0.012);
-  for (let i = 0; i <= 6; i++) {
-    if (i < 6) {
-      const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
+  const easyAnswerNumber = [];
+  const hardAnswerNumber = [];
+  let lengthLimit = parseInt(canvas.width * 0.1);
+  let lineLimit = parseInt(canvas.height * 0.012);
+  for (let i = 0; i <= 11; i++) {
+    if (i < 11) {
+      // const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
+      const indexOfGoalIndex = i;
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       const goalToInsert = easyGoal[goalIndex];
       const hintToInsert = easyHint[goalIndex];
-      easyGoalRemain.splice(indexOfGoalIndex, 1);
+      // easyGoalRemain.splice(indexOfGoalIndex, 1);
       checkList.push(goalToInsert);
       hintList.push(hintToInsert);
+      easyAnswerNumber.push(goalIndex);
     } else {
-      const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
+      // const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
+      indexOfGoalIndex = 0;
       const goalIndex = hardGoalRemain[indexOfGoalIndex];
       const goalToInsert = hardGoal[goalIndex];
       const hintToInsert = hardHint[goalIndex];
-      hardGoalRemain.splice(indexOfGoalIndex, 1);
+      // hardGoalRemain.splice(indexOfGoalIndex, 1);
       goalToInsert.forEach((cur) => { checkList.push(cur); });
       hintToInsert.forEach((cur) => { hintList.push(cur); });
+      hardAnswerNumber.push(goalIndex);
     }
   }
   const firstFolder = new Image();
@@ -108,6 +119,11 @@
       } else {
         commandArr = textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g) || [];
       }
+      const currentFolderLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'folder').length;
+      const currentFileLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'file').length;
+      let isExcutionPwd = false;
+      let isExcutionLs = false;
+      let isExcutionLsA = false;
       switch (commandArr[0]) {
       case undefined:
         break;
@@ -231,12 +247,14 @@
           for (let folder in wd.children) {
             list = `${list} ${folder}`;
           }
+          isExcutionLsA = true;
         } else {
           for (let folder in wd.children) {
             if (folder[0] !== '.') {
               list = `${list} ${folder}`;
             }
           }
+          isExcutionLs = true;
         } 
         textArr.push(list);
         break;
@@ -253,6 +271,7 @@
           currentLocation = `${currentDirectory.name}/${currentLocation}`;
         }
         textArr.push(currentLocation);
+        isExcutionPwd = true;
         break;
       case 'cat':
         if (commandArr[1] && wd.children[commandArr[1]]) {
@@ -332,7 +351,48 @@
       }
       if (sudo !== 1) {
         textArr.push(`${wd.name} $ `);
-      } break;
+      } 
+      function removeProblemFromList() {
+        checkList.shift();
+        hintList.shift();
+        if (easyAnswerNumber.length !==0) {
+          easyAnswerNumber.shift();
+        } else {
+          hardAnswerNumber.shift();
+        }
+      }
+      if (easyAnswerNumber.length !== 0) {
+        
+        switch (easyAnswerNumber[0]) {
+          case 0:
+            const newFolderLength = Object.keys(wd.children).filter((cur) => wd.children[cur].type === 'folder').length;
+            if (newFolderLength > currentFolderLength) {
+              removeProblemFromList();
+            } break;
+          case 1:
+            const newFileLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'file').length;
+            if (newFileLength > currentFileLength) {
+              removeProblemFromList();
+            } break;
+          case 2:
+            if (textArr.length === 2 && textArr[textArr.length - 1] === `${wd.name} $ `) {
+              removeProblemFromList();
+            } break;
+          case 3: 
+            if (isExcutionPwd) {
+              removeProblemFromList();
+            } break;
+          case 4:
+            if (isExcutionLs) {
+              removeProblemFromList();
+            } break;
+          case 5:
+            if (isExcutionLsA) {
+              removeProblemFromList();
+            } break;
+        }
+      }
+      break;
     case 9:
     case 16:
     case 17:
@@ -468,8 +528,8 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = gameContainer.clientWidth;
-    canvas.height = gameContainer.clientHeight;
+    lengthLimit = parseInt(canvas.width * 0.1);
+    lineLimit = parseInt(canvas.height * 0.012);
     drawCheckList();
     drawBackGround();
     drawBar();
