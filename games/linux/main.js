@@ -62,7 +62,7 @@
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       const goalToInsert = easyGoal[goalIndex];
       const hintToInsert = easyHint[goalIndex];
-      easyGoalRemain.splice(indexOfGoalIndex,1);
+      easyGoalRemain.splice(indexOfGoalIndex, 1);
       checkList.push(goalToInsert);
       hintList.push(hintToInsert);
     } else {
@@ -70,7 +70,7 @@
       const goalIndex = hardGoalRemain[indexOfGoalIndex];
       const goalToInsert = hardGoal[goalIndex];
       const hintToInsert = hardHint[goalIndex];
-      hardGoalRemain.splice(indexOfGoalIndex,1);
+      hardGoalRemain.splice(indexOfGoalIndex, 1);
       goalToInsert.forEach((cur) => { checkList.push(cur); });
       hintToInsert.forEach((cur) => { hintList.push(cur); });
     }
