@@ -54,8 +54,8 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
-  const lengthLimit = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]) * 0.1);
-  const lineLimit = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]) * 0.012);
+  const lengthLimit = parseInt(gameContainer.clientWidth * 0.1);
+  const lineLimit = parseInt(gameContainer.clientHeight * 0.012);
   for (let i = 0; i <= 6; i++) {
     if (i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
@@ -113,7 +113,7 @@
         break;
       case 'sudo':
         if (commandArr[1]) {
-          if(sudo === 0) {
+          if (sudo === 0) {
             const sudoMessage = '[sudo] password for you: '
             textArr.push(sudoMessage);
             let isFirstEnter = 0;
@@ -199,7 +199,7 @@
               }
             } 
           } 
-        } else if (options.length >1 && options[0] !=='r') {
+        } else if (options.length > 1 && options[0] !== 'r') {
           let wrongOption = '';
           for (let i = 0; i < options.length; i++) {
             if (options[i] !== 'r') {
@@ -444,7 +444,6 @@
       }
     }
   }
-
   function drawCheckList() {
     checkTitleDiv.style.border = '1px black solid';
     checkTitleDiv.style.position = 'relative';
@@ -467,11 +466,10 @@
     secondCheckList.textContent = `${checkList[1]} ${hintList[1]}`;
     thirdCheckList.textContent = `${checkList[2]} ${hintList[2]}`;
   }
-
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = Number(gameContainer.style.width.match(/\d+/)[0]);
-    canvas.height = Number(gameContainer.style.height.match(/\d+/)[0]);
+    canvas.width = gameContainer.clientWidth;
+    canvas.height = gameContainer.clientHeight;
     drawCheckList();
     drawBackGround();
     drawBar();
