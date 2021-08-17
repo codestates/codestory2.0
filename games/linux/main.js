@@ -4,43 +4,84 @@
   const gameContainer = document.querySelector('#game_container');
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
+  const checkTitleDiv = document.createElement('div');
+  const checkListUl = document.createElement('ul');
+  const firstCheckList = document.createElement('li');
+  const secondCheckList = document.createElement('li');
+  const thirdCheckList = document.createElement('li');
+  gameContainer.append(checkTitleDiv);
+  gameContainer.append(checkListUl);
+  checkListUl.append(firstCheckList);
+  checkListUl.append(secondCheckList);
+  checkListUl.append(thirdCheckList);
   const homeDir = { name: '~', type: 'folder', sudo: true, children: { '.': null, Desktop: null } };
   const desktop = { name: 'Desktop', type: 'folder', sudo: false, children: { '.': null, '..': homeDir } };
-  const hello = { name: 'hello.js', type: 'file', sudo: true, content: 'hello coding' };
+  const open_me = { name: 'open_me.txt', type: 'file', sudo: false, content: '안녕하세요. 절 여셨군요!' };
+  const move_me = { name: 'move_me.js', type: 'file', sudo: false, content: '절 이동시켜주세요!' };
+  const copy_me = { name: 'copy_me.js', type: 'file', sudo: false, content: '절 복사해주세요!' };
+  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: false, content: '관리자비밀번호: 123456789' };
+  const error = { name: 'error', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
+  const bugKing = { name: 'bugKing.js', type: 'file', sudo: true, content: '음하하, 과연 날 지울수 있을까??' };
+  const delete_me_file = { name: 'delete_me.sh', type: 'file', sudo: false, content: '숨겨왔던 나의 메시지. 방가방가' };
+  const delete_me_folder = { name: 'Delete_me', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
+  const destination = { name: 'Destination', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
-  desktop.children['hello.js'] = hello;
+  desktop.children['open_me.txt'] = open_me;
+  desktop.children['delete_me.sh'] = delete_me_file;
+  desktop.children['Delete_me'] = delete_me_folder;
+  desktop.children['Destination'] = destination;
+  desktop.children['move_me.js'] = move_me;
+  desktop.children['copy_me.js'] = copy_me;
+  desktop.children['.passwordFile.js'] = passwordFile;
+  desktop.children['error'] = error;
+  delete_me_folder.children['.'] = delete_me_folder;
+  destination.children['.'] = destination;
+  error.children['.'] = error;
+  error.children['bugKing.js'] = bugKing;
   let sudo = 0;
-  const linuxPassword = '12345678';
+  const linuxPassword = '123456789';
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
+  const easyGoal = ['현재 위치에 아무 폴더나 만드시오', '현재 위치에 아무 파일이나 만드시오', '지금까지 쓴 것을 지우시오', '현재 위치를 확인하시오', '현재 위치의 폴더 및 파일을 커맨드 창에서 확인하시오', 
+    '현재 위치에서 보이지 않는 폴더 및 파일을 확인하시오', 'Desktop folder에서 open_me.txt 파일을 여시오', 'Desktop folder에서 delete_me.sh 파일을 삭제하시오', 'Desktop folder에서 delete_me 폴더를 삭제하시오',
+    'Desktop folder에서 move_me.js 파일을 destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 destination 폴더로 이동시키시오'];
+  const easyHint = ['(hint: mkdir)', '(hint: touch)', '(hint: clear)', '(hint: pwd)', '(hint: ls)', '(hint: ls -a)', '(hint: cat)', '(hint: rm)', '(hint: rm -r)', '(hint: mv)', '(hint: cp)'];
+  const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 error폴더로 이동해 bugking.js 파일을 지우시오']];
+  const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']];
+  const easyGoalRemain = new Array(easyGoal.length).fill(0).map((cur, idx) => idx);
+  const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
+  const checkList = [];
+  const hintList = [];
+  const lengthLimit = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]) * 0.1);
+  const lineLimit = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]) * 0.012);
+  for (let i = 0; i <= 6; i++) {
+    if (i < 6) {
+      const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
+      const goalIndex = easyGoalRemain[indexOfGoalIndex];
+      const goalToInsert = easyGoal[goalIndex];
+      const hintToInsert = easyHint[goalIndex];
+      easyGoalRemain.splice(indexOfGoalIndex, 1);
+      checkList.push(goalToInsert);
+      hintList.push(hintToInsert);
+    } else {
+      const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
+      const goalIndex = hardGoalRemain[indexOfGoalIndex];
+      const goalToInsert = hardGoal[goalIndex];
+      const hintToInsert = hardHint[goalIndex];
+      hardGoalRemain.splice(indexOfGoalIndex, 1);
+      goalToInsert.forEach((cur) => { checkList.push(cur); });
+      hintToInsert.forEach((cur) => { hintList.push(cur); });
+    }
+  }
   const firstFolder = new Image();
   const firstFile = new Image();
   firstFolder.src = 'folder_icon.png';
   firstFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
-  const lengthLimit = 43;
-  let lineLimit = 10;
-  let fontSize = 16;
-  window.addEventListener('resize', setSize);
+  const fontSize = 16;
   document.addEventListener('keydown', keyDownHandler);
-  function setSize() {
-    canvasWidth = gameContainer.clientWidth;
-    canvasHeight = gameContainer.clientHeight;
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    if (canvas.width > 360 && canvas.width < 660) {
-      fontSize = 13;
-      lineLimit = 7;
-    } else if (canvas.width < 360) {
-      fontSize = 10;
-      lineLimit = 6;
-    } else {
-      fontSize = 16;
-      lineLimit = 10;
-    }
-  }
   function keyDownHandler(e) {
     switch (e.keyCode) {
     case 8:
@@ -72,7 +113,7 @@
         break;
       case 'sudo':
         if (commandArr[1]) {
-          if(sudo === 0) {
+          if (sudo === 0) {
             const sudoMessage = '[sudo] password for you: '
             textArr.push(sudoMessage);
             let isFirstEnter = 0;
@@ -158,7 +199,7 @@
               }
             } 
           } 
-        } else if (options.length >1 && options[0] !=='r') {
+        } else if (options.length > 1 && options[0] !== 'r') {
           let wrongOption = '';
           for (let i = 0; i < options.length; i++) {
             if (options[i] !== 'r') {
@@ -275,7 +316,7 @@
                   }
                 }
               } else {
-                textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
+               textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
               }
             } else {
               textArr.push(`cp: cannot stat '${commandArr[1]}': No such file or directory`);
@@ -292,8 +333,34 @@
       if (sudo !== 1) {
         textArr.push(`${wd.name} $ `);
       } break;
+    case 9:
     case 16:
-    case 20:
+    case 17:
+    case 18:
+    case 27:
+    case 33:
+    case 34:
+    case 35:
+    case 36:
+    case 37:
+    case 38:
+    case 39:
+    case 40:
+    case 45:
+    case 46:
+    case 112:
+    case 113:
+    case 114:
+    case 115:
+    case 116:
+    case 117:
+    case 118:
+    case 119:
+    case 120:
+    case 121:
+    case 122:
+    case 123:
+    case 144:
       break;
     default:
       textArr[textArr.length - 1] += e.key === 'Unidentified' ? '' : e.key;
@@ -304,7 +371,7 @@
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#eee';
     ctx.fill();
-    ctx.font = `${fontSize}px Arial`;
+    ctx.font = `${canvas.width * 0.035}px Courier New`;
     ctx.fillStyle = 'black';
     ctx.fillText(leftfolder[0], 0.05 * canvas.width, 0.12 * canvas.height);
     ctx.fillText(leftfolder[1], 0.05 * canvas.width, 0.2 * canvas.height);
@@ -317,7 +384,7 @@
     ctx.rect(0, 0, canvas.width, 0.05 * canvas.height);
     ctx.fillStyle = 'rgb(63,63,63)';
     ctx.fill();
-    ctx.font = `${fontSize}px Arial`;
+    ctx.font = `${fontSize}px Courier New`;
     ctx.fillStyle = 'white';
     ctx.fillText(wd.name, 0.05 * canvas.width, 0.035 * canvas.height);
     ctx.closePath();
@@ -338,12 +405,17 @@
     const fWidth = 0.2 * canvas.width;
     const fHeight = 0.2 * canvas.width;
     const toDisplay = Object.keys(wd.children).filter((f) => f[0] !== '.');
-    let fPosition = 1;
-    let gap = fWidth * 0.35;
-    for (let f of toDisplay) {
+    let fPositionX = 0;
+    let fPositionY = 0;
+    let gapX = fWidth * 1.2;
+    let gapY = fWidth * 1.2;
+    for (let i = 0; i < toDisplay.length; i++) {
+      fPositionX = (i % 3);
+      fPositionY = parseInt(i / 3);
+      const f = toDisplay[i];
       ctx.beginPath();
-      let lineX = gap + fPosition * fWidth;
-      let lineY = 0.08 * canvas.height;
+      let lineX = 0.28 * canvas.width + gapX * fPositionX;
+      let lineY = 0.06 * canvas.height + gapY* fPositionY;
       if (wd.children[f].type === 'folder') {
         ctx.drawImage(firstFolder, lineX, lineY, fWidth, fHeight);
       } else if (wd.children[f].type === 'file') {
@@ -351,15 +423,18 @@
       }
       ctx.fill();
       ctx.closePath();
-      ctx.font = `${fontSize}px Arial`;
+      ctx.font = `${fontSize}px Courier New`;
       ctx.fillStyle = '#000000';
-      ctx.fillText(f, gap + fWidth * 0.43 - (f.length) * 3.3 + fPosition * fWidth, 0.3 * canvas.height);
-      ++fPosition;
-      gap += fWidth * 0.25;
+      const lengthLimit = parseInt(canvas.width * 0.023);
+      let linePosition = 0;
+      for (let j = 0; j < f.length; j += lengthLimit) {
+        ctx.fillText(f.slice(j, j + lengthLimit), lineX + 0.15 * fWidth, lineY + fHeight + linePosition * fontSize);
+        linePosition ++;
+      }
     }
   }
   function drawText() {
-    ctx.font = `${fontSize}px Arial`;
+    ctx.font = `${fontSize}px Courier New`;
     ctx.fillStyle = 'white';
     let linePosition = 1;
     for (let i = Math.max(textArr.length - lineLimit, 0); i < textArr.length; ++i) {
@@ -369,9 +444,33 @@
       }
     }
   }
+  function drawCheckList() {
+    checkTitleDiv.style.border = '1px black solid';
+    checkTitleDiv.style.position = 'relative';
+    checkTitleDiv.style.left = `-${0.55 * canvas.width}px`;
+    checkTitleDiv.style.top = `-${0.90 * canvas.height}px`;
+    checkTitleDiv.style.width = `${0.5 * canvas.width}px`;
+    checkTitleDiv.style.height = `${0.05 * canvas.height}px`;
+    checkTitleDiv.style.textAlign = 'center'
+    checkListUl.style.border = '1px black solid';
+    checkListUl.style.position = 'relative';
+    checkListUl.style.left = `-${0.55 * canvas.width}px`;
+    checkListUl.style.top = `-${0.90 * canvas.height}px`;
+    checkListUl.style.width = `${0.5 * canvas.width}px`;
+    checkListUl.style.listStyle = 'none';
+    firstCheckList.style.border = '1px black solid';
+    secondCheckList.style.border = '1px black solid';
+    thirdCheckList.style.border = '1px black solid';
+    checkTitleDiv.textContent = 'CheckList';
+    firstCheckList.textContent = `${checkList[0]} ${hintList[0]}`;
+    secondCheckList.textContent = `${checkList[1]} ${hintList[1]}`;
+    thirdCheckList.textContent = `${checkList[2]} ${hintList[2]}`;
+  }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    setSize();
+    canvas.width = Number(gameContainer.style.width.match(/\d+/)[0]);
+    canvas.height = Number(gameContainer.style.height.match(/\d+/)[0]);
+    drawCheckList();
     drawBackGround();
     drawBar();
     drawCLI();
