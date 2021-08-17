@@ -204,7 +204,6 @@
                   }
                   if (commandArr[i] === 'Delete_me') {
                     isDeleteMeFolder = true;
-                    
                   }
                   delete wd.children[`${commandArr[i]}`];
                 } else {
