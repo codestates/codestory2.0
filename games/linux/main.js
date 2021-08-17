@@ -3,6 +3,8 @@
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#game_container');
   gameContainer.append(canvas);
+  canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+  canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
@@ -54,25 +56,31 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
-  const lengthLimit = parseInt(gameContainer.clientWidth * 0.1);
-  const lineLimit = parseInt(gameContainer.clientHeight * 0.012);
-  for (let i = 0; i <= 6; i++) {
-    if (i < 6) {
-      const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
+  const easyListIndex = [];
+  const hardListIndex = [];
+  const lengthLimit = parseInt(canvas.width * 0.1);
+  const lineLimit = parseInt(canvas.height * 0.012);
+  for (let i = 0; i <= 11; i++) {
+    if (i < 11) {
+      // const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
+      const indexOfGoalIndex = i;
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       const goalToInsert = easyGoal[goalIndex];
       const hintToInsert = easyHint[goalIndex];
-      easyGoalRemain.splice(indexOfGoalIndex, 1);
+      // easyGoalRemain.splice(indexOfGoalIndex, 1);
       checkList.push(goalToInsert);
       hintList.push(hintToInsert);
+      easyListIndex.push(goalIndex);
     } else {
-      const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
+      // const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
+      const indexOfGoalIndex = 0;
       const goalIndex = hardGoalRemain[indexOfGoalIndex];
       const goalToInsert = hardGoal[goalIndex];
       const hintToInsert = hardHint[goalIndex];
-      hardGoalRemain.splice(indexOfGoalIndex, 1);
+      // hardGoalRemain.splice(indexOfGoalIndex, 1);
       goalToInsert.forEach((cur) => { checkList.push(cur); });
       hintToInsert.forEach((cur) => { hintList.push(cur); });
+      hardListIndex.push(goalIndex);
     }
   }
   const firstFolder = new Image();
@@ -108,6 +116,7 @@
       } else {
         commandArr = textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g) || [];
       }
+      const prevFolderLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'folder').length;
       switch (commandArr[0]) {
       case undefined:
         break;
@@ -332,7 +341,16 @@
       }
       if (sudo !== 1) {
         textArr.push(`${wd.name} $ `);
-      } break;
+      }
+      const answerCheckList = [
+        () => {
+          const currentFolderLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'folder').length;
+          if (prevFolderLength < currentFolderLength) {
+            removeItemFromList(0);
+          }
+        }
+      ]
+      break;
     case 9:
     case 16:
     case 17:
@@ -468,8 +486,8 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = gameContainer.clientWidth;
-    canvas.height = gameContainer.clientHeight;
+    canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+    canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
     drawCheckList();
     drawBackGround();
     drawBar();
