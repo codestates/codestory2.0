@@ -57,7 +57,7 @@
   const checkList = [];
   const hintList = [];
   const lengthLimit = parseInt(canvas.width * 0.1);
-  const lineLimit = parseInt(canvas.height* 0.012);
+  const lineLimit = parseInt(canvas.height * 0.012);
   for (let i = 0; i <= 6; i++) {
     if (i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
