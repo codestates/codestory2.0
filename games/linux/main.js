@@ -3,6 +3,8 @@
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#game_container');
   gameContainer.append(canvas);
+  canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+  canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
@@ -54,8 +56,8 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
-  const lengthLimit = parseInt(gameContainer.clientWidth * 0.1);
-  const lineLimit = parseInt(gameContainer.clientHeight * 0.012);
+  const lengthLimit = parseInt(canvas.width * 0.1);
+  const lineLimit = parseInt(canvas.height * 0.012);
   for (let i = 0; i <= 6; i++) {
     if (i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
@@ -468,8 +470,8 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = gameContainer.clientWidth;
-    canvas.height = gameContainer.clientHeight;
+    canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
+    canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
     drawCheckList();
     drawBackGround();
     drawBar();
