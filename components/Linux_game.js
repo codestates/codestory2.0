@@ -16,7 +16,7 @@ export default function Linux_game() {
     <div className={styles.game}>
       <div id="game_container" style = {{
         width: '670px',
-        height: '750px',
+        height: '755px',
         zIndex: 1
       }}>
       </div>
