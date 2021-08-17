@@ -19,7 +19,7 @@
   const open_me = { name: 'open_me.txt', type: 'file', sudo: false, content: '안녕하세요. 절 여셨군요!' };
   const move_me = { name: 'move_me.js', type: 'file', sudo: false, content: '절 이동시켜주세요!' };
   const copy_me = { name: 'copy_me.js', type: 'file', sudo: false, content: '절 복사해주세요!' };
-  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: false, content: '관리자비밀번호: 12345678' };
+  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: false, content: '관리자비밀번호: 123456789' };
   const error = { name: 'error', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
   const bugKing = { name: 'bugKing.js', type: 'file', sudo: true, content: '음하하, 과연 날 지울수 있을까??' };
   const delete_me_file = { name: 'delete_me.sh', type: 'file', sudo: false, content: '숨겨왔던 나의 메시지. 방가방가' };
@@ -41,7 +41,7 @@
   error.children['.'] = error;
   error.children['bugKing.js'] = bugKing;
   let sudo = 0;
-  const linuxPassword = '12345678';
+  const linuxPassword = '123456789';
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const easyGoal = ['현재 위치에 아무 폴더나 만드시오', '현재 위치에 아무 파일이나 만드시오', '지금까지 쓴 것을 지우시오', '현재 위치를 확인하시오', '현재 위치의 폴더 및 파일을 커맨드 창에서 확인하시오', 
