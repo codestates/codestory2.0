@@ -3,11 +3,9 @@
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#game_container');
   const body = document.querySelector('body');
-  console.log(body.style);
   gameContainer.append(canvas);
   canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
   canvas.height = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-  console.log(gameContainer.style.width);
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
