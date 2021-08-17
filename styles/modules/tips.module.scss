@@ -112,6 +112,7 @@
 @include breakpoint(extra-small) {
   .btn_tip {
     position: static;
+    margin-bottom: 7vh;
   }
   .command {
     font-size: $base-font-size * 1.4;

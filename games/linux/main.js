@@ -113,7 +113,7 @@
         break;
       case 'sudo':
         if (commandArr[1]) {
-          if(sudo === 0) {
+          if (sudo === 0) {
             const sudoMessage = '[sudo] password for you: '
             textArr.push(sudoMessage);
             let isFirstEnter = 0;
@@ -199,7 +199,7 @@
               }
             } 
           } 
-        } else if (options.length >1 && options[0] !=='r') {
+        } else if (options.length > 1 && options[0] !== 'r') {
           let wrongOption = '';
           for (let i = 0; i < options.length; i++) {
             if (options[i] !== 'r') {
@@ -444,7 +444,6 @@
       }
     }
   }
-
   function drawCheckList() {
     checkTitleDiv.style.border = '1px black solid';
     checkTitleDiv.style.position = 'relative';
@@ -467,7 +466,6 @@
     secondCheckList.textContent = `${checkList[1]} ${hintList[1]}`;
     thirdCheckList.textContent = `${checkList[2]} ${hintList[2]}`;
   }
-
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     canvas.width = Number(gameContainer.style.width.match(/\d+/)[0]);
