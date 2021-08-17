@@ -42,6 +42,10 @@ export default function Mypage() {
     }
   };
 
+  const closeEditMode = () => {
+    setIsEditmode(false);
+  };
+
   return (
     <div className={styles.container}>
       <span className={styles.title}>My Page</span>
@@ -83,6 +87,7 @@ export default function Mypage() {
           placeholder="나의 한마디"
           onChange={(e) => updateWord(e)}
           onKeyPress={(e) => handleKeyPress(e)}
+          onBlur={() => closeEditMode()}
         ></input>
         : <span className={styles.word} 
           onClick={() => openEditMode()}

@@ -17,10 +17,11 @@
 }
 
 .title {
-  position: absolute; 
-  top: 20%;
+  position: fixed;
+  top: 90px;
   font-size: 3.5rem;
   font-weight: 500;
+  line-height: 50px;
   color: $white;
 }
 
@@ -72,7 +73,7 @@
 
 .img {
   position: absolute;
-  top: calc(50% - 80px);
+  top: calc(50% - 110px);
   left: calc(50% - 80px);
   width: 160px;
   height: 160px;
@@ -114,7 +115,7 @@
 
 .id {
   position: fixed;
-  top: calc(50% + 90px);
+  top: calc(50% + 60px);
   right: 50%;
   transform: translateX(50%);
   color: $white;
@@ -125,7 +126,7 @@
 
 .word {
   position: absolute;
-  bottom: 20%;
+  bottom: 23%;
   color: $white;
   font-size: 35px;
   font-weight: 600;
@@ -176,6 +177,7 @@
     top: calc(50% - 100px);
   }
   .title {
+    top: 20%;
     align-self: center;
   }
   .box_ranking {
@@ -223,5 +225,27 @@
     &::placeholder {
       font-size: 24px;
     }
+  }
+}
+
+@media all and (max-height: 550px) {
+  .img {
+    display: none;
+    left: 0;
+    width: 0;
+  }
+  .box {
+    display: none;
+  }
+  .id {
+    position: fixed;
+    line-height: 35px;
+    width: 200px;
+    height: 40px;
+    left: calc(50% - 200px);
+    top: 60%;
+  }
+  .word {
+    display: none;
   }
 }
