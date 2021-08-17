@@ -410,13 +410,13 @@
         }
       ];
       
-      if ( easyList.length !== 0) {
+      if (easyList.length !== 0) {
         for (let i = 0; i < 3; i++) {
           if (easyList[i] || easyList[i] === 0) {
             easyAnswerCheckList[easyList[i]]();
           }
         }
-      } else if ( hardList.length !== 0) {
+      } else if (hardList.length !== 0) {
         hardAnswerCheckList[hardList[0]]();
       }
       break;
