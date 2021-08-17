@@ -3,15 +3,15 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
-import styles from '../styles/modules/js.module.scss';
+import styles from '../styles/modules/automata.module.scss';
 import { useState } from 'react';
-// import tips from '../games/js/jsTips';
+// import tips from '../games/automata/automataTips';
 import Login from '../components/Login';
-import JS_game from '../components/JS_game';
+import Automata_game from '../components/Automata_game';
 
-export default function CSS() {
+export default function Automata() {
 
-  const [component, setComponent] = useState(<JS_game />);
+  const [component, setComponent] = useState(<Automata_game />);
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
 
@@ -42,14 +42,14 @@ export default function CSS() {
         {component}
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         {/* <div className={styles.tips}>
-          {component.type.name === 'JS_game' 
+          {component.type.name === 'Automata_game' 
             ? <Tips gametips={tips}
               isWhite={isWhite}/>
             : null
           }
         </div> */}
       </div>
-      {component.type.name === 'JS_game' 
+      {component.type.name === 'Automata_game' 
         ? <GameFooter isWhite={isWhite}/> 
         : <Footer isWhite={isWhite}/>
       }
