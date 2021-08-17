@@ -10,7 +10,7 @@ import Ranking from './Ranking';
 import Mypage from './Mypage';
 import Linux_game from './Linux_game';
 import Css_game from '../components/Css_game';
-import JS_game from '../components/JS_game';
+import Automata_game from '../components/Automata_game';
 
 export default function Nav({ componentHandler, isWhite, loginOpenHandler, colorHandler }) {
 
@@ -126,8 +126,8 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
                         ? () => navClickHandler(<Linux_game colorHandler={colorHandler} />)
                         : asPath === 'css'
                           ? () => navClickHandler(<Css_game colorHandler={colorHandler} />)
-                          : asPath === 'js'
-                            ? () => navClickHandler(<JS_game colorHandler={colorHandler} />)
+                          : asPath === 'automata'
+                            ? () => navClickHandler(<Automata_game colorHandler={colorHandler} />)
                             : null
                     }
                   >Home</button>
