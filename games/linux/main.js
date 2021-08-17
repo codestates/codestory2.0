@@ -56,8 +56,8 @@
   const hintList = [];
   const lengthLimit = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]) * 0.1);
   const lineLimit = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]) * 0.012);
-  for(let i=0; i<=6; i++) {
-    if(i < 6) {
+  for (let i = 0; i <= 6; i++) {
+    if (i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       const goalToInsert = easyGoal[goalIndex];
