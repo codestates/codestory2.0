@@ -1,7 +1,7 @@
 (() => {
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
-  const gameContainer = document.querySelector('#game_container');
+  const gameContainer = document.querySelector('.game_container');
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
