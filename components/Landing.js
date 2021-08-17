@@ -45,7 +45,7 @@ export default function Landing({ colorHandler }) {
         </SwiperSlide>
         <SwiperSlide>
           <div className={styles.container3}>
-            <Link href="/" passHref>
+            <Link href="/js" passHref>
               <button className={styles.btn_game}>Start JS</button>
             </Link>
           </div>
