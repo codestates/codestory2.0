@@ -164,7 +164,7 @@
 
 .btn_word {
   border: none;
-  background-color: rgba($gray, 1);
+  background-color: transparent;
   font-size: 50px;
   color: $white;
   cursor: pointer;
@@ -172,7 +172,7 @@
 
 .btn_word_white {
   border: none;
-  background-color: rgba($white, 1);
+  background-color: transparent;
   font-size: 50px;
   font-weight: 500;
   color: $gray;
