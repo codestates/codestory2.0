@@ -47,17 +47,17 @@
   const easyGoal = ['현재 위치에 아무 폴더나 만드시오', '현재 위치에 아무 파일이나 만드시오', '지금까지 쓴 것을 지우시오', '현재 위치를 확인하시오', '현재 위치의 폴더 및 파일을 커맨드 창에서 확인하시오', 
     '현재 위치에서 보이지 않는 폴더 및 파일을 확인하시오', 'Desktop folder에서 open_me.txt 파일을 여시오', 'Desktop folder에서 delete_me.sh 파일을 삭제하시오', 'Desktop folder에서 delete_me 폴더를 삭제하시오',
     'Desktop folder에서 move_me.js 파일을 destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 destination 폴더로 이동시키시오'];
-  const easyHint = ['(hint: mkdir)', '(hint: touch)', '(hint: clear)', '(hint: pwd)', '(hint: ls)', '(hint: ls -a)', '(hint: cat)', '(hint: rm)', '(hint: rm -r)', '(hint: mv)', '(hint: cp)']
-  const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 error폴더로 이동해 bugking.js 파일을 지우시오']]
-  const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']]
+  const easyHint = ['(hint: mkdir)', '(hint: touch)', '(hint: clear)', '(hint: pwd)', '(hint: ls)', '(hint: ls -a)', '(hint: cat)', '(hint: rm)', '(hint: rm -r)', '(hint: mv)', '(hint: cp)'];
+  const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 error폴더로 이동해 bugking.js 파일을 지우시오']];
+  const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']];
   const easyGoalRemain = new Array(easyGoal.length).fill(0).map((cur, idx) => idx);
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const checkList = [];
   const hintList = [];
   const lengthLimit = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]) * 0.1);
   const lineLimit = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]) * 0.012);
-  for(let i=0; i<=6; i++) {
-    if(i < 6) {
+  for (let i = 0; i <= 6; i++) {
+    if (i < 6) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       const goalToInsert = easyGoal[goalIndex];
