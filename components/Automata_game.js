@@ -14,7 +14,7 @@ export default function Automata_game() {
 
   return (
     <div className={styles.game}>
-      <div id="game_container"></div>
+      <div id="automata_game_container"></div>
     </div>
   );
 }

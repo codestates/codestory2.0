@@ -3,7 +3,7 @@
   let name = 0;
 
   // container
-  const container = document.querySelector('#game_container');
+  const container = document.querySelector('#automata_game_container');
   let { left, top, width, height } = container.getBoundingClientRect();
 
   // stage

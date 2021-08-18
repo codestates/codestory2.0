@@ -14,15 +14,7 @@ export default function Css_game() {
 
   return (
     <div className={styles.game}>
-      <div
-        id="game_container"
-        style={{
-          width: '720px',
-          height: '672.8px',
-          left: '360px',
-          top: '82.1px'
-        }}
-      />
+      <div id="css_game_container"></div>
     </div>
   );
 }

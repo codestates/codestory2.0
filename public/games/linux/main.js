@@ -1,10 +1,8 @@
 (() => {
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
-  const gameContainer = document.querySelector('#game_container');
+  const gameContainer = document.querySelector('#linux_game_container');
   gameContainer.append(canvas);
-  canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-  canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
@@ -17,16 +15,16 @@
   checkListUl.append(secondCheckList);
   checkListUl.append(thirdCheckList);
   const homeDir = { name: '~', type: 'folder', sudo: true, children: { '.': null, Desktop: null } };
-  const desktop = { name: 'Desktop', type: 'folder', sudo: false, children: { '.': null, '..': homeDir } };
-  const open_me = { name: 'open_me.txt', type: 'file', sudo: false, content: '안녕하세요. 절 여셨군요!' };
-  const move_me = { name: 'move_me.js', type: 'file', sudo: false, content: '절 이동시켜주세요!' };
-  const copy_me = { name: 'copy_me.js', type: 'file', sudo: false, content: '절 복사해주세요!' };
-  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: false, content: '관리자비밀번호: 123456789' };
-  const error = { name: 'error', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
+  const desktop = { name: 'Desktop', type: 'folder', sudo: true, children: { '.': null, '..': homeDir } };
+  const open_me = { name: 'open_me.txt', type: 'file', sudo: true, content: '안녕하세요. 절 여셨군요!' };
+  const move_me = { name: 'move_me.js', type: 'file', sudo: true, content: '절 이동시켜주세요!' };
+  const copy_me = { name: 'copy_me.js', type: 'file', sudo: true, content: '절 복사해주세요!' };
+  const passwordFile = { name: '.passwordFile.js', type: 'file', sudo: true, content: '관리자비밀번호: 123456789' };
+  const error = { name: 'Error', type: 'folder', sudo: true, children: { '.': null, '..': desktop } };
   const bugKing = { name: 'bugKing.js', type: 'file', sudo: true, content: '음하하, 과연 날 지울수 있을까??' };
   const delete_me_file = { name: 'delete_me.sh', type: 'file', sudo: false, content: '숨겨왔던 나의 메시지. 방가방가' };
   const delete_me_folder = { name: 'Delete_me', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
-  const destination = { name: 'Destination', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
+  const destination = { name: 'Destination', type: 'folder', sudo: true, children: { '.': null, '..': desktop } };
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
@@ -37,7 +35,7 @@
   desktop.children['move_me.js'] = move_me;
   desktop.children['copy_me.js'] = copy_me;
   desktop.children['.passwordFile.js'] = passwordFile;
-  desktop.children['error'] = error;
+  desktop.children['Error'] = error;
   delete_me_folder.children['.'] = delete_me_folder;
   destination.children['.'] = destination;
   error.children['.'] = error;
@@ -47,34 +45,27 @@
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const easyGoal = ['현재 위치에 아무 폴더나 만드시오', '현재 위치에 아무 파일이나 만드시오', '지금까지 쓴 것을 지우시오', '현재 위치를 확인하시오', '현재 위치의 폴더 및 파일을 커맨드 창에서 확인하시오', 
-    '현재 위치에서 보이지 않는 폴더 및 파일을 확인하시오', 'Desktop folder에서 open_me.txt 파일을 여시오', 'Desktop folder에서 delete_me.sh 파일을 삭제하시오', 'Desktop folder에서 delete_me 폴더를 삭제하시오',
-    'Desktop folder에서 move_me.js 파일을 destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 destination 폴더로 이동시키시오'];
+    '현재 위치에서 보이지 않는 폴더 및 파일을 확인하시오', 'Desktop folder에서 open_me.txt 파일을 여시오', 'Desktop folder에서 delete_me.sh 파일을 삭제하시오', 'Desktop folder에서 Delete_me 폴더를 삭제하시오',
+    'Desktop folder에서 move_me.js 파일을 Destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 Destination 폴더로 이동시키시오'];
   const easyHint = ['(hint: mkdir)', '(hint: touch)', '(hint: clear)', '(hint: pwd)', '(hint: ls)', '(hint: ls -a)', '(hint: cat)', '(hint: rm)', '(hint: rm -r)', '(hint: mv)', '(hint: cp)'];
-  const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 error폴더로 이동해 bugking.js 파일을 지우시오']];
+  const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 Error폴더로 이동해 bugKing.js 파일을 지우시오']];
   const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']];
   const easyGoalRemain = new Array(easyGoal.length).fill(0).map((cur, idx) => idx);
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
-  const checkList = [];
-  const hintList = [];
-  const lengthLimit = parseInt(canvas.width * 0.1);
-  const lineLimit = parseInt(canvas.height * 0.012);
-  for (let i = 0; i <= 6; i++) {
-    if (i < 6) {
+  const easyList = [];
+  const hardList = [];
+  let checkList = [];
+  for (let i = 0; i <= 11; i++) {
+    if (i < 11) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
-      const goalToInsert = easyGoal[goalIndex];
-      const hintToInsert = easyHint[goalIndex];
       easyGoalRemain.splice(indexOfGoalIndex, 1);
-      checkList.push(goalToInsert);
-      hintList.push(hintToInsert);
+      easyList.push(goalIndex);
     } else {
       const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
       const goalIndex = hardGoalRemain[indexOfGoalIndex];
-      const goalToInsert = hardGoal[goalIndex];
-      const hintToInsert = hardHint[goalIndex];
       hardGoalRemain.splice(indexOfGoalIndex, 1);
-      goalToInsert.forEach((cur) => { checkList.push(cur); });
-      hintToInsert.forEach((cur) => { hintList.push(cur); });
+      hardList.push(goalIndex);
     }
   }
   const firstFolder = new Image();
@@ -83,13 +74,28 @@
   firstFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
   const fontSize = 16;
+  let lengthLimit = parseInt(canvas.width * 0.1);
+  let lineLimit = parseInt(canvas.height * 0.012);
+
   document.addEventListener('keydown', keyDownHandler);
+  function setSize() {
+    if (window.innerWidth > 1110) {
+      canvas.width = window.innerWidth * 0.38;
+      canvas.height = window.innerWidth * 0.44;
+    } else if (window.innerWidth > 590) {
+      canvas.width = 429;
+      canvas.height = 496;
+    } else {
+      canvas.width = 335;
+      canvas.height = 388;
+    }
+  }
   function keyDownHandler(e) {
     switch (e.keyCode) {
     case 8:
-      if (sudo !==1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
+      if (sudo !== 1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
         textArr[textArr.length - 1] = textArr[textArr.length - 1].slice(0, -1);
-      } else if (sudo ===1 && textArr[textArr.length - 1].length > 25) {
+      } else if (sudo === 1 && textArr[textArr.length - 1].length > 25) {
         textArr[textArr.length - 1] = textArr[textArr.length - 1].slice(0, -1);
       } break;
     case 13:
@@ -110,6 +116,15 @@
       } else {
         commandArr = textArr[textArr.length - 1].slice(wd.name.length + 3).match(/\S+/g) || [];
       }
+      const prevFolderLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'folder').length;
+      const prevFileLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'file').length;
+      let clearExcution = false;
+      let pwdExcution = false;
+      let lsExcution = false;
+      let lsAExcution = false;
+      let isOpenMe = false;
+      let isDeleteMe = false;
+      let isDeleteMeFolder = false;
       switch (commandArr[0]) {
       case undefined:
         break;
@@ -194,6 +209,12 @@
                 textArr.push(`rm: refusing to remove '.' or '..' directory: skipping '.'`);
               } else {
                 if (wd.children[commandArr[i]].sudo === false || sudo === 2) {
+                  if (commandArr[i] === 'delete_me.sh') {
+                    isDeleteMe = true;
+                  }
+                  if (commandArr[i] === 'Delete_me') {
+                    isDeleteMeFolder = true;
+                  }
                   delete wd.children[`${commandArr[i]}`];
                 } else {
                   textArr.push(`bash: rm: ${commandArr[i]}: Permission denied`);
@@ -220,6 +241,9 @@
               textArr.push(`rm: refusing to remove '.' or '..' directory: skipping '.'`);
             } else {
               if (wd.children[commandArr[i]].sudo === false || sudo === 2) {
+                if (commandArr[i] === 'delete_me.sh') {
+                  isDeleteMe = true;
+                }
                 delete wd.children[`${commandArr[i]}`];
               } else {
                 textArr.push(`bash: rm: ${commandArr[i]}: Permission denied`);
@@ -233,18 +257,21 @@
           for (let folder in wd.children) {
             list = `${list} ${folder}`;
           }
+          lsAExcution = true;
         } else {
           for (let folder in wd.children) {
             if (folder[0] !== '.') {
               list = `${list} ${folder}`;
             }
           }
+          lsExcution = true;
         } 
         textArr.push(list);
         break;
       case 'clear':
         if (commandArr.length === 1) {
           textArr = [`Last login: ${new Date().toUTCString()}`];
+          clearExcution = true;
           break;
         }
       case 'pwd':
@@ -255,11 +282,15 @@
           currentLocation = `${currentDirectory.name}/${currentLocation}`;
         }
         textArr.push(currentLocation);
+        pwdExcution = true;
         break;
       case 'cat':
         if (commandArr[1] && wd.children[commandArr[1]]) {
           const content = wd.children[commandArr[1]].content;
           textArr.push(content);
+          if (commandArr[1] === 'open_me.txt') {
+            isOpenMe = true;
+          }
         } else if (commandArr[1]) {
           textArr.push(`cat: ${commandArr[1]}: No such file or directory`);
         } break;
@@ -318,7 +349,7 @@
                   }
                 }
               } else {
-               textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
+                textArr.push(`cp: -r not specified; omitting directory '${commandArr[1]}'`);
               }
             } else {
               textArr.push(`cp: cannot stat '${commandArr[1]}': No such file or directory`);
@@ -334,7 +365,71 @@
       }
       if (sudo !== 1) {
         textArr.push(`${wd.name} $ `);
-      } break;
+      }
+      function removeItemFromList(index) {
+        if (easyList.length !== 0) {
+          easyList.splice(easyList.indexOf(index), 1);
+        } else if (hardList.length !== 0) {
+          hardList.splice(hardList.indexOf(index), 1);
+        }
+      }
+      function isRightAnswer(answer,index) {
+        return () => {
+          if (answer) {
+            removeItemFromList(index);
+          }
+        };
+      }
+      const easyAnswerCheckList = [
+        () => {
+          const currentFolderLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'folder').length;
+          if (prevFolderLength < currentFolderLength) {
+            removeItemFromList(0);
+          }
+        },
+        () => {
+          const currentFileLength = Object.keys(wd.children).filter(cur => wd.children[cur].type === 'file').length;
+          if (prevFileLength < currentFileLength) {
+            removeItemFromList(1);
+          }
+        },
+        isRightAnswer(clearExcution, 2), 
+        isRightAnswer(pwdExcution, 3), 
+        isRightAnswer(lsExcution, 4), 
+        isRightAnswer(lsAExcution, 5),
+        isRightAnswer(isOpenMe, 6),
+        isRightAnswer(isDeleteMe, 7),
+        isRightAnswer(isDeleteMeFolder, 8),
+        () => {
+          if (!(desktop.children['move_me.js']) && destination.children['move_me.js']) {
+            removeItemFromList(9);
+          }
+        },
+        () => {
+          if (desktop.children['copy_me.js'] && destination.children['copy_me.js']) {
+            removeItemFromList(10);
+          }
+        }
+      ];
+
+      const hardAnswerCheckList = [
+        () => {
+          if (!error.children['bugKing.js']) {
+            removeItemFromList(0);
+          }
+        }
+      ];
+      
+      if (easyList.length !== 0) {
+        for (let i = 0; i < 3; i++) {
+          if (easyList[i] || easyList[i] === 0) {
+            easyAnswerCheckList[easyList[i]]();
+          }
+        }
+      } else if (hardList.length !== 0) {
+        hardAnswerCheckList[hardList[0]]();
+      }
+      break;
     case 9:
     case 16:
     case 17:
@@ -375,10 +470,10 @@
     ctx.fill();
     ctx.font = `${canvas.width * 0.035}px Courier New`;
     ctx.fillStyle = 'black';
-    ctx.fillText(leftfolder[0], 0.05 * canvas.width, 0.12 * canvas.height);
-    ctx.fillText(leftfolder[1], 0.05 * canvas.width, 0.2 * canvas.height);
-    ctx.fillText(leftfolder[2], 0.05 * canvas.width, 0.28 * canvas.height);
-    ctx.fillText(leftfolder[3], 0.05 * canvas.width, 0.36 * canvas.height);
+    ctx.fillText(leftfolder[0], 0.035 * canvas.width, 0.12 * canvas.height);
+    ctx.fillText(leftfolder[1], 0.035 * canvas.width, 0.2 * canvas.height);
+    ctx.fillText(leftfolder[2], 0.035 * canvas.width, 0.28 * canvas.height);
+    ctx.fillText(leftfolder[3], 0.035 * canvas.width, 0.36 * canvas.height);
     ctx.closePath();
   }
   function drawBar() {
@@ -388,19 +483,19 @@
     ctx.fill();
     ctx.font = `${fontSize}px Courier New`;
     ctx.fillStyle = 'white';
-    ctx.fillText(wd.name, 0.05 * canvas.width, 0.035 * canvas.height);
+    ctx.fillText(wd.name, 0.035 * canvas.width, 0.035 * canvas.height);
     ctx.closePath();
   }
   function drawCLI() {
     ctx.beginPath();
-    ctx.rect(0, 0.75 * canvas.height, canvas.width, 0.25 * canvas.height);
+    ctx.rect(0, 0.7 * canvas.height, canvas.width, 0.3 * canvas.height);
     ctx.fillStyle = '#000000';
     ctx.fill();
     ctx.closePath();
   }
   function drawGUI() {
     ctx.beginPath();
-    ctx.rect(0.25 * canvas.width, 0.05 * canvas.height, 0.75 * canvas.width, 0.7 * canvas.height);
+    ctx.rect(0.25 * canvas.width, 0.05 * canvas.height, 0.75 * canvas.width, 0.75 * canvas.width);
     ctx.fillStyle = '#FFFFFF';
     ctx.fill();
     ctx.closePath();
@@ -417,7 +512,7 @@
       const f = toDisplay[i];
       ctx.beginPath();
       let lineX = 0.28 * canvas.width + gapX * fPositionX;
-      let lineY = 0.06 * canvas.height + gapY* fPositionY;
+      let lineY = 0.06 * canvas.height + gapY * fPositionY;
       if (wd.children[f].type === 'folder') {
         ctx.drawImage(firstFolder, lineX, lineY, fWidth, fHeight);
       } else if (wd.children[f].type === 'file') {
@@ -428,10 +523,10 @@
       ctx.font = `${fontSize}px Courier New`;
       ctx.fillStyle = '#000000';
       const lengthLimit = parseInt(canvas.width * 0.023);
-      let linePosition = 0;
-      for (let j = 0; j < f.length; j += lengthLimit) {
-        ctx.fillText(f.slice(j, j + lengthLimit), lineX + 0.15 * fWidth, lineY + fHeight + linePosition * fontSize);
-        linePosition ++;
+      if (f.length > lengthLimit) {
+        ctx.fillText(`${f.slice(0, lengthLimit-2)}..`, lineX + 0.15 * fWidth, lineY + fHeight);
+      } else {
+        ctx.fillText(f, lineX + 0.15 * fWidth, lineY + fHeight);
       }
     }
   }
@@ -441,7 +536,7 @@
     let linePosition = 1;
     for (let i = Math.max(textArr.length - lineLimit, 0); i < textArr.length; ++i) {
       for (let j = 0; j < textArr[i].length; j += lengthLimit) {
-        ctx.fillText(textArr[i].slice(j, j + lengthLimit), 0.02 * canvas.width, 0.77 * canvas.height + linePosition * fontSize);
+        ctx.fillText(textArr[i].slice(j, j + lengthLimit), 0.02 * canvas.width, 0.71 * canvas.height + linePosition * fontSize);
         ++linePosition;
       }
     }
@@ -453,7 +548,7 @@
     checkTitleDiv.style.top = `-${0.90 * canvas.height}px`;
     checkTitleDiv.style.width = `${0.5 * canvas.width}px`;
     checkTitleDiv.style.height = `${0.05 * canvas.height}px`;
-    checkTitleDiv.style.textAlign = 'center'
+    checkTitleDiv.style.textAlign = 'center';
     checkListUl.style.border = '1px black solid';
     checkListUl.style.position = 'relative';
     checkListUl.style.left = `-${0.55 * canvas.width}px`;
@@ -464,14 +559,45 @@
     secondCheckList.style.border = '1px black solid';
     thirdCheckList.style.border = '1px black solid';
     checkTitleDiv.textContent = 'CheckList';
-    firstCheckList.textContent = `${checkList[0]} ${hintList[0]}`;
-    secondCheckList.textContent = `${checkList[1]} ${hintList[1]}`;
-    thirdCheckList.textContent = `${checkList[2]} ${hintList[2]}`;
+    if (easyList.length !== 0) {
+      checkList = [...easyList];
+      firstCheckList.textContent = `${easyGoal[checkList[0]]} ${easyHint[checkList[0]]}`;
+      if (easyList[1] || easyList[1] === 0) {
+        secondCheckList.textContent = `${easyGoal[checkList[1]]} ${easyHint[checkList[1]]}`;
+      } else {
+        secondCheckList.textContent = '';
+      }
+      if (easyList[2] || easyList[2] === 0) {
+        thirdCheckList.textContent = `${easyGoal[checkList[2]]} ${easyHint[checkList[2]]}`;
+      } else {
+        thirdCheckList.textContent = '';
+      }
+    } else {
+      if (hardList.length !== 0) {
+        checkList = [hardList[0]];
+        firstCheckList.textContent = `${hardGoal[checkList[0]][0]} ${hardHint[checkList[0]][0]}`;
+        if (hardGoal[checkList[0]][1]) {
+          secondCheckList.textContent = `${hardGoal[checkList[0]][1]} ${hardHint[checkList[0]][1]}`;
+        } else {
+          secondCheckList.textContent = '';
+        }
+        if (hardGoal[checkList[0][2]]) {
+          thirdCheckList.textContent = `${hardGoal[checkList[0]][2]} ${hardHint[checkList[0]][2]}`;
+        } else {
+          thirdCheckList.textContent = '';
+        }
+      } else {
+        firstCheckList.textContent = '';
+        secondCheckList.textContent = '';
+        thirdCheckList.textContent = '';
+      }
+    }
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-    canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
+    setSize();
+    lengthLimit = parseInt(canvas.width * 0.1);
+    lineLimit = parseInt(canvas.height * 0.012);
     drawCheckList();
     drawBackGround();
     drawBar();

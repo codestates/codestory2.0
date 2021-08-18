@@ -8,16 +8,13 @@ import About from './About';
 import Landing from './Landing';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
-import Linux_game from './Linux_game';
-import Css_game from '../components/Css_game';
-import Automata_game from '../components/Automata_game';
 
 export default function Nav({ componentHandler, isWhite, loginOpenHandler, colorHandler }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
   const menuBars = {};
-  const { asPath } = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     menuTl
@@ -81,7 +78,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
     <>
       <Link href='/' passHref>
         <span className={isWhite ? styles.logo_white : styles.logo} 
-          onClick={asPath === '/' 
+          onClick={router.pathname === '/' 
             ? () => logoClickHandler(<Landing colorHandler={colorHandler}/>) 
             : null
           }
@@ -120,15 +117,9 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
               >
                 <Link href="/" passHref>
                   <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                    onClick={asPath === '/'
+                    onClick={router.pathname === '/'
                       ? () => navClickHandler(<Landing colorHandler={colorHandler} />)
-                      : asPath === 'linux'
-                        ? () => navClickHandler(<Linux_game colorHandler={colorHandler} />)
-                        : asPath === 'css'
-                          ? () => navClickHandler(<Css_game colorHandler={colorHandler} />)
-                          : asPath === 'automata'
-                            ? () => navClickHandler(<Automata_game colorHandler={colorHandler} />)
-                            : null
+                      : null
                     }
                   >Home</button>
                 </Link> 
