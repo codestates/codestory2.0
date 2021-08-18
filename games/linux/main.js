@@ -5,10 +5,15 @@
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
+  checkTitleDiv.setAttribute('id', 'linux_check_title');
   const checkListUl = document.createElement('ul');
+  checkListUl.setAttribute('id', 'linux_check_ul');
   const firstCheckList = document.createElement('li');
+  firstCheckList.setAttribute('id', 'linux_check_first');
   const secondCheckList = document.createElement('li');
+  secondCheckList.setAttribute('id', 'linux_check_second');
   const thirdCheckList = document.createElement('li');
+  thirdCheckList.setAttribute('id', 'linux_check_third');
   gameContainer.append(checkTitleDiv);
   gameContainer.append(checkListUl);
   checkListUl.append(firstCheckList);
@@ -542,22 +547,6 @@
     }
   }
   function drawCheckList() {
-    checkTitleDiv.style.border = '1px black solid';
-    checkTitleDiv.style.position = 'relative';
-    checkTitleDiv.style.left = `-${0.55 * canvas.width}px`;
-    checkTitleDiv.style.top = `-${0.90 * canvas.height}px`;
-    checkTitleDiv.style.width = `${0.5 * canvas.width}px`;
-    checkTitleDiv.style.height = `${0.05 * canvas.height}px`;
-    checkTitleDiv.style.textAlign = 'center';
-    checkListUl.style.border = '1px black solid';
-    checkListUl.style.position = 'relative';
-    checkListUl.style.left = `-${0.55 * canvas.width}px`;
-    checkListUl.style.top = `-${0.90 * canvas.height}px`;
-    checkListUl.style.width = `${0.5 * canvas.width}px`;
-    checkListUl.style.listStyle = 'none';
-    firstCheckList.style.border = '1px black solid';
-    secondCheckList.style.border = '1px black solid';
-    thirdCheckList.style.border = '1px black solid';
     checkTitleDiv.textContent = 'CheckList';
     if (easyList.length !== 0) {
       checkList = [...easyList];
