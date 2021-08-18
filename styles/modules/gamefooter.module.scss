@@ -28,13 +28,13 @@
 
 @include breakpoint(medium) {
   .container {
-    padding: 20px 30px;
+    padding: 8px 30px;
   }
 }
 
 @include breakpoint(extra-small) {
   .container {
-    padding: 20px 10px;
+    padding: 10px 10px;
   }
   .box {
     line-height: 20px;

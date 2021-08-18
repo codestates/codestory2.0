@@ -83,8 +83,8 @@
       canvas.width = window.innerWidth * 0.38;
       canvas.height = window.innerWidth * 0.44;
     } else if (window.innerWidth > 590) {
-      canvas.width = 429;
-      canvas.height = 496;
+      canvas.width = window.innerWidth * 0.38;
+      canvas.height = window.innerWidth * 0.44;
     } else {
       canvas.width = 335;
       canvas.height = 388;
