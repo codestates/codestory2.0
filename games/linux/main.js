@@ -368,7 +368,7 @@
           if (answer) {
             removeItemFromList(index);
           }
-        }
+        };
       }
       const easyAnswerCheckList = [
         () => {
