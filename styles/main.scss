@@ -78,22 +78,30 @@
   border-left-color: #fff !important;
 }
 
-#game_container {
+#linux_game_container {
+  width: 38vw;
+  height: 44vw;
+}
+
+#css_game_container {
+  width: 670px;
+  height: 775px;
+}
+
+#automata_game_container {
   width: 670px;
   height: 775px;
 }
 
 @include breakpoint(medium) {
-  #game_container {
-    top: 10px;
-    width: 503px;
-    height: 582px;
+  #linux_game_container {
+    width: 429px;
+    height: 496px;
   }
 }
 
 @include breakpoint(extra-small) {
-  #game_container {
-    top: 0px;
+  #linux_game_container {
     width: 335px;
     height: 338px;
   }

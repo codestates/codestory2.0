@@ -20,7 +20,7 @@
   };
 
   // container
-  const container = document.querySelector('#game_container');
+  const container = document.querySelector('#css_game_container');
 
   // canvas
   const canvas = document.createElement('canvas');
