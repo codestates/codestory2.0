@@ -54,10 +54,9 @@
   const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']];
   const easyGoalRemain = new Array(easyGoal.length).fill(0).map((cur, idx) => idx);
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
-
   const easyList = [];
   const hardList = [];
-  let CheckList = [];
+  let checkList = [];
   for (let i = 0; i <= 11; i++) {
     if (i < 11) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
@@ -367,9 +366,9 @@
       function isRightAnswer(answer,index) {
         return () => {
           if (answer) {
-            removeItemFromList(index)
+            removeItemFromList(index);
           }
-        }
+        };
       }
       const easyAnswerCheckList = [
         () => {
@@ -401,7 +400,7 @@
             removeItemFromList(10);
           }
         }
-      ]
+      ];
 
       const hardAnswerCheckList = [
         () => {
