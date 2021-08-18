@@ -14,99 +14,99 @@ export default function About() {
         opacity: 1,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text2, {
         duration: 2,
         delay: 1,
         opacity: 1,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text3, {
         duration: 2,
         delay: 2,
         opacity: 1,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text1, {
         duration: 1,
         delay: 4,
         opacity: 0,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text2, {
         duration: 1,
         delay: 5,
         opacity: 0,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text3, {
         duration: 1,
         delay: 6,
         opacity: 0,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.box1, {
         delay: 7,
         display: 'none',
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.box2, {
         delay: 7,
         display: 'flex',
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text4, {
         duration: 1,
         delay: 8,
         opacity: 1,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text5, {
         duration: 1,
         delay: 9,
         opacity: 1,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text6, {
         duration: 1,
         delay: 10,
         opacity: 1,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text4, {
         duration: 1,
         delay: 12,
         opacity: 0,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text5, {
         duration: 1,
         delay: 13,
         opacity: 0,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.text6, {
         duration: 1,
         delay: 14,
         opacity: 0,
         y: 15,
         ease: Power4.easeOut,
-      },0)
+      }, 0)
       .to(text.box2, {
         delay: 16,
         display: 'none',
         ease: Power4.easeOut,
-      },0); 
+      }, 0); 
   });
   
   return (
