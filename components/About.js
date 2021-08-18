@@ -137,17 +137,17 @@ export default function About() {
         <span className={styles.word3}
           ref={e => (text['text4'] = e)}
         >
-        자신의 실력을 한 번 테스트해보세요.
+          자신의 실력을 한 번 테스트해보세요.
         </span>
         <span className={styles.word3}
           ref={e => (text['text5'] = e)}
         >
-        CodeStory가 여러분의 개발 스토리에
+          CodeStory가 여러분의 개발 스토리에
         </span>
         <span className={styles.word3}
           ref={e => (text['text6'] = e)}
         >
-        한 챕터를 채울 수 있길 바랍니다.
+          한 챕터를 채울 수 있길 바랍니다.
         </span>
       </div>
     </div>
