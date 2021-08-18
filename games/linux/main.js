@@ -56,7 +56,7 @@
   const hardGoalRemain = new Array(hardGoal.length).fill(0).map((cur, idx) => idx);
   const easyList = [];
   const hardList = [];
-  let CheckList = [];
+  let checkList = [];
   for (let i = 0; i <= 11; i++) {
     if (i < 11) {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
