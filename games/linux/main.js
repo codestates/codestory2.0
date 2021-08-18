@@ -366,7 +366,7 @@
       function isRightAnswer(answer,index) {
         return () => {
           if (answer) {
-            removeItemFromList(index)
+            removeItemFromList(index);
           }
         }
       }
@@ -400,7 +400,7 @@
             removeItemFromList(10);
           }
         }
-      ]
+      ];
 
       const hardAnswerCheckList = [
         () => {
