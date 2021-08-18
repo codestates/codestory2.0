@@ -2,18 +2,7 @@
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#linux_game_container');
-  let { width, height } = gameContainer.getBoundingClientRect();
-  // canvas.width = window.innerWidth * 0.5;
-  // canvas.height = window.innerHeigth * 0.7;
-  // canvas.width = width;
-  // canvas.height = height;
   gameContainer.append(canvas);
-  // canvas.width = canvas.parentElement.width;
-  // canvas.height = canvas.parentElement.height;
-  // canvas.width = gameContainer.clientWidth;
-  // canvas.height = gameContainer.clientHeight;
-  // canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-  // canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   const checkListUl = document.createElement('ul');
@@ -94,9 +83,9 @@
   const fontSize = 16;
   document.addEventListener('keydown', keyDownHandler);
   function setSize() {
-    if (window.innerWidth > 1110 ) {
-      canvas.width = 536;
-      canvas.height = 620;
+    if (window.innerWidth > 1110) {
+      canvas.width = window.innerWidth * 0.38;
+      canvas.height = window.innerWidth * 0.44;
     } else if (window.innerWidth > 590) {
       canvas.width = 429;
       canvas.height = 496;
@@ -108,9 +97,9 @@
   function keyDownHandler(e) {
     switch (e.keyCode) {
     case 8:
-      if (sudo !==1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
+      if (sudo !== 1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
         textArr[textArr.length - 1] = textArr[textArr.length - 1].slice(0, -1);
-      } else if (sudo ===1 && textArr[textArr.length - 1].length > 25) {
+      } else if (sudo === 1 && textArr[textArr.length - 1].length > 25) {
         textArr[textArr.length - 1] = textArr[textArr.length - 1].slice(0, -1);
       } break;
     case 13:
@@ -438,7 +427,7 @@
       const f = toDisplay[i];
       ctx.beginPath();
       let lineX = 0.28 * canvas.width + gapX * fPositionX;
-      let lineY = 0.06 * canvas.height + gapY* fPositionY;
+      let lineY = 0.06 * canvas.height + gapY * fPositionY;
       if (wd.children[f].type === 'folder') {
         ctx.drawImage(firstFolder, lineX, lineY, fWidth, fHeight);
       } else if (wd.children[f].type === 'file') {
@@ -474,7 +463,7 @@
     checkTitleDiv.style.top = `-${0.90 * canvas.height}px`;
     checkTitleDiv.style.width = `${0.5 * canvas.width}px`;
     checkTitleDiv.style.height = `${0.05 * canvas.height}px`;
-    checkTitleDiv.style.textAlign = 'center'
+    checkTitleDiv.style.textAlign = 'center';
     checkListUl.style.border = '1px black solid';
     checkListUl.style.position = 'relative';
     checkListUl.style.left = `-${0.55 * canvas.width}px`;
@@ -491,17 +480,7 @@
   }
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // canvas.width = width;
-    // canvas.height = height;
-    // canvas.width = gameContainer.clientWidth;
-    // canvas.height = gameContainer.clientHeight;
-    // canvas.width = gameContainer.width;
-    // canvas.height = gameContainer.height;
-    // canvas.width = gameContainer.getBoundingClientRect().width;
-    // canvas.height = gameContainer.getBoundingClientRect().height;
     setSize();
-    // canvas.width = parseInt(Number(gameContainer.style.width.match(/\d+/)[0]));
-    // canvas.height = parseInt(Number(gameContainer.style.height.match(/\d+/)[0]));
     drawCheckList();
     drawBackGround();
     drawBar();
