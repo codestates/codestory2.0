@@ -147,7 +147,7 @@ export default function About() {
         <span className={styles.word3}
           ref={e => (text['text6'] = e)}
         >
-          한 챕터를 채울 수 있길 바랍니다.
+          한 챕터를 채워 줄 것입니다.
         </span>
       </div>
     </div>
