@@ -644,7 +644,7 @@
         }
       } else {
         firstCheckList.textContent = '';
-        firstCheckList.style.listStyleImage = 'none';
+        firstCheckList.style.listStyle = 'none';
         secondCheckList.textContent = '';
         secondCheckList.style.listStyle = 'none';
         thirdCheckList.textContent = '';
