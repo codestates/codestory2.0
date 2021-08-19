@@ -2,6 +2,7 @@ import '../styles/main.scss';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
+import { useEffect, useState } from 'react';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Router from 'next/router';
 import NProgress from 'nprogress';
@@ -16,10 +17,29 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());  
 
 function MyApp({ Component, pageProps, router }) {
+  
+  const [isLogin, setIsLogin] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+
+  },[isLogin]);
+
+  const loginHandler = () => {
+    setIsLogin(!isLogin);
+  };
+
+  const userUpdater = (e) => {
+    setUserInfo(e);
+  };
+
   return (
     <SwitchTransition mode="out-in">
       <CSSTransition key={router.pathname} classNames="page" timeout={500}>
-        <Component {...pageProps} />
+        <Component {...pageProps} 
+          loginHandler={loginHandler} 
+          isLogin={isLogin}
+        />
       </CSSTransition>
     </SwitchTransition>
   );

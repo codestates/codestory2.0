@@ -9,7 +9,7 @@ import { useState } from 'react';
 import Login from '../components/Login';
 import Automata_game from '../components/Automata_game';
 
-export default function Automata() {
+export default function Automata({ loginHandler }) {
 
   const [component, setComponent] = useState(<Automata_game />);
   const [isWhite, setIsWhite] = useState(false);

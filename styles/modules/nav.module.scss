@@ -158,7 +158,6 @@
   justify-content: space-between;
   align-items: flex-end;
   width: 235px;
-  height: 400px;
   opacity: 0;
 }
 
@@ -168,6 +167,7 @@
   font-size: 50px;
   color: $white;
   cursor: pointer;
+  margin: 15px 0;
 }
 
 .btn_word_white {
@@ -177,6 +177,7 @@
   font-weight: 500;
   color: $gray;
   cursor: pointer;
+  margin: 15px 0;
 }
 
 @include breakpoint(extra-small) {
@@ -211,6 +212,12 @@
     top: calc(50% - 200px);
     left: 25%;
   }
+  .btn_word {
+    margin: 10px 0;
+  }
+  .btn_word_white {
+    margin: 10px 0;
+  }
 }
 
 @media all and (max-height: 700px) {
@@ -244,9 +251,11 @@
   }
   .btn_word {
     font-size: 27px;
+    margin: 0;
   }
   .btn_word_white {
     font-size: 27px;
     z-index: 200;
+    margin: 0;
   }
 }

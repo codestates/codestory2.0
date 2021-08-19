@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import Login from '../components/Login';
 import { useState } from 'react';
 
-export default function Home() {
+export default function Home({ loginHandler, isLogin }) {
 
   const colorHandler = (e) => {
     if (e === 1) {
@@ -30,12 +30,20 @@ export default function Home() {
   return (
     <Layout>
       {component.type.name === 'Landing' ? <Landing colorHandler={colorHandler} /> : component }
-      {isLoginOpen ? <Login isWhite={isWhite} loginOpenHandler={loginOpenHandler}/> : null}
+      {isLoginOpen 
+        ? <Login isWhite={isWhite} 
+          loginOpenHandler={loginOpenHandler}
+          loginHandler={loginHandler}
+        /> 
+        : null
+      }
       <Footer isWhite={isWhite}/>
       <Nav componentHandler={(e) => componentHandler(e)} 
         isWhite={isWhite}
         loginOpenHandler={loginOpenHandler}
         colorHandler={colorHandler}
+        isLogin={isLogin}
+        loginHandler={loginHandler}
       />
     </Layout>
   );
