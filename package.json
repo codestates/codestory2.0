@@ -1,0 +1,41 @@
+{
+  "name": "nextstory",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "aws-amplify": "^4.2.2",
+    "aws-sdk": "^2.960.0",
+    "axios": "^0.21.1",
+    "cookie": "^0.4.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "gsap": "^3.7.1",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "mysql2": "^2.2.5",
+    "next": "11.0.1",
+    "nprogress": "^0.2.0",
+    "pg-hstore": "^2.3.4",
+    "querystring": "^0.2.1",
+    "react": "17.0.2",
+    "react-dom": "^17.0.2",
+    "react-transition-group": "^4.4.2",
+    "sass": "^1.37.5",
+    "sequelize": "^6.6.5",
+    "swiper": "^6.8.1",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.0.1",
+    "sequelize-cli": "^6.2.0"
+  }
+}

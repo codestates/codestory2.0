@@ -1,0 +1,26 @@
+/* Linux_Game */
+
+@import "../variables";
+@import "../mixins";
+
+.game {
+  position: relative;
+  width: 38vw;
+  height: 44vw;
+  margin: auto;
+}
+
+@include breakpoint(medium) {
+  .game {
+    width: 38vw;
+    height: 44vw;
+  }
+}
+
+@include breakpoint(extra-small) {
+  .game {
+    margin-bottom: 90px;
+    width: 335px;
+    height: 338px;
+  }
+}

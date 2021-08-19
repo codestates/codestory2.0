@@ -1,0 +1,160 @@
+// =============================================================================
+// Home
+// =============================================================================
+
+// Colors
+// =============================================================================
+
+// Imports
+// =============================================================================
+
+// Vendors
+
+@import "vendor/normalize";
+
+// Settings
+
+@import "variables";
+@import "mixins";
+@import "base";
+@import "fonts";
+
+.swiper-button-next {
+  &::after {
+    position: absolute;
+    right: 25px;
+    opacity: 0;
+    z-index: 100;
+    color: $gray;
+  }
+}
+
+.swiper-button-prev {
+  &::after {
+    position: absolute;
+    left: 25px;
+    opacity: 0;
+    z-index: 100;
+    color: $gray;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $white !important;
+}
+
+.page-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 400ms, transform 400ms;
+}
+
+#nprogress .bar {
+  background: #fff !important;
+}
+
+#nprogress .spinner-icon {
+  position: fixed;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  width: 60px !important;
+  height: 60px !important;
+  border-top-color: #fff !important;
+  border-left-color: #fff !important;
+}
+
+#linux_game_container {
+  width: 38vw;
+  height: 44vw;
+}
+
+#linux_check_title {
+  position: absolute;
+  display: none;
+  left: -30vw;
+  top: 10vh;
+  width: 28vw;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#linux_check_ul {
+  position: absolute;
+  left: -30vw;
+  top: 14vh;
+  width: 28vw;
+  list-style-image: url('../public/check.svg');
+  font-size: 12px;
+}
+
+#linux_check_first,
+#linux_check_second,
+#linux_check_third {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+#css_game_container {
+  width: 670px;
+  height: 775px;
+}
+
+#automata_game_container {
+  width: 670px;
+  height: 775px;
+}
+
+@include breakpoint(medium) {
+  #linux_game_container {
+    width: 38vw;
+    height: 44vw;
+  }
+
+  #linux_check_ul {
+    left: -30vw;
+    top: 4vh;
+    width: 28vw;
+  }
+
+  #linux_check_first,
+  #linux_check_second,
+  #linux_check_third {
+    font-size: 12px;
+  }
+}
+
+@include breakpoint(extra-small) {
+  #linux_game_container {
+    width: 335px;
+    height: 338px;
+  }
+
+  #linux_check_ul {
+    left: -3vw;
+    top: -22vh;
+    width: 88vw;
+    font-size: 16px;
+  }
+
+  #linux_check_first,
+  #linux_check_second,
+  #linux_check_third {
+    font-size: 14px;
+  }
+}

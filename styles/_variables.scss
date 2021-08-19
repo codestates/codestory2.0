@@ -1,0 +1,53 @@
+// =============================================================================
+// Variables
+// =============================================================================
+
+// Typography
+// =============================================================================
+
+$sans-serif: 'Ubuntu', 'Nanum Gothic', Arial, sans-serif;
+$monospace: 'Ubuntu Mono', monospace;
+$logo: 'protipo-compact', sans-serif;
+$base-font-family: $sans-serif;
+$base-font-weight: 400;
+$base-font-weight-bold: 500;
+
+// Colors
+// =============================================================================
+
+// Primary colors
+
+$primary: #fccb03;	
+$primary-orange: #F79724;
+$primary-lightblue: #34A0FC;
+$primary-blue: #2276FF;
+
+// basic colors
+
+$black: #000;
+$white: rgb(235, 235, 235);
+$gray: #32393C;
+
+// Font colors
+$base-font-color: $gray;
+
+// page colors
+
+$body-background: $primary;
+
+// Sizes
+// =============================================================================
+
+// Font sizes
+
+$base-font-size: 15px;
+$base-line-height: 1.8;
+
+// Box sizes
+
+$base-border-radius: 4px;
+
+// Effects
+// =============================================================================
+
+$base-transition-speed: .1s;

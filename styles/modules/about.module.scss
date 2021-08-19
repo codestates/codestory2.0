@@ -1,0 +1,100 @@
+/* About */
+
+@import "../variables";
+@import "../mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $gray;
+  ::selection {
+    background-color: $primary-blue;
+  }
+}
+
+.title {
+  position: fixed;
+  top: 90px;
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 50px;
+  color: $white;
+}
+
+.box_word1 {
+  display: flex;
+  flex-direction: column;
+  color: $white;
+  font-family: $sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.box_word2 {
+  display: none;
+  flex-direction: column;
+  color: $white;
+  font-family: $sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.word1 {
+  opacity: 0;
+}
+
+.word2 {
+  opacity: 0;
+}
+
+.word3 {
+  opacity: 0;
+}
+
+.word4 {
+  opacity: 0;
+}
+
+.word5 {
+  opacity: 0;
+}
+
+.word6 {
+  opacity: 0;
+}
+
+// responsive
+
+@include breakpoint(medium) {
+  .box_word1 {
+    font-size: 30px;
+    line-height: 45px;
+  }
+  
+  .box_word2 {
+    font-size: 30px;
+    line-height: 45px;
+  }
+}
+
+@media all and (max-width: 570px) {
+  .title {
+    top: 20%;
+    margin-bottom: 30px;
+  }
+  .box_word1 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  
+  .box_word2 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+}
