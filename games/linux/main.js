@@ -608,10 +608,10 @@
     if (easyList.length !== 0) {
       checkList = [...easyList];
       firstCheckList.textContent = `${easyGoal[checkList[0]]} ${easyHint[checkList[0]]}`;
-      firstCheckList.style.listStyleImage = "url('check.svg')";
+      firstCheckList.style.listStyleImage = 'url("check.svg")';
       if (easyList[1] || easyList[1] === 0) {
         secondCheckList.textContent = `${easyGoal[checkList[1]]} ${easyHint[checkList[1]]}`;
-        secondCheckList.style.listStyleImage = "url('check.svg')";
+        secondCheckList.style.listStyleImage = 'url("check.svg")';
       } else {
         secondCheckList.textContent = '';
         secondCheckList.style.listStyle = 'none';
@@ -619,7 +619,7 @@
       }
       if (easyList[2] || easyList[2] === 0) {
         thirdCheckList.textContent = `${easyGoal[checkList[2]]} ${easyHint[checkList[2]]}`;
-        thirdCheckList.style.listStyleImage = "url('check.svg')";
+        thirdCheckList.style.listStyleImage = 'url("check.svg")';
       } else {
         thirdCheckList.textContent = '';
         thirdCheckList.style.listStyle = 'none';
@@ -628,17 +628,17 @@
       if (hardList.length !== 0) {
         checkList = [hardList[0]];
         firstCheckList.textContent = `${hardGoal[checkList[0]][0]} ${hardHint[checkList[0]][0]}`;
-        firstCheckList.style.listStyleImage = "url('check.svg')";
+        firstCheckList.style.listStyleImage = 'url("check.svg")';
         if (hardGoal[checkList[0]][1]) {
           secondCheckList.textContent = `${hardGoal[checkList[0]][1]} ${hardHint[checkList[0]][1]}`;
-          secondCheckList.style.listStyleImage = "url('check.svg')";
+          secondCheckList.style.listStyleImage = 'url("check.svg")';
         } else {
           secondCheckList.textContent = '';
           secondCheckList.style.listStyle = 'none';
         }
         if (hardGoal[checkList[0][2]]) {
           thirdCheckList.textContent = `${hardGoal[checkList[0]][2]} ${hardHint[checkList[0]][2]}`;
-          thirdCheckList.style.listStyleImage = "url('check.svg')";
+          thirdCheckList.style.listStyleImage = 'url("check.svg")';
         } else {
           thirdCheckList.textContent = '';
           thirdCheckList.style.listStyle = 'none';
