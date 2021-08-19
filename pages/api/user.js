@@ -66,19 +66,15 @@ export default async function user(req, res) {
           crypto.pbkdf2(password, newSalt, 98235, 64, 'sha512', async (err, key) => {
             const newPassword = key.toString('base64');
             const result = await models.users.create({
-              pictureurl: '../?',
+              pictureUrl: '',
               userId: username,
               password: newPassword,
               salt: newSalt,
-              coin:0,
+              coin: 0,
+              score: 0,
               createdAt: time,
               updatedAt: time,
-              itemProtection: 0,
-              itemLife: 0,
-              itemTime: 0,
-              itemAnswer: 0,
-              itemAvatar: null,
-              itemPet: null
+              word: '나의 한마디를 클릭하셔서 고쳐주세요^^'
             });
             delete result.dataValues.password;
             delete result.dataValues.salt;
