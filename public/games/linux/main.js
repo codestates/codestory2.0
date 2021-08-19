@@ -41,6 +41,7 @@
   error.children['.'] = error;
   error.children['bugKing.js'] = bugKing;
   let sudo = 0;
+  let solvedProblem = 0;
   const linuxPassword = '123456789';
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
@@ -253,17 +254,73 @@
         } break;
       case 'ls':
         let list = '';
-        if (commandArr[1] === '-a') {
-          for (let folder in wd.children) {
-            list = `${list} ${folder}`;
+        function makeLsForm (lsList) {
+          let fileTitleLength = [];
+          for (let folder in lsList) {
+            fileTitleLength.push(folder.length + 2);  
           }
-          lsAExcution = true;
-        } else {
-          for (let folder in wd.children) {
-            if (folder[0] !== '.') {
-              list = `${list} ${folder}`;
+          let fileLengthForLine = [];
+          let currentLineLength = 0;
+          for (let i = 0; i < fileTitleLength.length; i++) {
+            currentLineLength += fileTitleLength[i];
+            if (currentLineLength < lengthLimit) {
+              fileLengthForLine.push(fileTitleLength[i]);
+            } else {
+              break;
             }
           }
+          for (let i = 0; i < fileTitleLength.length; i++) {
+            if (fileTitleLength[i] > fileLengthForLine[i % fileLengthForLine.length]) {
+              fileLengthForLine[i % fileLengthForLine.length] = fileTitleLength[i];
+              if (fileLengthForLine.reduce((acc, cur) => (acc + cur)) > lengthLimit && fileLengthForLine.length > 1) {
+                i = -1;
+                let currentFileQuantityForLine = fileLengthForLine.length;
+                fileLengthForLine = [];
+                for (let j = 0; j < (currentFileQuantityForLine - 1); j++) {
+                  fileLengthForLine.push(fileTitleLength[j]);
+                }
+              }
+            }
+          }
+
+          return fileLengthForLine;
+        }
+        function makeList(lsForm, listArray) {
+          for (let i = 0; i < listArray.length; i++) {
+            if (listArray[i].length < lsForm[i % lsForm.length]) {
+              while (listArray[i].length !== lsForm[i % lsForm.length]) {
+                listArray[i] += ' ';
+              }
+            }
+            if ((i % lsForm.length) === (lsForm.length - 1) || i === (listArray.length - 1)) {
+              for (let j = (i - i % lsForm.length); j <= i; j++) {
+                list += listArray[j];
+              }
+              textArr.push(list);
+              list = '';
+            } else if (i === listArray.length - 1) {
+              for (let j = (i - i % lsForm.length); j <= i; j++) {
+                list += listArray[j];
+              }
+            }
+          }
+        }
+        if (commandArr[1] === '-a') {
+          const copyOfWdChildren = Object.assign({}, wd.children);
+          const lsForm = makeLsForm(copyOfWdChildren);
+          const listArray = Object.keys(copyOfWdChildren);
+          makeList(lsForm, listArray);
+          lsAExcution = true;
+        } else {
+          const copyOfWdChildren = Object.assign({}, wd.children);
+          for (let folder in copyOfWdChildren) {
+            if (folder[0] === '.') {
+              delete copyOfWdChildren[folder];
+            }
+          }
+          const lsForm = makeLsForm(copyOfWdChildren);
+          const listArray = Object.keys(copyOfWdChildren);
+          makeList(lsForm, listArray);
           lsExcution = true;
         } 
         textArr.push(list);
@@ -558,7 +615,7 @@
     firstCheckList.style.border = '1px black solid';
     secondCheckList.style.border = '1px black solid';
     thirdCheckList.style.border = '1px black solid';
-    checkTitleDiv.textContent = 'CheckList';
+    checkTitleDiv.textContent = `CheckList (${easyGoal.length + 1 - easyList.length - hardList.length}/${easyGoal.length + 1})`;
     if (easyList.length !== 0) {
       checkList = [...easyList];
       firstCheckList.textContent = `${easyGoal[checkList[0]]} ${easyHint[checkList[0]]}`;
