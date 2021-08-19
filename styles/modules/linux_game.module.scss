@@ -10,6 +10,47 @@
   margin: auto;
 }
 
+.result_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  height: 60vh;
+  padding: 20px;
+  border-radius: 30px;
+  font-family: $base-font-family ;
+  background-color: rgb(255, 212, 71);
+}
+
+.word,
+.subword {
+  margin-bottom: 20px;
+  font-family: $sans-serif;
+  font-weight: 600;
+}
+
+.btn_white {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 40px;
+  border-radius: 30px;
+  line-height: 30px;
+  background-color: $white;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.btn_white:hover {
+  background-color: $gray;
+  color: $white;
+}
+
 @include breakpoint(medium) {
   .game {
     width: 38vw;

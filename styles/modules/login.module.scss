@@ -158,7 +158,15 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  height: 70px;
 }
+
+.box_pw2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+} 
 
 .word_pw {
   font-size: 12px;
@@ -179,8 +187,17 @@
   }
 }
 
+.word_error {
+  align-self: center;
+  padding-top: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $primary-orange;
+  height: 30px;
+}
+
 .btn_login {
-  margin-top: 25px;
+  margin-top: 15px;
   width: 100px;
   height: 25px;
   border-radius: 25px;
@@ -192,11 +209,43 @@
   cursor: pointer;
 }
 
+.btn_signup {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  width: 100px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: rgba($primary-blue, .8);
+  font-size: 14px;
+  text-align: center;
+  line-height: 25px;
+  color: $white;
+  cursor: pointer;
+}
+
 .box_login img {
   width: 160px;
-  height: 70px;
+  height: 55px;
   margin-top: 100px;
   cursor: pointer;
+}
+
+.signup {
+  align-self: center;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: rgba($gray, .8);
+}
+
+.word_finish {  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba($gray, .8);
+  height: 200px;
 }
 
 // responsive
@@ -225,17 +274,22 @@
   }
   .word {
     margin-top: 0px;
+    margin-bottom: -10px;
   }
   .word2 {
-    margin-top: 0px;
+    display: none;
   }
   .box_login {
     margin-top: 10px;
   }
   .btn_login {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .box_login img {
     margin-top: 0px;
+    height: 60;
+  }
+  .signup {
+    margin-bottom: 20px;
   }
 }
