@@ -1,6 +1,8 @@
 (() => {
   // states
   let name = 0;
+  let startStateName = null;
+  let automaton = null;
 
   // container
   const container = document.querySelector('#automata_game_container');
@@ -16,6 +18,58 @@
   canvas.height = height;
   canvas.style = 'all: unset; background-color: cyan;';
   const ctx = canvas.getContext('2d');
+
+  // quiz
+  const quiz = document.createElement('div');
+  quiz.textContent = 'Q1. 0과 1의 개수가 각각 짝수인 문자열을 인식하는 유한 상태 기계를 만드시오.';
+  quiz.style = `
+position: absolute;
+left: 10px;
+top: 10px;
+width: 460px;
+height: 30px;
+`;
+
+  // test case
+  const testCase = document.createElement('div');
+  testCase.style = `
+position: absolute;
+left: 10px;
+top: 590px;
+width: 200px;
+height: 170px;
+background-color: white;
+overflow: auto;
+`;
+  const table = document.createElement('table');
+  table.style.borderCollapse = 'collapse';
+  const thead = document.createElement('thead');
+  const tr1 = document.createElement('tr');
+  const th1 = document.createElement('th');
+  th1.textContent = '문자열';
+  th1.style.border = '1px solid #333';
+  const th2 = document.createElement('th');
+  th2.textContent = '예상 결과';
+  th2.style.border = '1px solid #333';
+  const th3 = document.createElement('th');
+  th3.textContent = '실행 결과';
+  th3.style.border = '1px solid #333';
+  const tbody = document.createElement('tbody');
+  const tr2 = document.createElement('tr');
+  const td1 = document.createElement('td');
+  td1.textContent = '010010';
+  td1.style.border = '1px solid #333';
+  const td2 = document.createElement('td');
+  td2.textContent = 'true';
+  td2.style.border = '1px solid #333';
+  const td3 = document.createElement('td');
+  td3.style.border = '1px solid #333';
+  testCase.append(table);
+  table.append(thead, tbody);
+  thead.append(tr1);
+  tr1.append(th1, th2, th3);
+  tbody.append(tr2);
+  tr2.append(td1, td2, td3);
 
   // list
   const list = document.createElement('div');
@@ -64,10 +118,14 @@ overflow: auto;
     state.textContent = name;
     state.setAttribute('name', name);
     ++name;
-    state.style = 'position: absolute; left: 0px; top: 0px; width: 40px; height: 40px; text-align: center;';
+    state.style = 'position: absolute; left: 0px; top: 40px; width: 40px; height: 40px; text-align: center;';
     state.addEventListener('dragover', (e) => {
       state.style.left = `${e.clientX - left - 20}px`;
       state.style.top = `${e.clientY - top - 20}px`;
+    });
+    state.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      startStateName = state.getAttribute('name');
     });
     const circle = document.createElement('img');
     circle.src = 'circle.png';
@@ -85,10 +143,14 @@ overflow: auto;
     state.textContent = name;
     state.setAttribute('name', name);
     ++name;
-    state.style = 'position: absolute; left: 0px; top: 0px; width: 40px; height: 40px; text-align: center;';
+    state.style = 'position: absolute; left: 0px; top: 40px; width: 40px; height: 40px; text-align: center;';
     state.addEventListener('dragover', (e) => {
       state.style.left = `${e.clientX - left - 20}px`;
       state.style.top = `${e.clientY - top - 20}px`;
+    });
+    state.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      startStateName = state.getAttribute('name');
     });
     const doubleCircle = document.createElement('img');
     doubleCircle.src = 'double-circle.png';
@@ -97,8 +159,42 @@ overflow: auto;
     state.append(doubleCircle);
   });
 
+  // run button
+  const runButton = document.createElement('button');
+  runButton.textContent = 'Run';
+  runButton.style = 'position: absolute; left: 490px; top: 590px; width: 170px;';
+  runButton.addEventListener('click', () => {
+    if (!startStateName) {
+      td3.textContent = 'error';
+      return;
+    }
+    const input = td1.textContent;
+    let states = [Number(startStateName)];
+    for (let symbol of input) {
+      let newStates = [];
+      for (let state of states) {
+        for (let i = 0; i < (automaton[state] || []).length; ++i) {
+          if (automaton[state][i] && automaton[state][i].includes(symbol)) {
+            newStates.push(i);
+          }
+        }
+      }
+      states = newStates;
+    }
+    td3.textContent = states.some((state) => {
+      let div;
+      for (let child of stage.children) {
+        if (child.getAttribute('name') === String(state)) {
+          div = child;
+          break;
+        }
+      }
+      return /double-circle\.png$/.test(div.children[0].src);
+    });
+  });
+
   container.append(stage);
-  stage.append(canvas, list, addButton, circleButton, doubleCircleButton);
+  stage.append(canvas, quiz, testCase, list, addButton, circleButton, doubleCircleButton, runButton);
 
   setInterval(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -110,6 +206,19 @@ overflow: auto;
     stage.style.height = `${height}px`;
     canvas.width = width;
     canvas.height = height;
+    if (startStateName) {
+      let startState;
+      for (let child of stage.children) {
+        if (child.getAttribute('name') === startStateName) {
+          startState = child;
+        }
+      }
+      ctx.beginPath();
+      ctx.moveTo(parseFloat(startState.style.left) - 40, parseFloat(startState.style.top) + 20);
+      ctx.lineTo(parseFloat(startState.style.left), parseFloat(startState.style.top) + 20);
+      ctx.lineTo(parseFloat(startState.style.left) - 20 * Math.cos(0.5), parseFloat(startState.style.top) + 20 - 20 * Math.sin(0.5));
+      ctx.stroke();
+    }
     const matrix = [];
     for (let child of list.children) {
       const fromName = child.children[1].value;
@@ -158,5 +267,6 @@ overflow: auto;
         child.style.backgroundColor = 'red';
       }
     }
+    automaton = matrix;
   }, 10);
 })();
