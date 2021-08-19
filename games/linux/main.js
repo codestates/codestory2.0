@@ -615,7 +615,6 @@
       } else {
         secondCheckList.textContent = '';
         secondCheckList.style.listStyle = 'none';
-
       }
       if (easyList[2] || easyList[2] === 0) {
         thirdCheckList.textContent = `${easyGoal[checkList[2]]} ${easyHint[checkList[2]]}`;
