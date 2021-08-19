@@ -1,6 +1,7 @@
 /* About */
 
 @import "../variables";
+@import "../mixins";
 
 .container {
   display: flex;
@@ -66,4 +67,34 @@
 
 .word6 {
   opacity: 0;
+}
+
+// responsive
+
+@include breakpoint(medium) {
+  .box_word1 {
+    font-size: 30px;
+    line-height: 45px;
+  }
+  
+  .box_word2 {
+    font-size: 30px;
+    line-height: 45px;
+  }
+}
+
+@media all and (max-width: 570px) {
+  .title {
+    top: 20%;
+    margin-bottom: 30px;
+  }
+  .box_word1 {
+    font-size: 18px;
+    line-height: 30px;
+  }
+  
+  .box_word2 {
+    font-size: 18px;
+    line-height: 30px;
+  }
 }

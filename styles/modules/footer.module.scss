@@ -128,9 +128,15 @@
 @include breakpoint(extra-small) {
   .container {
     padding: 10px 0px 10px 20px;
+    word-break: keep-all;
+    font-size: 14px;
+    transition: none;
   }
   .container_white {
     padding: 10px 0px 10px 20px;
+    word-break: keep-all;
+    font-size: 14px;
+    transition: none;
   }
   .box:nth-child(1) {
     line-height: 20px;
