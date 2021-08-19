@@ -599,22 +599,6 @@
     }
   }
   function drawCheckList() {
-    checkTitleDiv.style.border = '1px black solid';
-    checkTitleDiv.style.position = 'relative';
-    checkTitleDiv.style.left = `-${0.55 * canvas.width}px`;
-    checkTitleDiv.style.top = `-${0.90 * canvas.height}px`;
-    checkTitleDiv.style.width = `${0.5 * canvas.width}px`;
-    checkTitleDiv.style.height = `${0.05 * canvas.height}px`;
-    checkTitleDiv.style.textAlign = 'center';
-    checkListUl.style.border = '1px black solid';
-    checkListUl.style.position = 'relative';
-    checkListUl.style.left = `-${0.55 * canvas.width}px`;
-    checkListUl.style.top = `-${0.90 * canvas.height}px`;
-    checkListUl.style.width = `${0.5 * canvas.width}px`;
-    checkListUl.style.listStyle = 'none';
-    firstCheckList.style.border = '1px black solid';
-    secondCheckList.style.border = '1px black solid';
-    thirdCheckList.style.border = '1px black solid';
     checkTitleDiv.textContent = `CheckList (${easyGoal.length + 1 - easyList.length - hardList.length}/${easyGoal.length + 1})`;
     if (easyList.length !== 0) {
       checkList = [...easyList];
