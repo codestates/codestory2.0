@@ -47,15 +47,11 @@ export default function Tips({ gametips, isWhite }) {
                           <p className={tip.description1 ? styles.description : null}>{tip.description1}</p>
                           <p className={tip.description2 ? styles.description : null}>{tip.description2}</p>
                           <p className={tip.description3 ? styles.description : null}>{tip.description3}</p>
-                          <p className={tip.description4 ? styles.description : null}>{tip.description4}</p>
-                          <p className={tip.description5 ? styles.description : null}>{tip.description5}</p>
-                          <p className={tip.description6 ? styles.description : null}>{tip.description6}</p>
-                          <p className={tip.description7 ? styles.description : null}>{tip.description7}</p>
                           <p className={styles.example}>예시 : {tip.example}</p>
                         </div>
                         <button className={styles.close} 
                           onClick={openHandler}
-                        >okay</button> 
+                        >Okay</button> 
                       </div>
                     </SwiperSlide>
                   );
