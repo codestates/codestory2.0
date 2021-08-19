@@ -9,7 +9,7 @@ import tips from '../games/css/cssTips';
 import Login from '../components/Login';
 import Css_game from '../components/Css_game';
 
-export default function CSS() {
+export default function CSS({ loginHandler }) {
 
   const [component, setComponent] = useState(<Css_game />);
   const [isWhite, setIsWhite] = useState(true);
