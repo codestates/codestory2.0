@@ -5,10 +5,15 @@
   gameContainer.append(canvas);
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
+  checkTitleDiv.setAttribute('id', 'linux_check_title');
   const checkListUl = document.createElement('ul');
+  checkListUl.setAttribute('id', 'linux_check_ul');
   const firstCheckList = document.createElement('li');
+  firstCheckList.setAttribute('id', 'linux_check_first');
   const secondCheckList = document.createElement('li');
+  secondCheckList.setAttribute('id', 'linux_check_second');
   const thirdCheckList = document.createElement('li');
+  thirdCheckList.setAttribute('id', 'linux_check_third');
   gameContainer.append(checkTitleDiv);
   gameContainer.append(checkListUl);
   checkListUl.append(firstCheckList);
