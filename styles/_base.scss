@@ -98,7 +98,7 @@ a {
   transition: color $base-transition-speed linear;
   &:hover,
   &:active {
-    color: $white;
+    color: $primary-orange;
   }
   &:focus {
     color: $primary-orange;

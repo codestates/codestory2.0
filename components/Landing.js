@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/landing.module.scss';
+import Landing_linux from './Landing_linux';
 
 export default function Landing({ colorHandler }) {
 
@@ -31,9 +32,7 @@ export default function Landing({ colorHandler }) {
         </div>
         <SwiperSlide>
           <div className={styles.container}>
-            <Link href="/linux" passHref>
-              <button className={styles.btn_game}>Start Linux CLI</button>
-            </Link>
+            <Landing_linux />
           </div>
         </SwiperSlide>
         <SwiperSlide>
