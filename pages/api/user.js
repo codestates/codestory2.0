@@ -7,18 +7,20 @@ export default async function user(req, res) {
   switch (req.method) {
   case 'GET':
     try {
+      console.log(req);
       const jwt = await isAuthorizedJwt(req);
-      const oauth = await isAuthorizedOauth(req);
+      const oauth = null;  //await isAuthorizedOauth(req);
       if (jwt) {
         const result = await models.users.findOne({ where: { id: jwt.id } });
         const follower = await models.follower_followeds.count({ where: { followedId: jwt.id } });
         const following = await models.follower_followeds.count({ where: { followerId: jwt.id } });
-        const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
+        const rankingArr = await models.users.findAll({ order: [['score', 'DESC'], ['id', 'ASC']] });
         const idArr = rankingArr.map((user) => user.dataValues.id);
         const ranking = idArr.indexOf(jwt.id) + 1;
+        console.log(result);
         res.status(200).json({
           username: result.userId,
-          photourl: result.pictureurl,
+          photourl: result.pictureUrl,
           coin: result.coin,
           intro: result.word,
           ranking,

@@ -4,6 +4,7 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Login from '../components/Login';
 import { useState } from 'react';
+import {axios} from 'axios';
 
 export default function Home({ loginHandler, isLogin }) {
 
@@ -51,7 +52,11 @@ export default function Home({ loginHandler, isLogin }) {
 
 export async function getServerSideProps(context) {
   try {
-    const { data } = await axios.get('http://localhost:3000/api/user', { headers: { cookie: `accessToken=${context.req.cookies.accessToken}` } });
+    console.log('ssr작동하니?');
+    const { data } = await axios.get('api/user', { 
+      headers: { cookie: `accessToken=${context.req.cookies.accessToken}` } 
+    }).then((res) => res.json());
+    console.log(data);
     return {
       props: {
         isLogin: true,
