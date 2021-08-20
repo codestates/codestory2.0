@@ -18,7 +18,6 @@ export default function Linux_game() {
   const handleDisplay = () => {
     let gameResult = document.querySelector('#linux_display');
     gameResult.setAttribute('id', 'linux_result_background');
-    console.log(gameResult);
   };
 
   return (
