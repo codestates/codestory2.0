@@ -145,7 +145,7 @@ export default function Ranking({ isLogin }) {
                     height="160"
                     alt="img_ranking"
                   />
-                  { isDemo 
+                  {isDemo 
                     ? null
                     : rank.following === 'me'
                       ? null
