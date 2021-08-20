@@ -114,14 +114,22 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: none;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  background-color: #614EDB;
+  z-index: 1;
+}
+
+#linux_display {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background-color: #614EDB;
+  z-index: 1;
 }
 
 #css_game_container {
