@@ -9,7 +9,7 @@ export default function Ranking({ isLogin }) {
   const serverUrl = 'https://api.codestory.academy';
   const [ranking, setRanking] = useState({ data: [] });
   const [isDemo, setIsDemo] = useState(false);
-  const [followWord, setFollowWord] = useState('팔로잉');
+  const [followWord, setFollowWord] = useState([]);
 
   useEffect(() => {
     if (isLogin === true) {
@@ -114,12 +114,13 @@ export default function Ranking({ isLogin }) {
     }
   };
 
-  const mouseOverHandler = () => {
-    setFollowWord('언팔로우');
+  const mouseOverHandler = (rank) => {
+    setFollowWord([...followWord, rank]);
   };
 
-  const mouseLeaveHandler = () => {
-    setFollowWord('팔로잉');
+  const mouseLeaveHandler = (rank) => {
+    let newList = followWord.filter((el) => el !== rank);
+    setFollowWord(newList);
   };
 
   return (
@@ -190,10 +191,13 @@ export default function Ranking({ isLogin }) {
                     : rank.following === true
                       ? <div className={styles.list_btn_following}
                         onClick={() => followHandler(rank)}
-                        onMouseOver={() => mouseOverHandler()}
-                        onMouseLeave={() => mouseLeaveHandler()} 
+                        onMouseOver={() => mouseOverHandler(rank)}
+                        onMouseLeave={() => mouseLeaveHandler(rank)} 
                       >
-                        {followWord}
+                        {followWord.includes(rank)
+                          ? '언팔로우'
+                          : '팔로잉'
+                        }
                       </div> 
                       : <div className={styles.list_btn}
                         onClick={() => followHandler(rank)}>
