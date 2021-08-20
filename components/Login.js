@@ -188,7 +188,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
                 <div className={styles.btn_close_bar}></div>
                 <div className={styles.btn_close_bar}></div>
               </div>
-              <span className={styles.word}>Sign In</span>
+              <span className={styles.word}>Login</span>
               <span className={styles.word2}>Welcome to Code Story!</span>
               <div className={styles.box_login}>
                 <div className={styles.box_id}>
@@ -210,7 +210,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
                 </div>
                 <div className={styles.btn_login} 
                   onClick={() => login()}
-                >Sign In</div>
+                >Login</div>
                 <Image
                   src={btn_google}
                   width="140"

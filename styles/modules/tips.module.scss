@@ -19,8 +19,9 @@
 
 .container {
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   z-index: 3;
+  border-radius: 80px 80px 0 0;
   background-color: $white;
 }
 
@@ -69,7 +70,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   padding: 20px 80px;
 }
 
@@ -90,16 +91,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 45px;
-  border: 2px solid $black;
+  width: 90px;
+  height: 50px;
+  border: 2px solid $gray;
   border-radius: 50px;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 2px 4px;
   background-color: $white;
-  font-size: $base-font-size * 1.4;
-  font-weight: 600;
+  font-size: $base-font-size * 1.1;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 250ms ease-out;
+}
+
+.close:hover {
+  width: 80px;
+  color: $white;
+  background-color: $gray;
 }
 
 @include breakpoint(medium) {
@@ -119,6 +127,6 @@
   }
   .description,
   .example {
-    font-size: $base-font-size ;
+    font-size: $base-font-size * 0.9;
   }
 }

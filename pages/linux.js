@@ -9,7 +9,7 @@ import tips from '../games/linux/linuxTips';
 import Login from '../components/Login';
 import Linux_game from '../components/Linux_game';
 
-export default function Linux({ loginHandler }) {
+export default function Linux({ loginHandler, isLogin }) {
 
   const [component, setComponent] = useState(<Linux_game />);
   const [isWhite, setIsWhite] = useState(false);
@@ -38,6 +38,8 @@ export default function Linux({ loginHandler }) {
           isWhite={isWhite}
           loginOpenHandler={loginOpenHandler}
           colorHandler={colorHandler}
+          isLogin={isLogin}
+          loginHandler={loginHandler}
         />
         {component}
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}

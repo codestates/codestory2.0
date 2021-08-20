@@ -22,8 +22,21 @@ function MyApp({ Component, pageProps, router }) {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-
-  },[isLogin]);
+    if (isLogin === false) {
+      (async () => {
+        try {
+          const userInfo = await axios.get(serverUrl+'/user', { withCredentials: true });
+          const followingList = await axios.get(serverUrl+'/follower', { withCredentials: true });
+          setUserInfo(userInfo.data);
+          setFollowingList(followingList.data);
+          setIsLogin(true);
+        }
+        catch {
+          console.log('로그인하세요');
+        }
+      })();
+    }
+  }, [isLogin]);
 
   const loginHandler = () => {
     setIsLogin(!isLogin);
