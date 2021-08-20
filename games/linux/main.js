@@ -6,6 +6,8 @@ const linuxGame = () => {
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#linux_game_container');
   gameContainer.append(canvas);
+  let gameResult = document.querySelector('#linux_result_background');
+  let linuxAgain = document.querySelector('#linux_again');
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   checkTitleDiv.setAttribute('id', 'linux_check_title');
@@ -86,6 +88,9 @@ const linuxGame = () => {
   let lengthLimit = parseInt(canvas.width * 0.1);
   let lineLimit = parseInt(canvas.height * 0.012);
 
+  function handleDisplay() {
+    gameResult.removeAttribute('style');
+  }
   document.addEventListener('keydown', keyDownHandler);
   function setSize() {
     if (window.innerWidth > 1110) {
@@ -652,6 +657,9 @@ const linuxGame = () => {
         secondCheckList.style.listStyle = 'none';
         thirdCheckList.textContent = '';
         thirdCheckList.style.listStyle = 'none';
+        gameResult.setAttribute('id', 'linux_display');
+        gameResult.classList.add('linux_display1');
+        gameContainer.remove(canvas);
       }
     }
   }
