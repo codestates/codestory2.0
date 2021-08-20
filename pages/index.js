@@ -40,7 +40,7 @@ export default function Home({ loginHandler, isLogin }) {
       {component.type.name === 'Landing' 
         ? <Landing colorHandler={colorHandler} /> 
         : component.type.name === 'Ranking' 
-          ? <Ranking isLogin={isLogin}/>
+          ? <Ranking isLogin={isLogin} />
           : component
       }
       {isLoginOpen 
