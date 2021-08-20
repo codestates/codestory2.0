@@ -7,13 +7,18 @@ import styles from '../styles/modules/linux.module.scss';
 import { useState } from 'react';
 import tips from '../games/linux/linuxTips';
 import Login from '../components/Login';
+import Ranking from '../components/Ranking';
 import Linux_game from '../components/Linux_game';
 
 export default function Linux({ loginHandler, isLogin }) {
 
-  const [component, setComponent] = useState(<Linux_game />);
+  const [component, setComponent] = useState(
+    [ 'Linux_game', <Linux_game key={0} /> ]
+  );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
+
+  console.log(component);
 
   const colorHandler = (e) => {
     if (e === 1) {
@@ -41,17 +46,20 @@ export default function Linux({ loginHandler, isLogin }) {
           isLogin={isLogin}
           loginHandler={loginHandler}
         />
-        {component}
+        {component[0] === 'Ranking' 
+          ? <Ranking isLogin={isLogin} />
+          : component[1]
+        }
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         <div className={styles.tips}>
-          {component.type.name === 'Linux_game' 
+          {component[0] === 'Linux_game' 
             ? <Tips gametips={tips}
               isWhite={isWhite}/>
             : null
           }
         </div>
       </div>
-      {component.type.name === 'Linux_game' 
+      {component[0] === 'Linux_game' 
         ? <GameFooter isWhite={isWhite}/> 
         : <Footer isWhite={isWhite}/>
       }
