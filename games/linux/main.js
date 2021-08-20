@@ -1,4 +1,7 @@
-(() => {
+
+
+
+const linuxGame = () => {
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#linux_game_container');
@@ -66,7 +69,7 @@
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       easyGoalRemain.splice(indexOfGoalIndex, 1);
-      easyList.push(goalIndex);
+      // easyList.push(goalIndex);
     } else {
       const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
       const goalIndex = hardGoalRemain[indexOfGoalIndex];
@@ -663,6 +666,14 @@
     drawCLI();
     drawGUI();
     drawText();
+    if (easyList.legnth === 0 && hardList.length === 0) {
+      console.log('hi');
+      linuxGame();
+    }
   }
+
   setInterval(draw, 10);
-})();
+  
+};
+
+linuxGame();
