@@ -43,13 +43,28 @@
   align-items: center;
   width: 200px;
   height: 280px;
-  &:nth-child(2) {
+  &:nth-child(1) {
     margin-bottom: 140px;
+    order: 2;
+  }
+  &:nth-child(2) {
+    order: 1;
+  }
+  &:nth-child(3) {
+    order: 3;
   }
 }
 
 .ranking {
   color: $white;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 60px;
+  text-align: center;
+}
+
+.ranking_me {
+  color: $primary;
   font-size: 45px;
   font-weight: 500;
   line-height: 60px;
@@ -64,8 +79,51 @@
   cursor: pointer;
 }
 
+.img_cover {
+  position: relative;
+  top: -138px;
+  width: 130px;
+  height: 130px;
+  border-radius: 15px;
+  color: transparent;
+  &:hover {
+    background-color: $primary-blue;
+    color: $white;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 133px;
+    transition: .4s;
+  }
+}
+
+.img_cover_following {
+  position: relative;
+  top: -138px;
+  width: 130px;
+  height: 130px;
+  border-radius: 15px;
+  color: transparent;
+  &:hover {
+    background-color: tomato;
+    color: $white;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 133px;
+    transition: .4s;
+  }
+}
+
 .id {
   color: $white;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.id_me {
+  color: $primary;
   font-size: 28px;
   font-weight: 500;
   text-align: center;
@@ -98,15 +156,65 @@
 }
 
 .list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+}
+
+.line {
+  border: solid 1px rgba($white, .2);
+  width: 98%;
+}
+
+.list_btn {
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: $gray;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 30px;
+  color: $white;
+  cursor: pointer;
+  transition: .4s;
+  &:hover {
+    background-color: $primary-blue;
+    transition: .4s;
+  }
+}
+
+.list_btn_following {
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: $primary-blue;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 30px;
+  color: $white;
+  cursor: pointer;
+  transition: .4s;
+  &:hover {
+    background-color: tomato;
+    transition: .4s;
+  }
+}
+
+.list_word {
   color: $white;
   font-size: 28px;
   font-weight: 500;
   text-align: center;
 }
 
-.line {
-  border: solid 1px rgba($white, .2);
-  width: 98%;
+.list_word_me {
+  color: $primary;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
 }
 
 // responsive
@@ -130,7 +238,7 @@
     justify-content: flex-end;
     width: 120px;
     height: 200px;
-    &:nth-child(2) {
+    &:nth-child(1) {
       margin-top: 50px;
     }
   }
@@ -139,11 +247,44 @@
     line-height: 40px;
     text-align: center;
   }
+  .ranking_me {
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+  }
   .img {
     width: 90px;
     height: 90px;
   }
+  .img_cover {
+    position: relative;
+    top: -98px;
+    width: 90px;
+    height: 90px;
+    &:hover {
+      font-size: 14px;
+      text-align: center;
+      line-height: 93px;
+    }
+  }
+  .img_cover_following {
+    position: relative;
+    top: -98px;
+    width: 90px;
+    height: 90px;
+    &:hover {
+      font-size: 14px;
+      text-align: center;
+      line-height: 93px;
+    }
+  }
   .id {
+    font-size: 16px;
+    word-break: break-all;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+  .id_me {
     font-size: 16px;
     word-break: break-all;
     line-height: 20px;
@@ -155,11 +296,31 @@
     min-width: 330px;
     margin-top: 10px;
   }
-  .list {
+  .list_word {
     color: $white;
     font-size: 18px;
     font-weight: 500;
     text-align: center;
+  }
+  .list_word_me {
+    color: $white;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .list_btn {
+    width: 55px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .list_btn_following {
+    width: 55px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 20px;
   }
 }
 
@@ -171,7 +332,7 @@
   .box_ranking {
     height: 90px;
     margin-bottom: 0px;
-    &:nth-child(2) {
+    &:nth-child(1) {
       margin-bottom: 100px;
     }
   }

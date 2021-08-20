@@ -9,7 +9,7 @@ import { useState } from 'react';
 import Login from '../components/Login';
 import Automata_game from '../components/Automata_game';
 
-export default function Automata({ loginHandler }) {
+export default function Automata({ loginHandler, isLogin }) {
 
   const [component, setComponent] = useState(<Automata_game />);
   const [isWhite, setIsWhite] = useState(false);
@@ -38,6 +38,8 @@ export default function Automata({ loginHandler }) {
           isWhite={isWhite}
           loginOpenHandler={loginOpenHandler}
           colorHandler={colorHandler}
+          isLogin={isLogin}
+          loginHandler={loginHandler}
         />
         {component}
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
