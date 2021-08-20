@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import result from '../public/profile.png';
@@ -6,6 +6,7 @@ import styles from '../styles/modules/linux_game.module.scss';
 
 export default function Linux_game() {
 
+  const [replay, setReplay] = useState(false);
   useEffect(() => {
     const script = document.createElement('script');
     script.src = '/api/linux';
@@ -13,11 +14,12 @@ export default function Linux_game() {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
+  }, [replay]);
 
   const handleDisplay = () => {
     let gameResult = document.querySelector('#linux_display');
     gameResult.setAttribute('id', 'linux_result_background');
+    setReplay(!replay);
   };
 
   return (

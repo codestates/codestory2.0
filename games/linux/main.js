@@ -1,7 +1,4 @@
-
-
-
-const linuxGame = () => {
+(() => {
   const canvas = document.createElement('canvas');
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#linux_game_container');
@@ -71,7 +68,7 @@ const linuxGame = () => {
       const indexOfGoalIndex = Math.floor(easyGoalRemain.length * Math.random());
       const goalIndex = easyGoalRemain[indexOfGoalIndex];
       easyGoalRemain.splice(indexOfGoalIndex, 1);
-      // easyList.push(goalIndex);
+      easyList.push(goalIndex);
     } else {
       const indexOfGoalIndex = Math.floor(hardGoalRemain.length * Math.random());
       const goalIndex = hardGoalRemain[indexOfGoalIndex];
@@ -295,7 +292,6 @@ const linuxGame = () => {
               }
             }
           }
-
           return fileLengthForLine;
         }
         function makeList(lsForm, listArray) {
@@ -481,7 +477,6 @@ const linuxGame = () => {
           }
         }
       ];
-
       const hardAnswerCheckList = [
         () => {
           if (!error.children['bugKing.js']) {
@@ -489,7 +484,6 @@ const linuxGame = () => {
           }
         }
       ];
-      
       if (easyList.length !== 0) {
         for (let i = 0; i < 3; i++) {
           if (easyList[i] || easyList[i] === 0) {
@@ -659,10 +653,14 @@ const linuxGame = () => {
         thirdCheckList.style.listStyle = 'none';
         gameResult.setAttribute('id', 'linux_display');
         gameResult.classList.add('linux_display1');
-        gameContainer.remove(canvas);
+        canvas.setAttribute('style', 'display: none');
+        checkTitleDiv.setAttribute('style', 'display: none');
       }
     }
   }
+
+  const gameRepeater = setInterval(draw, 10);
+
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setSize();
@@ -674,14 +672,8 @@ const linuxGame = () => {
     drawCLI();
     drawGUI();
     drawText();
-    if (easyList.legnth === 0 && hardList.length === 0) {
-      console.log('hi');
-      linuxGame();
+    if (easyList.length === 0 && hardList.length === 0) {
+      clearInterval(gameRepeater);
     }
   }
-
-  setInterval(draw, 10);
-  
-};
-
-linuxGame();
+})();
