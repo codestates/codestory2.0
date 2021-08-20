@@ -84,29 +84,30 @@
 }
 
 #linux_check_title {
-  position: absolute;
-  left: -30vw;
-  top: 10vh;
-  margin-left: 40px;
+  position: fixed;
+  left: 1vw;
+  top: 35vh;
+  margin-left: 22px;
   text-align: left;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
 }
 
 #linux_check_ul {
-  position: absolute;
-  left: -30vw;
-  top: 14vh;
+  position: fixed;
+  left: 1vw;
+  top: 39vh;
   width: 28vw;
-  list-style-image: url('../public/check.svg');
-  font-size: 12px;
 }
 
 #linux_check_first,
 #linux_check_second,
 #linux_check_third {
+  margin: 10px;
   font-weight: 600;
   font-size: 18px;
+  line-height: 20px;
+  word-break: keep-all;
 }
 
 #linux_result_background {
@@ -140,13 +141,13 @@
   }
 
   #linux_check_title {
-    top: 2vh;
-    font-size: 12px;
+    left: 0vw;
+    font-size: 18px;
   }
 
   #linux_check_ul {
-    left: -30vw;
-    top: 4vh;
+    left: 1vw;
+    top: 39vh;
     width: 28vw;
     line-height: 22px;
   }
@@ -154,7 +155,8 @@
   #linux_check_first,
   #linux_check_second,
   #linux_check_third {
-    font-size: 12px;
+    margin: 0px;
+    font-size: 14px;
     line-height: 16px;
   }
 }
@@ -166,12 +168,15 @@
   }
 
   #linux_check_title {
-    left: -3vw;
+    position: absolute;
+    left: -6vw;
     top: -22vh;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   #linux_check_ul {
+    position: absolute;
+    margin-top: 4px;
     left: -3vw;
     top: -19vh;
     width: 88vw;
