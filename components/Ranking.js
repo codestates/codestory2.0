@@ -98,7 +98,8 @@ export default function Ranking({ isLogin }) {
       await axios.delete(serverUrl+'/follower', {
         data: {
           username: e.username
-        },'content-type': 'application/json',
+        },
+        'content-type': 'application/json',
         withCredentials: true
       }).then(() => {
         rankingList = rankingList.map((rank) => {
@@ -182,7 +183,7 @@ export default function Ranking({ isLogin }) {
                 }>
                   {index + 4} {rank.username}
                 </div>
-                { isDemo 
+                {isDemo 
                   ? null
                   : rank.following === 'me'
                     ? null
