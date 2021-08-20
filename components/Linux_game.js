@@ -28,7 +28,7 @@ export default function Linux_game() {
         <div className={styles.result_container}>
           <h1 className={styles.word}>Stage clear!</h1>
           <div className={styles.box_img}>
-            <Image src={result} alt=''/>
+            <Image src={result} alt=""/>
           </div>
           <h3 className={styles.subword} id="score_word">score 80</h3>
           <div className={styles.btn_container}>
