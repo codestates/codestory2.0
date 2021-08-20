@@ -52,7 +52,7 @@
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const easyGoal = ['현재 위치에 아무 폴더나 만드시오', '현재 위치에 아무 파일이나 만드시오', '지금까지 쓴 것을 지우시오', '현재 위치를 확인하시오', '현재 위치의 폴더 및 파일을 커맨드 창에서 확인하시오', 
     '현재 위치에서 보이지 않는 폴더 및 파일을 확인하시오', 'Desktop folder에서 open_me.txt 파일을 여시오', 'Desktop folder에서 delete_me.sh 파일을 삭제하시오', 'Desktop folder에서 Delete_me 폴더를 삭제하시오',
-    'Desktop folder에서 move_me.js 파일을 Destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 Destination 폴더로 이동시키시오'];
+    'Desktop folder에서 move_me.js 파일을 Destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 Destination 폴더로 복사시키시오'];
   const easyHint = ['(hint: mkdir)', '(hint: touch)', '(hint: clear)', '(hint: pwd)', '(hint: ls)', '(hint: ls -a)', '(hint: cat)', '(hint: rm)', '(hint: rm -r)', '(hint: mv)', '(hint: cp)'];
   const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 Error폴더로 이동해 bugKing.js 파일을 지우시오']];
   const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']];
@@ -608,34 +608,47 @@
     if (easyList.length !== 0) {
       checkList = [...easyList];
       firstCheckList.textContent = `${easyGoal[checkList[0]]} ${easyHint[checkList[0]]}`;
+      firstCheckList.style.listStyleImage = 'url("check.svg")';
       if (easyList[1] || easyList[1] === 0) {
         secondCheckList.textContent = `${easyGoal[checkList[1]]} ${easyHint[checkList[1]]}`;
+        secondCheckList.style.listStyleImage = 'url("check.svg")';
       } else {
         secondCheckList.textContent = '';
+        secondCheckList.style.listStyle = 'none';
       }
       if (easyList[2] || easyList[2] === 0) {
         thirdCheckList.textContent = `${easyGoal[checkList[2]]} ${easyHint[checkList[2]]}`;
+        thirdCheckList.style.listStyleImage = 'url("check.svg")';
       } else {
         thirdCheckList.textContent = '';
+        thirdCheckList.style.listStyle = 'none';
       }
     } else {
       if (hardList.length !== 0) {
         checkList = [hardList[0]];
         firstCheckList.textContent = `${hardGoal[checkList[0]][0]} ${hardHint[checkList[0]][0]}`;
+        firstCheckList.style.listStyleImage = 'url("check.svg")';
         if (hardGoal[checkList[0]][1]) {
           secondCheckList.textContent = `${hardGoal[checkList[0]][1]} ${hardHint[checkList[0]][1]}`;
+          secondCheckList.style.listStyleImage = 'url("check.svg")';
         } else {
           secondCheckList.textContent = '';
+          secondCheckList.style.listStyle = 'none';
         }
         if (hardGoal[checkList[0][2]]) {
           thirdCheckList.textContent = `${hardGoal[checkList[0]][2]} ${hardHint[checkList[0]][2]}`;
+          thirdCheckList.style.listStyleImage = 'url("check.svg")';
         } else {
           thirdCheckList.textContent = '';
+          thirdCheckList.style.listStyle = 'none';
         }
       } else {
         firstCheckList.textContent = '';
+        firstCheckList.style.listStyle = 'none';
         secondCheckList.textContent = '';
+        secondCheckList.style.listStyle = 'none';
         thirdCheckList.textContent = '';
+        thirdCheckList.style.listStyle = 'none';
       }
     }
   }
