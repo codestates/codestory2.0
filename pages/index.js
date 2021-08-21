@@ -4,6 +4,7 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Login from '../components/Login';
 import Ranking from '../components/Ranking';
+import Mypage from '../components/Mypage';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -64,7 +65,9 @@ export default function Home({ loginHandler, isLogin }) {
         ? <Landing colorHandler={colorHandler} key={0} />
         : component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
-          : component[1]
+          : component[0] === 'Mypage'
+            ? <Mypage isLogin={isLogin} />
+            : component[1]
       }
       {isLoginOpen 
         ? <Login isWhite={isWhite} 
