@@ -138,7 +138,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
                   onClick={() => navClickHandler(<About />)}
                 >About</button>
                 <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={() => navClickHandler(<Ranking isLogin={isLogin} />)}
+                  onClick={() => navClickHandler(<Ranking />)}
                 >Ranking</button>
                 {isLogin 
                   ? <>

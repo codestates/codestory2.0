@@ -3,6 +3,7 @@ import Landing from '../components/Landing';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Login from '../components/Login';
+import Ranking from '../components/Ranking';
 import { useState } from 'react';
 import {axios} from 'axios';
 
@@ -30,7 +31,19 @@ export default function Home({ loginHandler, isLogin }) {
 
   return (
     <Layout>
-      {component.type.name === 'Landing' ? <Landing colorHandler={colorHandler} /> : component }
+      <Nav componentHandler={(e) => componentHandler(e)} 
+        isWhite={isWhite}
+        loginOpenHandler={loginOpenHandler}
+        colorHandler={colorHandler}
+        isLogin={isLogin}
+        loginHandler={loginHandler}
+      />
+      {component.type.name === 'Landing' 
+        ? <Landing colorHandler={colorHandler} /> 
+        : component.type.name === 'Ranking' 
+          ? <Ranking isLogin={isLogin} />
+          : component
+      }
       {isLoginOpen 
         ? <Login isWhite={isWhite} 
           loginOpenHandler={loginOpenHandler}
@@ -39,13 +52,6 @@ export default function Home({ loginHandler, isLogin }) {
         : null
       }
       <Footer isWhite={isWhite}/>
-      <Nav componentHandler={(e) => componentHandler(e)} 
-        isWhite={isWhite}
-        loginOpenHandler={loginOpenHandler}
-        colorHandler={colorHandler}
-        isLogin={isLogin}
-        loginHandler={loginHandler}
-      />
     </Layout>
   );
 }

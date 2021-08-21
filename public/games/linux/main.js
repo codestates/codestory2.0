@@ -292,7 +292,6 @@
               }
             }
           }
-
           return fileLengthForLine;
         }
         function makeList(lsForm, listArray) {
@@ -478,7 +477,6 @@
           }
         }
       ];
-
       const hardAnswerCheckList = [
         () => {
           if (!error.children['bugKing.js']) {
@@ -486,7 +484,6 @@
           }
         }
       ];
-      
       if (easyList.length !== 0) {
         for (let i = 0; i < 3; i++) {
           if (easyList[i] || easyList[i] === 0) {
@@ -656,10 +653,14 @@
         thirdCheckList.style.listStyle = 'none';
         gameResult.setAttribute('id', 'linux_display');
         gameResult.classList.add('linux_display1');
-        gameContainer.remove(canvas);
+        canvas.setAttribute('style', 'display: none');
+        checkTitleDiv.setAttribute('style', 'display: none');
       }
     }
   }
+
+  const gameRepeater = setInterval(draw, 10);
+
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setSize();
@@ -671,6 +672,8 @@
     drawCLI();
     drawGUI();
     drawText();
+    if (easyList.length === 0 && hardList.length === 0) {
+      clearInterval(gameRepeater);
+    }
   }
-  setInterval(draw, 10);
 })();
