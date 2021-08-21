@@ -72,9 +72,9 @@ export default async function user(req, res) {
               salt: newSalt,
               coin: 0,
               score: 0,
+              word: '나의 한마디를 클릭하셔서 고쳐주세요^^',
               createdAt: time,
               updatedAt: time,
-              word: '나의 한마디를 클릭하셔서 고쳐주세요^^'
             });
             delete result.dataValues.password;
             delete result.dataValues.salt;

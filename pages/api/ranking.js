@@ -1,6 +1,6 @@
 const { isAuthorizedJwt } = require('../../lib/json-token');
-const { isAuthorizedOauth } = require('../../lib/oauth-token.js');
-const db = require('../../lib/models');
+const { isAuthorizedOauth } = require('../../lib/oauth-token');
+const models = require('../../lib/models');
 
 export default async function ranking(req, res) {
   switch (req.method) {
@@ -9,8 +9,8 @@ export default async function ranking(req, res) {
       const jwt = await isAuthorizedJwt(req);
       const oauth = await isAuthorizedOauth(req);
       if (jwt) {
-        const rankingArr = await db.users.findAll({ order: [['score', 'DESC'], ['id', 'ASC']] });
-        const followedArr = await db.follower_followeds.findAll({ where: { followerId: jwt.id } });
+        const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
+        const followedArr = await models.follower_followeds.findAll({ where: { followerId: jwt.id } });
         const isFollowed = [];
         for (let record of followedArr) {
           isFollowed[record.dataValues.followedId] = true;
@@ -22,13 +22,13 @@ export default async function ranking(req, res) {
           following: record.dataValues.id === jwt.id ? 'me' : Boolean(isFollowed[record.dataValues.id])
         }))});
       } else if (oauth) {
-        const rankingArr = await db.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
+        const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
         res.status(200).json({ data: rankingArr.map((record) => ({
           username: record.dataValues.userId,
           photourl: record.dataValues.pictureUrl,
           score: record.dataValues.score,
           following: false
-        }))});
+        })) });
       } else {
         res.status(400).json({ message: 'InvalidToken' });
       }

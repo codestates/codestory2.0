@@ -6,7 +6,6 @@ import profile from '../public/profile.png';
 
 export default function Ranking({ isLogin }) {
 
-  const serverUrl = 'https://api.codestory.academy';
   const [ranking, setRanking] = useState({ data: [] });
   const [isDemo, setIsDemo] = useState(false);
   const [followWord, setFollowWord] = useState([]);
@@ -15,7 +14,7 @@ export default function Ranking({ isLogin }) {
     if (isLogin === true) {
       (async () => {
         try {
-          const rankingData = await axios.get(serverUrl+'/ranking', { withCredentials: true });
+          const rankingData = await axios.get('/api/ranking', { withCredentials: true });
           setRanking(rankingData.data);
         }
         catch {
@@ -79,7 +78,7 @@ export default function Ranking({ isLogin }) {
     if (e.following === 'me') {
       return;
     } else if (e.following === false) {
-      await axios.post(serverUrl+'/follower', {
+      await axios.post('/api/follower', {
         username: e.username
       }, {
         'content-type': 'application/json',
@@ -95,7 +94,7 @@ export default function Ranking({ isLogin }) {
         rankingHandler(rankingList);
       });
     } else if (e.following === true) {
-      await axios.delete(serverUrl+'/follower', {
+      await axios.delete('/api/follower', {
         data: {
           username: e.username
         },
@@ -129,8 +128,8 @@ export default function Ranking({ isLogin }) {
       <div className={styles.box}>
         {rankingList.slice(0, 3).map((rank, index) => {
           return (
-            <>
-              <div className={styles.box_ranking} key={index}>
+            <React.Fragment key={rank.username}>
+              <div className={styles.box_ranking}>
                 <span className={rank.following === 'me'
                   ? styles.ranking_me
                   : styles.ranking
@@ -168,7 +167,7 @@ export default function Ranking({ isLogin }) {
                   {rank.username}
                 </span>
               </div>
-            </>
+            </React.Fragment>
           );
         })
         }
@@ -176,8 +175,8 @@ export default function Ranking({ isLogin }) {
       <div className={styles.box_list}>
         {rankingList.slice(3).map((rank, index) => {
           return (
-            <>
-              <div className={styles.list} key={index}>
+            <React.Fragment key={rank.username}>
+              <div className={styles.list}>
                 <div className={rank.following === 'me' 
                   ? styles.list_word_me
                   : styles.list_word
@@ -209,7 +208,7 @@ export default function Ranking({ isLogin }) {
                 ? null 
                 : <hr className={styles.line}/>
               }
-            </>
+            </React.Fragment>
           );
         })};
       </div>

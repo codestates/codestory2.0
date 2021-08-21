@@ -10,7 +10,6 @@ export default function Login({ loginOpenHandler, loginHandler }) {
 
   SwiperCore.use([EffectFade, Pagination, Autoplay]);
 
-  const serverUrl = 'https://api.codestory.academy';
   const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   const redirectUri = process.env.NEXT_PUBLIC_REDIRECT_URI || 'http://localhost:3000/';
   const googleLoginUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${googleClientId}&redirect_uri=${redirectUri}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile`;
@@ -49,7 +48,11 @@ export default function Login({ loginOpenHandler, loginHandler }) {
     if (username === '' || password === '') {
       setErrorMessage('아이디와 비밀번호를 확인해 주세요');
     } else {
+<<<<<<< HEAD
       await axios.post('api/signin', {
+=======
+      await axios.post('/api/signin', {
+>>>>>>> cb20522a6ab3eb04cd02e0a837f24bf360bad5c9
         username: username,
         password: password
       }, {
@@ -74,7 +77,11 @@ export default function Login({ loginOpenHandler, loginHandler }) {
     } else if (password1 !== password2) {
       setErrorMessage('비밀번호를 확인해 주세요');
     } else {
+<<<<<<< HEAD
       await axios.post('api/user', {
+=======
+      await axios.post('/api/user', {
+>>>>>>> cb20522a6ab3eb04cd02e0a837f24bf360bad5c9
         username: userId,
         password: password2
       }, {
