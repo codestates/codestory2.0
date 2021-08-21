@@ -4,7 +4,9 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Login from '../components/Login';
 import Ranking from '../components/Ranking';
-import { useState } from 'react';
+import Mypage from '../components/Mypage';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Home({ loginHandler, isLogin }) {
 
@@ -21,6 +23,26 @@ export default function Home({ loginHandler, isLogin }) {
   );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
+ 
+  useEffect(() => {
+    if (process.browser) {
+      const url = new URL(window.location.href);
+      const authorizationCode = url.searchParams.get('code'); 
+      async function getAccessToken() {
+        if (authorizationCode) {
+          const res = await axios.post('api/oauthlogin',
+            { authorizationCode: authorizationCode }, {
+              'content-type': 'application/json',
+              withCredentials: true
+            });
+          if (res.data.message === 'ok') {
+            loginHandler();
+          }
+        }
+      }
+      getAccessToken();
+    } 
+  },[]);
   
   const componentHandler = (e) => {
     setComponent(e);
@@ -43,7 +65,9 @@ export default function Home({ loginHandler, isLogin }) {
         ? <Landing colorHandler={colorHandler} key={0} />
         : component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
-          : component[1]
+          : component[0] === 'Mypage'
+            ? <Mypage isLogin={isLogin} />
+            : component[1]
       }
       {isLoginOpen 
         ? <Login isWhite={isWhite} 
