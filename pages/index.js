@@ -4,6 +4,7 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import Login from '../components/Login';
 import Ranking from '../components/Ranking';
+import Mypage from '../components/Mypage';
 import { useState } from 'react';
 
 export default function Home({ loginHandler, isLogin }) {
@@ -41,7 +42,9 @@ export default function Home({ loginHandler, isLogin }) {
         ? <Landing colorHandler={colorHandler} /> 
         : component.type.name === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
-          : component
+          : component.type.name === 'Mypage'
+            ? <Mypage isLogin={isLogin} />
+            : component
       }
       {isLoginOpen 
         ? <Login isWhite={isWhite} 
