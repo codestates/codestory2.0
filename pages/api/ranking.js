@@ -17,18 +17,18 @@ export default async function ranking(req, res) {
         }
         res.status(200).json({ data: rankingArr.map((record) => ({
           username: record.dataValues.userId,
-          photourl: record.dataValues.pictureurl,
-          coin: record.dataValues.coin,
+          photourl: record.dataValues.pictureUrl,
+          score: record.dataValues.score,
           following: record.dataValues.id === jwt.id ? 'me' : Boolean(isFollowed[record.dataValues.id])
         })) });
       } else if (oauth) {
         const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
         res.status(200).json({ data: rankingArr.map((record) => ({
           username: record.dataValues.userId,
-          photourl: record.dataValues.pictureurl,
-          coin: record.dataValues.pictureurl,
+          photourl: record.dataValues.pictureUrl,
+          score: record.dataValues.score,
           following: false
-        }))});
+        })) });
       } else {
         res.status(400).json({ message: 'InvalidToken' });
       }
@@ -36,6 +36,8 @@ export default async function ranking(req, res) {
     catch (error) {
       res.status(500).json({ message: 'Sorry Can\'t process your request' });
       throw error;
-    }
+    } break;
+  default:
+    res.status(404).json({ message: `You can't use ${req.method} method.` });
   }
 };
