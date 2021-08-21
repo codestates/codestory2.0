@@ -36,6 +36,6 @@ export default async function ranking(req, res) {
     catch (error) {
       res.status(500).json({ message: 'Sorry Can\'t process your request' });
       throw error;
-    }
+    } break;
   }
 };

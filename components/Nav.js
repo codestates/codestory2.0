@@ -12,7 +12,7 @@ import Mypage from './Mypage';
 
 export default function Nav({ componentHandler, isWhite, loginOpenHandler, colorHandler, isLogin, loginHandler }) {
 
-  const serverUrl = 'https://api.codestory.academy';
+  // const serverUrl = 'https://api.codestory.academy';
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
@@ -70,7 +70,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
   };
 
   const logoutHandler = (component) => {
-    axios.get(serverUrl+'/signout', { withCredentials: true });
+    axios.get('/api/signout', { withCredentials: true });
     loginHandler(false);
     componentHandler(component);
     setIsOpen(!isOpen);
