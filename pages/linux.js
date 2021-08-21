@@ -18,8 +18,6 @@ export default function Linux({ loginHandler, isLogin }) {
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
 
-  console.log(component);
-
   const colorHandler = (e) => {
     if (e === 1) {
       setIsWhite(true);
