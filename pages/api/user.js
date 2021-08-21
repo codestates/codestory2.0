@@ -70,15 +70,9 @@ export default async function user(req, res) {
               userId: username,
               password: newPassword,
               salt: newSalt,
-              coin:0,
+              coin: 0,
               createdAt: time,
               updatedAt: time,
-              itemProtection: 0,
-              itemLife: 0,
-              itemTime: 0,
-              itemAnswer: 0,
-              itemAvatar: null,
-              itemPet: null
             });
             delete result.dataValues.password;
             delete result.dataValues.salt;

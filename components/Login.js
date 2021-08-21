@@ -49,7 +49,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
     if (username === '' || password === '') {
       setErrorMessage('아이디와 비밀번호를 확인해 주세요');
     } else {
-      await axios.post(serverUrl+'/signin', {
+      await axios.post('/api/signin', {
         username: username,
         password: password
       }, {
@@ -74,7 +74,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
     } else if (password1 !== password2) {
       setErrorMessage('비밀번호를 확인해 주세요');
     } else {
-      await axios.post(serverUrl+'/user', {
+      await axios.post('/api/user', {
         username: userId,
         password: password2
       }, {
