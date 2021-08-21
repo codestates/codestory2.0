@@ -70,5 +70,5 @@ export default async function follow(req, res) {
       res.status(500).json({ message : 'Sorry Can\'t process your request' });
       throw error;
     } break;
-	}
+  }
 }
