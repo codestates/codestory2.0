@@ -17,7 +17,9 @@ export default function Home({ loginHandler, isLogin }) {
     }
   };
 
-  const [component, setComponent] = useState(<Landing colorHandler={colorHandler} />);
+  const [component, setComponent] = useState(
+    [ 'Landing', <Landing colorHandler={colorHandler} key={0} /> ]
+  );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
   
@@ -34,15 +36,15 @@ export default function Home({ loginHandler, isLogin }) {
       <Nav componentHandler={(e) => componentHandler(e)} 
         isWhite={isWhite}
         loginOpenHandler={loginOpenHandler}
-        colorHandler={colorHandler}
+        colorHandler={(e) => colorHandler(e)}
         isLogin={isLogin}
         loginHandler={loginHandler}
       />
-      {component.type.name === 'Landing' 
-        ? <Landing colorHandler={colorHandler} /> 
-        : component.type.name === 'Ranking' 
+      {component[0] === 'Landing' 
+        ? <Landing colorHandler={colorHandler} key={0} />
+        : component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
-          : component
+          : component[1]
       }
       {isLoginOpen 
         ? <Login isWhite={isWhite} 

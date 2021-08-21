@@ -3,6 +3,7 @@ import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
+import Ranking from '../components/Ranking';
 import styles from '../styles/modules/automata.module.scss';
 import { useState } from 'react';
 // import tips from '../games/automata/automataTips';
@@ -11,7 +12,9 @@ import Automata_game from '../components/Automata_game';
 
 export default function Automata({ loginHandler, isLogin }) {
 
-  const [component, setComponent] = useState(<Automata_game />);
+  const [component, setComponent] = useState(
+    [ 'Automata_game', <Automata_game key={0} /> ]
+  );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
 
@@ -41,7 +44,10 @@ export default function Automata({ loginHandler, isLogin }) {
           isLogin={isLogin}
           loginHandler={loginHandler}
         />
-        {component}
+        {component[0] === 'Ranking' 
+          ? <Ranking isLogin={isLogin} />
+          : component[1]
+        }
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         {/* <div className={styles.tips}>
           {component.type.name === 'Automata_game' 
@@ -51,7 +57,7 @@ export default function Automata({ loginHandler, isLogin }) {
           }
         </div> */}
       </div>
-      {component.type.name === 'Automata_game' 
+      {component[0] === 'Automata_game' 
         ? <GameFooter isWhite={isWhite}/> 
         : <Footer isWhite={isWhite}/>
       }
