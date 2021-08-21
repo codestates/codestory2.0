@@ -6,7 +6,6 @@ import profile from '../public/profile.png';
 
 export default function Ranking({ isLogin }) {
 
-  const serverUrl = 'https://api.codestory.academy';
   const [ranking, setRanking] = useState({ data: [] });
   const [isDemo, setIsDemo] = useState(false);
   const [followWord, setFollowWord] = useState([]);
