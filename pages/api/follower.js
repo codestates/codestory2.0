@@ -38,7 +38,7 @@ export default async function follow(req, res) {
         } });
         res.json({ message: 'ok' });
       } else if (oauth) {
-        res.json({ message:'ok' });
+        res.json({ message: 'ok' });
       } else {
         res.status(400).json({ message: 'InvalidToken' });
       }
@@ -57,11 +57,11 @@ export default async function follow(req, res) {
         const userArr = await models.users.findAll();
         const userinfoArr = [];
         for (let record of userArr) {
-          userinfoArr[record.dataValues.id] = { username: record.dataValues.userId, photourl: record.dataValues.pictureurl };
+          userinfoArr[record.dataValues.id] = { username: record.dataValues.userId, photourl: record.dataValues.pictureUrl };
         }
         res.json({ data: followingArr.map((record) => userinfoArr[record.dataValues.followedId]) });
       } else if (oauth) {
-        res.json({ data: [{ username: '회원가입 하시면', photourl: '../?' }, { username: '이용하실 수 있습니다', photourl: '../?' }] });
+        res.json({ data: [{ username: '회원가입 하시면', photourl: '' }, { username: '이용하실 수 있습니다', photourl: '' }] });
       } else {
         res.status(400).json({ message: 'InvalidToken' });
       }
