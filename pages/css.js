@@ -7,11 +7,14 @@ import styles from '../styles/modules/css.module.scss';
 import { useState } from 'react';
 import tips from '../games/css/cssTips';
 import Login from '../components/Login';
+import Ranking from '../components/Ranking';
 import Css_game from '../components/Css_game';
 
 export default function CSS({ loginHandler, isLogin }) {
 
-  const [component, setComponent] = useState(<Css_game />);
+  const [component, setComponent] = useState(
+    [ 'Css_game', <Css_game key={0} /> ]
+  );
   const [isWhite, setIsWhite] = useState(true);
   const [isLoginOpen, setLoginOpen] = useState(false);
 
@@ -41,17 +44,20 @@ export default function CSS({ loginHandler, isLogin }) {
           isLogin={isLogin}
           loginHandler={loginHandler}
         />
-        {component}
+        {component[0] === 'Ranking' 
+          ? <Ranking isLogin={isLogin} />
+          : component[1]
+        }
         {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
         <div className={styles.tips}>
-          {component.type.name === 'Css_game' 
+          {component[0] === 'Css_game' 
             ? <Tips gametips={tips}
               isWhite={isWhite}/>
             : null
           }
         </div>
       </div>
-      {component.type.name === 'Css_game' 
+      {component[0] === 'Css_game' 
         ? <GameFooter isWhite={isWhite}/> 
         : <Footer isWhite={isWhite}/>
       }
