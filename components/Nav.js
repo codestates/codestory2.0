@@ -70,7 +70,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
   };
 
   const logoutHandler = (component) => {
-    axios.get('api/signout', { withCredentials: true });
+    axios.get('/api/signout', { withCredentials: true });
     loginHandler(false);
     componentHandler(component);
     setIsOpen(!isOpen);

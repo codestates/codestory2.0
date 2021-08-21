@@ -20,7 +20,7 @@ export default async function ranking(req, res) {
           photourl: record.dataValues.pictureUrl,
           score: record.dataValues.score,
           following: record.dataValues.id === jwt.id ? 'me' : Boolean(isFollowed[record.dataValues.id])
-        }))});
+        })) });
       } else if (oauth) {
         const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
         res.status(200).json({ data: rankingArr.map((record) => ({
@@ -40,4 +40,4 @@ export default async function ranking(req, res) {
   default:
     res.status(404).json({ message: `You can't use ${req.method} method.` });
   }
-}
+};
