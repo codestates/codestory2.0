@@ -189,7 +189,7 @@ export default function Ranking({ isLogin }) {
                   ? styles.list_word_me
                   : styles.list_word
                 }>
-                  {index + 4} {rank.username} 
+                  {index + 4} {rank.username}
                 </div>
                 <div className={rank.following === 'me' 
                   ? styles.list_score_me
