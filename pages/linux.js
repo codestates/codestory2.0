@@ -9,11 +9,13 @@ import tips from '../games/linux/linuxTips';
 import Login from '../components/Login';
 import Ranking from '../components/Ranking';
 import Linux_game from '../components/Linux_game';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export default function Linux({ loginHandler, isLogin }) {
+export default function Linux({ loginHandler, isLogin, linuxGame }) {
 
   const [component, setComponent] = useState(
-    [ 'Linux_game', <Linux_game key={0} /> ]
+    [ 'Linux_game', <Linux_game key={0} linuxSource = {linuxGame} /> ]
   );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -64,3 +66,14 @@ export default function Linux({ loginHandler, isLogin }) {
     </Layout>
   );
 };
+
+export async function getServerSideProps(context) {
+  const linuxDirectory = path.join(process.cwd(), '/games/linux/main.js');
+  const linuxGame = await fs.readFile(linuxDirectory, 'utf8');
+
+  return {
+    props: {
+      linuxGame: linuxGame
+    },
+  };
+}

@@ -4,12 +4,12 @@ import Image from 'next/image';
 import result from '../public/profile.png';
 import styles from '../styles/modules/linux_game.module.scss';
 
-export default function Linux_game() {
+export default function Linux_game({ linuxSource }) {
 
   const [replay, setReplay] = useState(false);
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = '/api/linux';
+    script.textContent = linuxSource;
     document.body.append(script);
     return () => {
       document.body.removeChild(script);
