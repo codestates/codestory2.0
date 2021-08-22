@@ -48,7 +48,7 @@ export default function Mypage({ isLogin }) {
     if (isLogin === true) {
       setCurrentWord(userInfo.intro);
     }
-  }, [userInfo])
+  }, [userInfo]);
 
   const openEditMode = () => {
     setIsEditmode(true);
@@ -60,7 +60,7 @@ export default function Mypage({ isLogin }) {
     await axios.patch('/api/user/', formData, {
       'content-type' : 'application/json', 
       withCredentials : true 
-    })
+    });
   };
 
   const updateWord = (e) => {
