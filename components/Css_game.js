@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from '../styles/modules/css_game.module.scss';
 
-export default function Css_game({cssSource}) {
+export default function Css_game({ cssSource }) {
 
   useEffect(() => {
     const script = document.createElement('script');

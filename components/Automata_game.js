@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from '../styles/modules/automata_game.module.scss';
 
-export default function Automata_game({automataSource}) {
+export default function Automata_game({ automataSource }) {
 
   useEffect(() => {
     const script = document.createElement('script');
