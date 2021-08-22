@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import styles from '../styles/modules/automata_game.module.scss';
 
-export default function Automata_game() {
+export default function Automata_game({automataSource}) {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = '/api/automata';
+    script.textContent = automataSource;
     document.body.append(script);
     return () => {
       document.body.removeChild(script);
@@ -18,3 +18,4 @@ export default function Automata_game() {
     </div>
   );
 }
+

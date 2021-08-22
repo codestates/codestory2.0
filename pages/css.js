@@ -9,11 +9,13 @@ import tips from '../games/css/cssTips';
 import Login from '../components/Login';
 import Ranking from '../components/Ranking';
 import Css_game from '../components/Css_game';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export default function CSS({ loginHandler, isLogin }) {
+export default function CSS({ loginHandler, isLogin, cssGame }) {
 
   const [component, setComponent] = useState(
-    [ 'Css_game', <Css_game key={0} /> ]
+    [ 'Css_game', <Css_game key={0} cssSource={cssGame} /> ]
   );
   const [isWhite, setIsWhite] = useState(true);
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -64,3 +66,14 @@ export default function CSS({ loginHandler, isLogin }) {
     </Layout>
   );
 };
+
+export async function getStaticProps() {
+  const cssDirectory = path.join(process.cwd(), '/games/css/main.js');
+  const cssGame = await fs.readFile(cssDirectory, 'utf8');
+
+  return {
+    props: {
+      cssGame: cssGame
+    },
+  };
+}
