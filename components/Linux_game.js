@@ -9,7 +9,7 @@ export default function Linux_game() {
   const [replay, setReplay] = useState(false);
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = '../games/linux/main.js';
+    script.src = '/api/linux';
     document.body.append(script);
     return () => {
       document.body.removeChild(script);
