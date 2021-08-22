@@ -67,7 +67,7 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const linuxDirectory = path.join(process.cwd(), '/games/linux/main.js');
   const linuxGame = await fs.readFile(linuxDirectory, 'utf8');
 
