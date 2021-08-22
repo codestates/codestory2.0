@@ -6,7 +6,6 @@ import profile from '../public/profile.png';
 
 export default function Mypage({ isLogin }) {
 
-  const serverUrl = 'https://api.codestory.academy';
   const [userInfo, setUserInfo] = useState({
     username: '',
     photourl: '',
@@ -23,14 +22,13 @@ export default function Mypage({ isLogin }) {
     if (isLogin === true) {
       (async () => {
         try {
-          const userInfoData = await axios.get(serverUrl+'/user', { withCredentials: true });
+          const userInfoData = await axios.get('/api/user', { withCredentials: true });
           setUserInfo(userInfoData.data);
         }
         catch {
           console.log('error');
         }
       })();
-      setCurrentWord(userInfo.intro);
     } else {
       setUserInfo(
         {
@@ -44,18 +42,25 @@ export default function Mypage({ isLogin }) {
         }
       );
     }
-  }, [isLogin]);
+  }, []);
+
+  useEffect(() => {
+    if (isLogin === true) {
+      setCurrentWord(userInfo.intro);
+    }
+  }, [userInfo])
 
   const openEditMode = () => {
     setIsEditmode(true);
   };
 
-  const updateImg =  async (e) => {
-    // const formData = new FormData();
-    // formData.append('file', e.target.files[0]);
-    // const res = await axios.post(serverUrl+'/user/image', formData, {
-    //   'content-type' : 'application/json', withCredentials : true 
-    // });
+  const updateImg = async (e) => {
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    await axios.patch('/api/user/', formData, {
+      'content-type' : 'application/json', 
+      withCredentials : true 
+    })
   };
 
   const updateWord = (e) => {
@@ -67,8 +72,11 @@ export default function Mypage({ isLogin }) {
   const handleKeyPress = async (e) => {
     if (e.key === 'Enter') {
       if (currentWord.length > 0) {
-        await axios.patch(serverUrl+'/user', {
-          word: currentWord
+        await axios.patch('/api/user', {
+          data: {
+            type: 'word',
+            word: currentWord
+          }
         }, {
           'content-type': 'application/json',
           withCredentials: true
@@ -98,7 +106,7 @@ export default function Mypage({ isLogin }) {
       <div className={styles.box_img}>
         <div className={styles.img}>
           <Image 
-            // src={userInfo.photourl !== '../?'
+            // src={userInfo.photourl !== ''
             //   ? userInfo.photourl
             //   : profile}
             src={profile}
