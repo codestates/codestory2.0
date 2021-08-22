@@ -4,7 +4,6 @@
   const gameContainer = document.querySelector('#linux_game_container');
   gameContainer.append(canvas);
   let gameResult = document.querySelector('#linux_result_background');
-  let linuxAgain = document.querySelector('#linux_again');
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   checkTitleDiv.setAttribute('id', 'linux_check_title');
@@ -81,7 +80,7 @@
   firstFolder.src = 'folder_icon.png';
   firstFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
-  const fontSize = 16;
+  let fontSize = 16;
   let lengthLimit = parseInt(canvas.width * 0.1);
   let lineLimit = parseInt(canvas.height * 0.012);
 
@@ -91,12 +90,18 @@
   document.addEventListener('keydown', keyDownHandler);
   function setSize() {
     if (window.innerWidth > 1110) {
+      lengthLimit = 60;
+      fontSize = canvas.width * 0.03;
       canvas.width = window.innerWidth * 0.38;
       canvas.height = window.innerWidth * 0.44;
     } else if (window.innerWidth > 590) {
+      lengthLimit = 53;
+      fontSize = canvas.width * 0.035;
       canvas.width = window.innerWidth * 0.38;
       canvas.height = window.innerWidth * 0.44;
     } else {
+      lengthLimit = 45;
+      fontSize = 16;
       canvas.width = 335;
       canvas.height = 388;
     }
@@ -532,7 +537,7 @@
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#eee';
     ctx.fill();
-    ctx.font = `${canvas.width * 0.035}px Courier New`;
+    ctx.font = `${fontSize}px Ubuntu mono`;
     ctx.fillStyle = 'black';
     ctx.fillText(leftfolder[0], 0.035 * canvas.width, 0.12 * canvas.height);
     ctx.fillText(leftfolder[1], 0.035 * canvas.width, 0.2 * canvas.height);
@@ -545,7 +550,7 @@
     ctx.rect(0, 0, canvas.width, 0.05 * canvas.height);
     ctx.fillStyle = 'rgb(63,63,63)';
     ctx.fill();
-    ctx.font = `${fontSize}px Courier New`;
+    ctx.font = `${fontSize}px Ubuntu mono`;
     ctx.fillStyle = 'white';
     ctx.fillText(wd.name, 0.035 * canvas.width, 0.035 * canvas.height);
     ctx.closePath();
@@ -584,18 +589,18 @@
       }
       ctx.fill();
       ctx.closePath();
-      ctx.font = `${fontSize}px Courier New`;
+      ctx.font = `${fontSize}px Ubuntu Mono`;
       ctx.fillStyle = '#000000';
       const lengthLimit = parseInt(canvas.width * 0.023);
       if (f.length > lengthLimit) {
-        ctx.fillText(`${f.slice(0, lengthLimit-2)}..`, lineX + 0.15 * fWidth, lineY + fHeight);
+        ctx.fillText(`${f.slice(0, lengthLimit - 2)}..`, lineX + 0.15 * fWidth, lineY + fHeight);
       } else {
         ctx.fillText(f, lineX + 0.15 * fWidth, lineY + fHeight);
       }
     }
   }
   function drawText() {
-    ctx.font = `${fontSize}px Courier New`;
+    ctx.font = `bold ${fontSize - 2}px Ubuntu Mono`;
     ctx.fillStyle = 'white';
     let linePosition = 1;
     for (let i = Math.max(textArr.length - lineLimit, 0); i < textArr.length; ++i) {
@@ -652,7 +657,6 @@
         thirdCheckList.textContent = '';
         thirdCheckList.style.listStyle = 'none';
         gameResult.setAttribute('id', 'linux_display');
-        gameResult.classList.add('linux_display1');
         canvas.setAttribute('style', 'display: none');
         checkTitleDiv.setAttribute('style', 'display: none');
       }
@@ -664,7 +668,6 @@
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setSize();
-    lengthLimit = parseInt(canvas.width * 0.1);
     lineLimit = parseInt(canvas.height * 0.012);
     drawCheckList();
     drawBackGround();

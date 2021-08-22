@@ -129,6 +129,30 @@
   text-align: center;
 }
 
+.id_following {
+  color: $primary-blue;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: center;
+  transition: .4s;
+}
+
+.score {
+  color: $white;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+}
+
+.score_me {
+  color: $primary;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+}
+
 .box_list {
   display: flex;
   flex-direction: column;
@@ -203,14 +227,46 @@
   }
 }
 
+.list_btn_following_me {
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: $gray;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 30px;
+  color: $white;
+}
+
 .list_word {
+  width: 100px;
+  flex-grow: 4;
+  color: $white;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.list_word_me {
+  width: 100px;
+  flex-grow: 4;
+  color: $primary;
+  font-size: 28px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.list_score {
+  flex-grow: 1;
   color: $white;
   font-size: 28px;
   font-weight: 500;
   text-align: center;
 }
 
-.list_word_me {
+.list_score_me {
+  flex-grow: 1;
   color: $primary;
   font-size: 28px;
   font-weight: 500;
@@ -248,6 +304,11 @@
     text-align: center;
   }
   .ranking_me {
+    font-size: 30px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .ranking_following {
     font-size: 30px;
     line-height: 40px;
     text-align: center;
@@ -290,6 +351,24 @@
     line-height: 20px;
     margin-top: 10px;
   }
+  .id_following {
+    font-size: 16px;
+    word-break: break-all;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+  .score {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .score_me {
+    font-size: 16px;
+    line-height: 0px;
+  }
+  .score_following {
+    font-size: 16px;
+    line-height: 0px;
+  }
   .box_list {
     height: 137px;
     width: calc(100% - 60px);
@@ -297,16 +376,16 @@
     margin-top: 10px;
   }
   .list_word {
-    color: $white;
     font-size: 18px;
-    font-weight: 500;
-    text-align: center;
   }
   .list_word_me {
-    color: $white;
     font-size: 18px;
-    font-weight: 500;
-    text-align: center;
+  }
+  .list_score {
+    font-size: 18px;
+  }
+  .list_score_me {
+    font-size: 18px;
   }
   .list_btn {
     width: 55px;
@@ -316,6 +395,13 @@
     line-height: 20px;
   }
   .list_btn_following {
+    width: 55px;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .list_btn_following_me {
     width: 55px;
     height: 20px;
     border-radius: 5px;
@@ -336,6 +422,9 @@
       margin-bottom: 100px;
     }
   }
+  .ranking {
+    line-height: 30px;
+  }
   .img {
     display: none;
   }
@@ -349,16 +438,16 @@
     margin-top: 20px;
     margin-bottom: 0px;
     width: 50%;
-    height: 138px;
+    height: 148px;
   }
 }
 
-@media all and (max-height: 550px) {
+@media all and (max-height: 555px) {
   .box {
     display: none;
   }
   .box_list {
-    margin-top: 80px;
-    height: 65px;
+    margin-top: 65px;
+    height: 60px;
   }
 }

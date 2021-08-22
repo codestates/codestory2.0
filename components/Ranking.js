@@ -30,37 +30,37 @@ export default function Ranking({ isLogin }) {
             {
               username: 'rulebased848',
               photourl: '',
-              coin: 1000
+              score: 1000
             },
             {
               username: 'candyroom123',
               photourl: '',
-              coin: 900
+              score: 900
             },
             {
               username: 'kimcoding',
               photourl: '',
-              coin: 800
+              score: 800
             },
             {
               username: 'leecoder',
               photourl: '',
-              coin: 700
+              score: 700
             },
             {
               username: 'codestory123',
               photourl: '',
-              coin: 600
+              score: 600
             },
             {
               username: 'codemaster111',
               photourl: '',
-              coin: 500
+              score: 500
             },
             {
               username: 'someone123',
               photourl: '',
-              coin: 400
+              score: 400
             }
           ]
         }
@@ -162,9 +162,17 @@ export default function Ranking({ isLogin }) {
                 </div>
                 <span className={rank.following === 'me'
                   ? styles.id_me
-                  : styles.id
+                  : rank.following === true
+                    ? styles.id_following
+                    : styles.id
                 }>
                   {rank.username}
+                </span>
+                <span className={rank.following === 'me'
+                  ? styles.score_me
+                  : styles.score
+                }>
+                  {rank.score}
                 </span>
               </div>
             </React.Fragment>
@@ -183,10 +191,14 @@ export default function Ranking({ isLogin }) {
                 }>
                   {index + 4} {rank.username}
                 </div>
+                <div className={rank.following === 'me' 
+                  ? styles.list_score_me
+                  : styles.list_score
+                }>{rank.score}</div>
                 {isDemo 
                   ? null
                   : rank.following === 'me'
-                    ? null
+                    ? <div className={styles.list_btn_following_me}>Me</div>
                     : rank.following === true
                       ? <div className={styles.list_btn_following}
                         onClick={() => followHandler(rank)}
