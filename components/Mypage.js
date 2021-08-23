@@ -25,8 +25,8 @@ export default function Mypage({ isLogin }) {
           const userInfoData = await axios.get('/api/user', { withCredentials: true });
           setUserInfo(userInfoData.data);
         }
-        catch {
-          console.log('error');
+        catch (err) {
+
         }
       })();
     } else {
@@ -96,7 +96,7 @@ export default function Mypage({ isLogin }) {
       <div className={styles.box}>
         <div className={styles.box_ranking}>
           <div className={styles.ranking_text}>Score</div>
-          <div className={styles.ranking_num}>{userInfo.coin}</div>
+          <div className={styles.ranking_num}>{userInfo.score}</div>
         </div>
         <div className={styles.box_score}>
           <div className={styles.score_text}>Ranking</div>

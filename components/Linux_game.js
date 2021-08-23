@@ -3,22 +3,57 @@ import Link from 'next/link';
 import Image from 'next/image';
 import result from '../public/profile.png';
 import styles from '../styles/modules/linux_game.module.scss';
+import axios from 'axios';
 
-export default function Linux_game({ linuxSource }) {
+export default function Linux_game({ linuxSource, isLogin }) {
 
   const [replay, setReplay] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    username: '',
+    photourl: '',
+    score: 0,
+    intro: '',
+    ranking: 0,
+    follower: 0,
+    following: 0
+  });
+  const [curScore, setScore] = useState(0);
+
   useEffect(() => {
     const script = document.createElement('script');
     script.textContent = linuxSource;
     document.body.append(script);
+    if (isLogin) {
+      (async () => {
+        const userdata = await axios.get('/api/user', { withCredentials: true });
+        setUserInfo(userdata.data);
+      })();
+    }
     return () => {
       document.body.removeChild(script);
     };
   }, [replay]);
 
-  const handleDisplay = () => {
+  useEffect(() => {
+    if (isLogin) {
+      setScore(userInfo.score);
+    }
+  }, [userInfo]);
+
+  const handleDisplay = async () => {
     let gameResult = document.querySelector('#linux_display');
     gameResult.setAttribute('id', 'linux_result_background');
+    if (isLogin) {
+      await axios.patch('/api/user', {
+        data: {
+          type: 'score',
+          score: curScore + 120
+        }}, {
+        'content-type': 'application/json',
+        withCredentials: true
+      }
+      );
+    }
     setReplay(!replay);
   };
 
@@ -32,10 +67,10 @@ export default function Linux_game({ linuxSource }) {
           <div className={styles.box_img}>
             <Image src={result} alt=""/>
           </div>
-          <h3 className={styles.subword} id="score_word">score 80</h3>
+          <h3 className={styles.subword} id="score_word">{isLogin ? 'Score 120' : 'Congratulations'}</h3>
           <div className={styles.btn_container}>
             <Link href="/" passHref>
-              <div className={styles.btn_white}>select game</div>
+              <div className={styles.btn_white} onClick={handleDisplay}>select game</div>
             </Link>
             <Link href="/linux" passHref>
               <div id="linux_again" onClick={handleDisplay} className={styles.btn_white}>play again</div>
