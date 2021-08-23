@@ -59,7 +59,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
     menuTl.reversed(!menuTl.reversed());
     componentHandler(component);
     if (component[0] !== 'Landing') {
-      colorHandler(1);
+      colorHandler(2);
     }
   };
 
