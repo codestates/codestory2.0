@@ -20,7 +20,7 @@ export default function Tips({ gametips, isWhite }) {
     <>
       <h1 className={isWhite ? styles.btn_tip_white : styles.btn_tip} 
         onClick={openHandler}
-      > How to Play
+      > Play Tips
       </h1>
       {
         !isOpen 
@@ -47,7 +47,7 @@ export default function Tips({ gametips, isWhite }) {
                           <p className={tip.description1 ? styles.description : null}>{tip.description1}</p>
                           <p className={tip.description2 ? styles.description : null}>{tip.description2}</p>
                           <p className={tip.description3 ? styles.description : null}>{tip.description3}</p>
-                          <p className={styles.example}>예시 : {tip.example}</p>
+                          <p className={styles.example}>{tip.example !== '' ? `예시 : ${tip.example}` : null}</p>
                         </div>
                         <button className={styles.close} 
                           onClick={openHandler}
