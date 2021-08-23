@@ -54,23 +54,13 @@ export default function Mypage({ isLogin }) {
     setIsEditmode(true);
   };
 
-<<<<<<< HEAD
   const updateImg =  async (e) => {
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
-    const res = await axios.patch('api/imageupload', formData, {
-      'content-type' : 'application/json', withCredentials : true 
-    });
-    console.log(res);
-=======
-  const updateImg = async (e) => {
-    const formData = new FormData();
-    formData.append('file', e.target.files[0]);
-    await axios.patch('/api/user/', formData, {
+    const res = await axios.patch('api/imageupload/', formData, {
       'content-type' : 'application/json', 
       withCredentials : true 
     });
->>>>>>> 59b14b82c00e752d27d7c5b8a86c076d8d9de68e
   };
 
   const updateWord = (e) => {
