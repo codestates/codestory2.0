@@ -4,6 +4,10 @@ import SwiperCore, { EffectFade, Pagination, Autoplay } from 'swiper';
 import axios from 'axios';
 import styles from '../styles/modules/login.module.scss';
 import Image from 'next/image';
+import slider1 from '../public/login_slider1.png';
+import slider2 from '../public/login_slider2.png';
+import slider3 from '../public/login_slider3.png';
+import slider4 from '../public/login_slider4.png';
 import btn_google from '../public/btn_google.svg';
 
 export default function Login({ loginOpenHandler, loginHandler }) {
@@ -112,16 +116,44 @@ export default function Login({ loginOpenHandler, loginHandler }) {
               }}
             >
               <SwiperSlide>
-                <div className={styles.page1}></div>
+                <div className={styles.page1}>
+                  <div className={styles.img_slider}>
+                    <Image
+                      src={slider1}
+                      alt="slider1"
+                    />
+                  </div>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className={styles.page2}></div>
+                <div className={styles.page2}>
+                  <div className={styles.img_slider}>
+                    <Image
+                      src={slider2}
+                      alt="slider2"
+                    />
+                  </div>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className={styles.page3}></div>
+                <div className={styles.page3}>
+                  <div className={styles.img_slider}>
+                    <Image
+                      src={slider3}
+                      alt="slider3"
+                    />
+                  </div>
+                </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className={styles.page4}></div>
+                <div className={styles.page4}>
+                  <div className={styles.img_slider}>
+                    <Image
+                      src={slider4}
+                      alt="slider4"
+                    />
+                  </div>
+                </div>
               </SwiperSlide>
             </Swiper>
           </div>

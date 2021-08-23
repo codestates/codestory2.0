@@ -21,7 +21,7 @@ export default function CSS({ loginHandler, isLogin, cssGame }) {
   const [isLoginOpen, setLoginOpen] = useState(false);
 
   const colorHandler = (e) => {
-    if (e === 1) {
+    if (e === 2) {
       setIsWhite(true);
     } else if (e === 0) {
       setIsWhite(false);

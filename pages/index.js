@@ -11,9 +11,9 @@ import axios from 'axios';
 export default function Home({ loginHandler, isLogin }) {
 
   const colorHandler = (e) => {
-    if (e === 1) {
+    if (e === 2) {
       setIsWhite(true);
-    } else if (e === 0 || e === 2) {
+    } else if (e === 0 || e === 1) {
       setIsWhite(false);
     }
   };

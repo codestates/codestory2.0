@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import linux from '../public/linux.gif';
-import tips from '../public/tips.gif';
 import gsap, { Power4 } from 'gsap';
-import styles from '../styles/modules/landing_linux.module.scss';
+import styles from '../styles/modules/landing_automata.module.scss';
 
-export default function Landing_linux({ currentIdx }) {
+export default function Landing_automata({ currentIdx }) {
 
   const [textTl] = useState(gsap.timeline({ repeat: -1 , overwrite: 'auto' }));
   const text = {};
 
   useEffect(() => {
-    if (currentIdx === 0) {
+    if (currentIdx === 1) {
       textTl
         .restart(true, true)
         .from(text.box1, {
@@ -127,18 +124,12 @@ export default function Landing_linux({ currentIdx }) {
           <span className={styles.word2}
             ref={e => (text['text2'] = e)}
           >
-            Linux CLI
+            Automata
           </span>
         </div>
         <div className={styles.img}
           ref={e => (text['img1'] = e)}
         >
-          <Image 
-            src={linux}
-            width="520"
-            height="600"
-            alt="linux_game"
-          />
         </div>
         <div className={styles.box_word2}
           ref={e => (text['box2'] = e)}
@@ -146,27 +137,21 @@ export default function Landing_linux({ currentIdx }) {
           <span className={styles.word3}
             ref={e => (text['text3'] = e)}
           >
-            실제 CLI 명령어로
+            알고리즘 능력을
           </span>
           <span className={styles.word4}
             ref={e => (text['text4'] = e)}
           >
-            학습을 진행합니다
+            키워보세요
           </span>
         </div>
         <div className={styles.img2}
           ref={e => (text['img2'] = e)}
         >
-          <Image 
-            src={tips}
-            width="450"
-            height="300"
-            alt="linux_tips"
-          />
         </div>
       </div>
-      <Link href="/linux" passHref>
-        <button className={styles.btn_game}>Play Linux CLI</button>
+      <Link href="/automata" passHref>
+        <button className={styles.btn_game}>Play Automata</button>
       </Link>
     </div>
   );
