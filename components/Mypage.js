@@ -54,10 +54,10 @@ export default function Mypage({ isLogin }) {
     setIsEditmode(true);
   };
 
-  const updateImg =  async (e) => {
+  const updateImg = async (e) => {
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
-    const res = await axios.patch('api/imageupload/', formData, {
+    const res = await axios.patch('/api/imageupload/', formData, {
       'content-type' : 'application/json', 
       withCredentials : true 
     });
