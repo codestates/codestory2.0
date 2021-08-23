@@ -52,7 +52,7 @@ export default async (req, res) => {
       res.status(500).json({ message: 'Sorry Can\'t process your request' });
       throw error;
     } break;
-  default :
+  default:
     res.status(404).json({ message: `You can't use ${req.method} method.` });
   }
 };
