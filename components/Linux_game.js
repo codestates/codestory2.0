@@ -49,9 +49,9 @@ export default function Linux_game({ linuxSource, isLogin }) {
           type: 'score',
           score: curScore + 120
         }}, {
-          'content-type': 'application/json',
-          withCredentials: true
-        }
+        'content-type': 'application/json',
+        withCredentials: true
+      }
       );
     }
     setReplay(!replay);

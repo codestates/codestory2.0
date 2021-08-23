@@ -26,7 +26,7 @@ export default function Mypage({ isLogin }) {
           setUserInfo(userInfoData.data);
         }
         catch (err) {
-          console.log(err);
+
         }
       })();
     } else {
