@@ -51,11 +51,12 @@ export default function Mypage({ isLogin }) {
   };
 
   const updateImg =  async (e) => {
-    // const formData = new FormData();
-    // formData.append('file', e.target.files[0]);
-    // const res = await axios.post(serverUrl+'/user/image', formData, {
-    //   'content-type' : 'application/json', withCredentials : true 
-    // });
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    const res = await axios.patch('api/imageupload', formData, {
+      'content-type' : 'application/json', withCredentials : true 
+    });
+    console.log(res);
   };
 
   const updateWord = (e) => {
