@@ -18,4 +18,3 @@ export default function Automata_game({ automataSource }) {
     </div>
   );
 }
-
