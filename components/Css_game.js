@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import styles from '../styles/modules/css_game.module.scss';
 
-export default function Css_game() {
+export default function Css_game({ cssSource }) {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = '/api/css';
+    script.textContent = cssSource;
     document.body.append(script);
     return () => {
       document.body.removeChild(script);

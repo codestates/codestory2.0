@@ -9,11 +9,13 @@ import { useState } from 'react';
 // import tips from '../games/automata/automataTips';
 import Login from '../components/Login';
 import Automata_game from '../components/Automata_game';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export default function Automata({ loginHandler, isLogin }) {
+export default function Automata({ loginHandler, isLogin, automataGame }) {
 
   const [component, setComponent] = useState(
-    [ 'Automata_game', <Automata_game key={0} /> ]
+    [ 'Automata_game', <Automata_game key={0} automataSource={automataGame} /> ]
   );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -64,3 +66,14 @@ export default function Automata({ loginHandler, isLogin }) {
     </Layout>
   );
 };
+
+export async function getStaticProps() {
+  const automataDirectory = path.join(process.cwd(), '/games/automata/main.js');
+  const automataGame = await fs.readFile(automataDirectory, 'utf8');
+
+  return {
+    props: {
+      automataGame: automataGame
+    },
+  };
+}
