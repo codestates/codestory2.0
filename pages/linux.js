@@ -15,7 +15,7 @@ import path from 'path';
 export default function Linux({ loginHandler, isLogin, linuxGame }) {
 
   const [component, setComponent] = useState(
-    [ 'Linux_game', <Linux_game key={0} linuxSource={linuxGame} /> ]
+    [ 'Linux_game', <Linux_game key={0} linuxSource={linuxGame} isLogin={isLogin}/> ]
   );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
