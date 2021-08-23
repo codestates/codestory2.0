@@ -17,6 +17,7 @@ export default function Mypage({ isLogin }) {
   });
   const [isEditmode, setIsEditmode] = useState(false);
   const [currentWord, setCurrentWord] = useState('안녕하세요');
+  const [currentImage, setCurrentImage] = useState(profile);
 
   useEffect(() => {
     if (isLogin === true) {
@@ -50,6 +51,12 @@ export default function Mypage({ isLogin }) {
     }
   }, [userInfo]);
 
+  useEffect(() => {
+    if (isLogin === true) {
+      setCurrentImage(userInfo.photourl);
+    }
+  }, [userInfo]);
+
   const openEditMode = () => {
     setIsEditmode(true);
   };
@@ -57,9 +64,11 @@ export default function Mypage({ isLogin }) {
   const updateImg = async (e) => {
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
-    const res = await axios.patch('/api/imageupload/', formData, {
+    await axios.patch('/api/imageupload/', formData, {
       'content-type' : 'application/json', 
       withCredentials : true 
+    }).then(result => {
+      setCurrentImage(result.data);
     });
   };
 
@@ -106,10 +115,9 @@ export default function Mypage({ isLogin }) {
       <div className={styles.box_img}>
         <div className={styles.img}>
           <Image 
-            // src={userInfo.photourl !== ''
-            //   ? userInfo.photourl
-            //   : profile}
-            src={profile}
+            src={currentImage !== '' 
+              ? currentImage 
+              : profile}
             width="160"
             height="160"
             alt="img_profile"
