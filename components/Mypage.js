@@ -57,7 +57,7 @@ export default function Mypage({ isLogin }) {
   const updateImg = async (e) => {
     const formData = new FormData();
     formData.append('file', e.target.files[0]);
-    await axios.patch('/api/user/', formData, {
+    const res = await axios.patch('/api/imageupload/', formData, {
       'content-type' : 'application/json', 
       withCredentials : true 
     });
