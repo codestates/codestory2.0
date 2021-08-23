@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import gsap, { Power4 } from 'gsap';
 import styles from '../styles/modules/landing_linux.module.scss';
+import linux from '../public/linux.gif';
+import tips from '../public/tips.gif';
 
 export default function Landing_linux({ currentIdx }) {
 
@@ -132,7 +134,7 @@ export default function Landing_linux({ currentIdx }) {
           ref={e => (text['img1'] = e)}
         >
           <Image 
-            src='/linux.gif'
+            src={linux}
             width="520"
             height="600"
             alt="linux_game"
@@ -156,7 +158,7 @@ export default function Landing_linux({ currentIdx }) {
           ref={e => (text['img2'] = e)}
         >
           <Image 
-            src='/tips.gif'
+            src={tips}
             width="450"
             height="300"
             alt="linux_tips"
