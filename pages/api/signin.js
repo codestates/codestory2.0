@@ -1,4 +1,4 @@
-const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
+// const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
 const db = require('../../models');
 const crypto = require('crypto');
 
@@ -21,8 +21,9 @@ export default async function signin(req, res) {
             if (incomingPassword === userInfo.dataValues.password) {
               delete userInfo.dataValues.password;
               delete userInfo.dataValues.salt;
-              const accessToken = generateAccessToken(userInfo.dataValues);
-              sendAccessToken(res, accessToken);
+              res.status(200).json({ message: 'hi'});
+              // const accessToken = generateAccessToken(userInfo.dataValues);
+              // sendAccessToken(res, accessToken);
             } else {
               res.status(400).json({ message: 'badrequest' });
             }
