@@ -46,14 +46,14 @@
   Object.assign(canvas, {
     width,
     height,
-    style: 'all: unset; background-color: #E0E0E0;',
+    style: 'all: unset; background-color: white;',
     oncontextmenu: (e) => {
       e.preventDefault();
       const img = document.createElement('img');
       Object.assign(img, {
         src: circleSource,
         className: 'single',
-        style: `position: absolute; left: ${e.clientX - left - 20}px; top: ${e.clientY - top - 20}px; width: 40px; height: 40px;`,
+        style: `position: absolute; left: ${e.clientX - left - 20}px; top: ${e.clientY - top - 20}px; width: 40px; height: 40px; border-radius: 20px;`,
         onclick: () => {
           if (img.classList.contains('moving')) {
             img.classList.remove('moving');
@@ -173,7 +173,7 @@
   const quiz = document.createElement('div');
   Object.assign(quiz, {
     textContent: quizTexts[0],
-    style: 'position: absolute; left: 10px; top: 705px; width: 650px; height: 60px; background-color: white; word-break: keep-all; z-index: 1',
+    style: 'position: absolute; left: 10px; top: 705px; width: 650px; background-color: #E0E0E0; text-align: center; word-break: keep-all; z-index: 1',
     onclick: () => {
       if (quiz.classList.contains('moving')) {
         quiz.classList.remove('moving');
@@ -184,7 +184,7 @@
     onmousemove: (e) => {
       if (quiz.classList.contains('moving')) {
         quiz.style.left = `${e.clientX - left - 325}px`;
-        quiz.style.top = `${e.clientY - top - 30}px`;
+        quiz.style.top = `${e.clientY - top - 13.5}px`;
       }
     },
     onwheel: (e) => {
@@ -200,7 +200,7 @@
   // device
   const device = document.createElement('div');
   Object.assign(device, {
-    style: 'position: absolute; left: 0px; top: 0px; width: 370px; height: 115px; border-radius: 10px; background-color: white; z-index: 1',
+    style: 'position: absolute; left: 0px; top: 0px; width: 370px; height: 115px; border-radius: 10px; background-color: #E0E0E0; z-index: 1',
     onclick: () => {
       if (device.classList.contains('moving')) {
         device.classList.remove('moving');
