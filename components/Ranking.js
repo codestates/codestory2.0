@@ -17,8 +17,8 @@ export default function Ranking({ isLogin }) {
           const rankingData = await axios.get('/api/ranking', { withCredentials: true });
           setRanking(rankingData.data);
         }
-        catch {
-          console.log('error');
+        catch (err) {
+          
         }
       })();
       setIsDemo(false);
@@ -29,8 +29,8 @@ export default function Ranking({ isLogin }) {
           const rankingData = await axios.get('/api/ranking', { withCredentials: true });
           setRanking(rankingData.data);
         }
-        catch {
-          console.log('error');
+        catch (err) {
+          
         }
       })();
     }
