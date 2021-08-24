@@ -10,9 +10,9 @@ export default async function signin(req, res) {
       const username = req.body.username;
       console.log(db.users);
       if (db.users) {
-        res.status(200).json('hi');
+        res.status(200).json(db);
       } else {
-        res.status(200).json('non hi');
+        res.status(200).json('users가 없네');
       }
 
       // const userInfo = await db.users.findOne({
