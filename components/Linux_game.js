@@ -40,9 +40,7 @@ export default function Linux_game({ linuxSource, isLogin }) {
     }
   }, [userInfo]);
 
-  const handleDisplay = async () => {
-    let gameResult = document.querySelector('#linux_display');
-    gameResult.setAttribute('id', 'linux_result_background');
+  const handleDisplay = async (e) => {
     if (isLogin) {
       await axios.patch('/api/user', {
         data: {
@@ -54,7 +52,11 @@ export default function Linux_game({ linuxSource, isLogin }) {
       }
       );
     }
-    setReplay(!replay);
+    if (e.target.textContent === 'paly again') {
+      let gameResult = document.querySelector('#linux_display');
+      gameResult.setAttribute('id', 'linux_result_background');
+      setReplay(!replay);
+    }
   };
 
   return (
