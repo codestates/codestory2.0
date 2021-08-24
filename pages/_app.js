@@ -19,7 +19,6 @@ Router.events.on('routeChangeError', () => NProgress.done());
 function MyApp({ Component, pageProps, router }) {
   
   const [isLogin, setIsLogin] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     if (isLogin === false) {
@@ -42,10 +41,6 @@ function MyApp({ Component, pageProps, router }) {
     setIsLogin(!isLogin);
   };
 
-  const userUpdater = (e) => {
-    setUserInfo(e);
-  };
-
   return (
     <SwitchTransition mode="out-in">
       <CSSTransition key={router.pathname} classNames="page" timeout={500}>
@@ -57,4 +52,5 @@ function MyApp({ Component, pageProps, router }) {
     </SwitchTransition>
   );
 }
+
 export default MyApp;

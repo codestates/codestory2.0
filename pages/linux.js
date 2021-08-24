@@ -15,7 +15,7 @@ import path from 'path';
 export default function Linux({ loginHandler, isLogin, linuxGame }) {
 
   const [component, setComponent] = useState(
-    [ 'Linux_game', <Linux_game key={0} linuxSource={linuxGame} /> ]
+    [ 'Linux_game', <Linux_game key={0} linuxSource={linuxGame} isLogin={isLogin}/> ]
   );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
@@ -36,6 +36,10 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
     setLoginOpen(!isLoginOpen);
   };
 
+  const homeClickHandler = () => {
+    setComponent([ '', null ]);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -44,13 +48,18 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
           loginOpenHandler={loginOpenHandler}
           colorHandler={colorHandler}
           isLogin={isLogin}
-          loginHandler={loginHandler}
+          loginHandler={() => loginHandler()}
+          homeClickHandler={homeClickHandler}
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
           : component[1]
         }
-        {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
+        {isLoginOpen 
+          ? <Login 
+            loginOpenHandler={loginOpenHandler} 
+            loginHandler={() => loginHandler()}/> 
+          : null}
         <div className={styles.tips}>
           {component[0] === 'Linux_game' 
             ? <Tips gametips={tips}

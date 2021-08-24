@@ -6,7 +6,7 @@ import Tips from '../components/Tips';
 import Ranking from '../components/Ranking';
 import styles from '../styles/modules/automata.module.scss';
 import { useState } from 'react';
-// import tips from '../games/automata/automataTips';
+import tips from '../games/automata/automataTips';
 import Login from '../components/Login';
 import Automata_game from '../components/Automata_game';
 import { promises as fs } from 'fs';
@@ -36,6 +36,10 @@ export default function Automata({ loginHandler, isLogin, automataGame }) {
     setLoginOpen(!isLoginOpen);
   };
 
+  const homeClickHandler = () => {
+    setComponent([ '', null ]);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -44,20 +48,25 @@ export default function Automata({ loginHandler, isLogin, automataGame }) {
           loginOpenHandler={loginOpenHandler}
           colorHandler={colorHandler}
           isLogin={isLogin}
-          loginHandler={loginHandler}
+          loginHandler={() => loginHandler()}
+          homeClickHandler={homeClickHandler}
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
           : component[1]
         }
-        {isLoginOpen ? <Login loginOpenHandler={loginOpenHandler}/> : null}
-        {/* <div className={styles.tips}>
-          {component.type.name === 'Automata_game' 
+        {isLoginOpen 
+          ? <Login 
+            loginOpenHandler={loginOpenHandler} 
+            loginHandler={() => loginHandler()}/> 
+          : null}
+        <div className={styles.tips}>
+          {component[0] === 'Automata_game' 
             ? <Tips gametips={tips}
               isWhite={isWhite}/>
             : null
           }
-        </div> */}
+        </div>
       </div>
       {component[0] === 'Automata_game' 
         ? <GameFooter isWhite={isWhite}/> 

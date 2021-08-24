@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import img1 from '../public/automata1.png';
 import gsap, { Power4 } from 'gsap';
 import styles from '../styles/modules/landing_automata.module.scss';
 
@@ -83,7 +85,7 @@ export default function Landing_automata({ currentIdx }) {
           y: 15,
           ease: Power4.easeOut,
         }, 0)
-        .to(text.img2, {
+        .to(text.text5, {
           duration: 2,
           delay: 10,
           opacity: 1,
@@ -95,14 +97,6 @@ export default function Landing_automata({ currentIdx }) {
           delay: 15,
           opacity: 0,
           display: 'none',
-          ease: Power4.easeOut,
-        }, 0)
-        .to(text.img2, {
-          duration: 1,
-          delay: 15,
-          opacity: 0,
-          display: 'none',
-          y: 15,
           ease: Power4.easeOut,
         }, 0);
     } else {
@@ -130,6 +124,11 @@ export default function Landing_automata({ currentIdx }) {
         <div className={styles.img}
           ref={e => (text['img1'] = e)}
         >
+          <Image src={img1}
+            width="419"
+            height="323"
+            alt="automata1"
+          />
         </div>
         <div className={styles.box_word2}
           ref={e => (text['box2'] = e)}
@@ -137,17 +136,18 @@ export default function Landing_automata({ currentIdx }) {
           <span className={styles.word3}
             ref={e => (text['text3'] = e)}
           >
-            알고리즘 능력을
+            오토마타 게임을 통해
           </span>
           <span className={styles.word4}
             ref={e => (text['text4'] = e)}
           >
+            컴퓨팅 사고능력을
+          </span>
+          <span className={styles.word5}
+            ref={e => (text['text5'] = e)}
+          >
             키워보세요
           </span>
-        </div>
-        <div className={styles.img2}
-          ref={e => (text['img2'] = e)}
-        >
         </div>
       </div>
       <Link href="/automata" passHref>
