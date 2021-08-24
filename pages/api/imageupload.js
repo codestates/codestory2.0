@@ -1,6 +1,6 @@
 const { isAuthorizedJwt } = require('../../lib/json-token');
 const { isAuthorizedOauth } = require('../../lib/oauth-token');
-const models = require('../../lib/models');
+const models = require('../../models');
 const multer = require('multer');
 const moment = require('moment');
 const multerS3 = require('multer-s3');

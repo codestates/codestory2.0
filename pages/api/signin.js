@@ -1,5 +1,5 @@
 const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
-const db = require('../../lib/models/index');
+const db = require('../../models');
 const crypto = require('crypto');
 
 export default async function signin(req, res) {

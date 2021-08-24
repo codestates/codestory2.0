@@ -10,7 +10,7 @@ module.exports = {
   },
   test: {
     username: process.env.NEXT_PUBLIC_DATABASE_USERNAME,
-    password: process.env.NEXT_PUBLIC_DATABASE_PASSWORD,
+    password: process.env. NEXT_PUBLIC_DATABASE_PASSWORD,
     database: 'codestory_test',
     host: process.env.NEXT_PUBLIC_DATABASE_URL,
     dialect: 'mysql'

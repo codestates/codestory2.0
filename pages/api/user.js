@@ -1,6 +1,6 @@
 const { isAuthorizedJwt, generateAccessToken, sendAccessToken } = require('../../lib/json-token');
 const { isAuthorizedOauth } = require('../../lib/oauth-token');
-const models = require('../../lib/models');
+const models = require('../../models');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
 dotenv.config();
