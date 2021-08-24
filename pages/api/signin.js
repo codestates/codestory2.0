@@ -1,6 +1,6 @@
-const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
-// const db = require('../../lib/models/index');
-const crypto = require('crypto');
+// const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
+const db = require('../../lib/models/index');
+// const crypto = require('crypto');
 
 export default async function signin(req, res) {
   switch (req.method) {
@@ -8,7 +8,13 @@ export default async function signin(req, res) {
     try {
       const password = req.body.password;
       const username = req.body.username;
-      res.status(200).json('hi');
+      console.log(db.users);
+      if (db.users) {
+        res.status(200).json('hi');
+      } else {
+        res.status(200).json('non hi');
+      }
+
       // const userInfo = await db.users.findOne({
       //   where: { userId: username }
       // });
