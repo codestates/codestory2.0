@@ -36,6 +36,10 @@ export default function Automata({ loginHandler, isLogin, automataGame }) {
     setLoginOpen(!isLoginOpen);
   };
 
+  const homeClickHandler = () => {
+    setComponent([ '', null ]);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -45,6 +49,7 @@ export default function Automata({ loginHandler, isLogin, automataGame }) {
           colorHandler={colorHandler}
           isLogin={isLogin}
           loginHandler={loginHandler}
+          homeClickHandler={homeClickHandler}
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />

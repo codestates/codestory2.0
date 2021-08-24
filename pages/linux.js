@@ -36,6 +36,10 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
     setLoginOpen(!isLoginOpen);
   };
 
+  const homeClickHandler = () => {
+    setComponent([ '', null ]);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -45,6 +49,7 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
           colorHandler={colorHandler}
           isLogin={isLogin}
           loginHandler={loginHandler}
+          homeClickHandler={homeClickHandler}
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />

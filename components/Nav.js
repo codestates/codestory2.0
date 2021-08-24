@@ -10,7 +10,15 @@ import Landing from './Landing';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
 
-export default function Nav({ componentHandler, isWhite, loginOpenHandler, colorHandler, isLogin, loginHandler }) {
+export default function Nav({ 
+  componentHandler, 
+  isWhite, 
+  loginOpenHandler, 
+  colorHandler, 
+  isLogin, 
+  loginHandler, 
+  homeClickHandler
+}) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
@@ -89,7 +97,7 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
             ? () => logoClickHandler(
               [ 'Landing', <Landing colorHandler={colorHandler} key={0} /> ]
             ) 
-            : null
+            : () => homeClickHandler()
           }
         >
           Code<br/>Story

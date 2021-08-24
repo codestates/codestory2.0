@@ -137,7 +137,7 @@ export default function Landing_automata({ currentIdx }) {
           <span className={styles.word3}
             ref={e => (text['text3'] = e)}
           >
-            알고리즘 능력을
+            컴퓨팅 사고능력을
           </span>
           <span className={styles.word4}
             ref={e => (text['text4'] = e)}

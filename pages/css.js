@@ -36,6 +36,10 @@ export default function CSS({ loginHandler, isLogin, cssGame }) {
     setLoginOpen(!isLoginOpen);
   };
 
+  const homeClickHandler = () => {
+    setComponent([ '', null ]);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -45,6 +49,7 @@ export default function CSS({ loginHandler, isLogin, cssGame }) {
           colorHandler={colorHandler}
           isLogin={isLogin}
           loginHandler={loginHandler}
+          homeClickHandler={homeClickHandler}
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
