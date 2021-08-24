@@ -24,47 +24,15 @@ export default function Ranking({ isLogin }) {
       setIsDemo(false);
     } else {
       setIsDemo(true);
-      setRanking(
-        {
-          data: [
-            {
-              username: 'rulebased848',
-              photourl: '',
-              score: 1000
-            },
-            {
-              username: 'candyroom123',
-              photourl: '',
-              score: 900
-            },
-            {
-              username: 'kimcoding',
-              photourl: '',
-              score: 800
-            },
-            {
-              username: 'leecoder',
-              photourl: '',
-              score: 700
-            },
-            {
-              username: 'codestory123',
-              photourl: '',
-              score: 600
-            },
-            {
-              username: 'codemaster111',
-              photourl: '',
-              score: 500
-            },
-            {
-              username: 'someone123',
-              photourl: '',
-              score: 400
-            }
-          ]
+      (async () => {
+        try {
+          const rankingData = await axios.get('/api/ranking', { withCredentials: true });
+          setRanking(rankingData.data);
         }
-      );
+        catch {
+          console.log('error');
+        }
+      })();
     }
   }, [isLogin]);
   
@@ -136,11 +104,10 @@ export default function Ranking({ isLogin }) {
                 }>{index + 1}</span>
                 <div className={styles.img}>
                   <Image 
-                    // src={rankingList[1].photourl === '../?'
-                    //   ? profile
-                    //   : rankingList[1].photourl
-                    // }
-                    src={profile}
+                    src={rank.photourl === ''
+                      ? profile
+                      : rank.photourl
+                    }
                     width="160"
                     height="160"
                     alt="img_ranking"
