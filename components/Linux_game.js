@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import result from '../public/profile.png';
+import result from '../public/finish.png';
 import styles from '../styles/modules/linux_game.module.scss';
 import axios from 'axios';
 
@@ -65,7 +65,7 @@ export default function Linux_game({ linuxSource, isLogin }) {
         <div className={styles.result_container}>
           <h1 className={styles.word}>Stage clear!</h1>
           <div className={styles.box_img}>
-            <Image src={result} alt=""/>
+            <Image src={result} alt="finish"/>
           </div>
           <h3 className={styles.subword} id="score_word">{isLogin ? 'Score 120' : 'Congratulations'}</h3>
           <div className={styles.btn_container}>
