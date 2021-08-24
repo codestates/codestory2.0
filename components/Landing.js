@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
@@ -12,7 +12,7 @@ export default function Landing({ colorHandler }) {
 
   const [currentIdx, setCurrentIdx] = useState(0);
 
-  const idxHandler = (idx) => {   
+  const idxHandler = (idx) => {
     setCurrentIdx(idx.realIndex);
     colorHandler(idx.realIndex);
   };
