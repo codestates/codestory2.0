@@ -8,6 +8,7 @@
   width: 38vw;
   height: 44vw;
   margin: auto;
+  z-index: 1000;
 }
 
 .result_container {
@@ -24,7 +25,6 @@
 
 .box_img {
   width: 300px;
-  height: 300px;
 }
 
 .word,
