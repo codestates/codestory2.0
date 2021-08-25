@@ -3,6 +3,7 @@ const { isAuthorizedOauth } = require('../../lib/oauth-token');
 const models = require('../../models');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
+const { serialize } = require('cookie');
 dotenv.config();
 
 export default async function user(req, res) {
@@ -76,7 +77,10 @@ export default async function user(req, res) {
             delete result.dataValues.password;
             delete result.dataValues.salt;
             const accessToken = await generateAccessToken(result.dataValues);
-            sendAccessToken(res, accessToken);
+            const jwtAccessToken = 'jwt '+accessToken;
+            res.setHeader('Set-Cookie', serialize('accessToken', jwtAccessToken, { path: '/', sameSite: 'strict', httpOnly: true }));
+            res.statusCode = 200;
+            res.json({ message: 'ok' });
           });
         });
       }  

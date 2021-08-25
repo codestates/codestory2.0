@@ -5,6 +5,7 @@ module.exports = {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: 'codestory_development',
+    Port: '3306',
     host: process.env.DATABASE_URL,
     dialect: 'mysql',
     dialectModule: require('mysql2')
