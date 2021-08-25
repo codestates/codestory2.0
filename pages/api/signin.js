@@ -1,4 +1,5 @@
 const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
+const { sign } = require('jsonwebtoken');
 const db = require('../../lib/models');
 const crypto = require('crypto');
 const { serialize } = require('cookie');
@@ -22,11 +23,8 @@ export default async function signin(req, res) {
             if (incomingPassword === userInfo.dataValues.password) {
               delete userInfo.dataValues.password;
               delete userInfo.dataValues.salt;
-              const accessToken = await generateAccessToken(userInfo.dataValues);
-              const jwtAccessToken = 'jwt '+accessToken;
-              res.setHeader('Set-Cookie', serialize('accessToken', jwtAccessToken, { path: '/', sameSite: 'strict', httpOnly: true }));
-              res.statusCode = 200;
-              res.json({ message: 'ok' });
+              const accessToken = await sign(userInfo, process.env.NEXT_PUBLIC_ACCESS_SECRET, { expiresIn: '36000s' });
+              res.status(200).json(accessToken);
             } else {
               res.status(400).json({ message: 'badrequest' });
             }
