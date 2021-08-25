@@ -102,7 +102,7 @@ export default function Landing_automata({ currentIdx }) {
   const play = () => {
     ga.event({
       category: 'select_content',
-      action: 'linux play button clicked'
+      action: 'automata play button clicked'
     });
   };
 
