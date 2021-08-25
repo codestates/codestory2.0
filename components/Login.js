@@ -9,6 +9,7 @@ import slider2 from '../public/login_slider2.png';
 import slider3 from '../public/login_slider3.png';
 import slider4 from '../public/login_slider4.png';
 import btn_google from '../public/btn_google.svg';
+import * as ga from '../lib/ga';
 
 export default function Login({ loginOpenHandler, loginHandler }) {
 
@@ -61,6 +62,13 @@ export default function Login({ loginOpenHandler, loginHandler }) {
       }).then(() => {
         loginHandler();
         loginOpenHandler(false);
+        ga.event({
+          category: 'login',
+          action: 'login button clicked',
+          params : {
+            method: 'JWT'
+          }
+        });
       }).catch(() => {
         setErrorMessage('회원정보가 존재하지 않습니다');
       });
@@ -85,6 +93,10 @@ export default function Login({ loginOpenHandler, loginHandler }) {
         withCredentials: true
       }).then(() => {
         setIsFinish(true);
+        ga.event({
+          category: 'sign_up',
+          action: 'sign up button clicked',
+        });
       }).catch((err) => {
         console.log(err);
       });
@@ -93,6 +105,13 @@ export default function Login({ loginOpenHandler, loginHandler }) {
 
   const googleLogin = async () => {
     window.location.assign(`${googleLoginUrl}`);
+    ga.event({
+      category: 'login',
+      action: 'login button clicked',
+      params : {
+        method: 'Google'
+      }
+    });
   };
 
   const finishHandler = () => {
