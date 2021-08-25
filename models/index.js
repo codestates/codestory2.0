@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
 const db = {};
+const mysql2 = require('mysql2');
 
 let sequelize = new Sequelize(
   'codestory_development', 
@@ -10,8 +11,10 @@ let sequelize = new Sequelize(
     username: 'codestory',
     password: 'codeqrwt173',
     database: 'codestory_development',
+    port : '3306',
     host: 'codestory-database.cwkawqeb4twy.ap-northeast-2.rds.amazonaws.com',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectModule: mysql2
   }
 );
 const models = [
