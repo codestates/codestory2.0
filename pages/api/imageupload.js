@@ -16,8 +16,8 @@ export default async (req, res) => {
       const oauth = await isAuthorizedOauth(req);
       if (jwt) {
         const s3 = new aws.S3({
-          accessKeyId: process.env.AW_ACCESSKEY,
-          secretAccessKey: process.env.AW_SECRETKEY, 
+          accessKeyId: process.env.NEXT_PUBLIC_AW_ACCESSKEY,
+          secretAccessKey: process.env.NEXT_PUBLIC_AW_SECRETKEY, 
           region: 'ap-northeast-2' 
         });
         const storage = multerS3({
