@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps, router }) {
 
   return (
     <SwitchTransition mode="out-in">
-      <CSSTransition key={router.pathname} classNames="page" timeout={500}>
+      <CSSTransition key={router.pathname} classNames="page" timeout={400}>
         <Component {...pageProps} 
           loginHandler={loginHandler} 
           isLogin={isLogin}
