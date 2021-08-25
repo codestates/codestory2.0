@@ -33,7 +33,7 @@ export default function Landing({ colorHandler }) {
           <div className={currentIdx === 2 ? styles.btn_arrow_white : styles.btn_arrow}>&gt;</div>
         </div>
         <SwiperSlide>
-          <Landing_linux currentIdx={currentIdx}/>
+          <Landing_linux currentIdx={currentIdx} />
         </SwiperSlide>
         <SwiperSlide>
           <Landing_automata currentIdx={currentIdx} />
