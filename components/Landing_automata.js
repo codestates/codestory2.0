@@ -4,6 +4,7 @@ import Image from 'next/image';
 import img1 from '../public/automata1.png';
 import gsap, { Power4 } from 'gsap';
 import styles from '../styles/modules/landing_automata.module.scss';
+import * as ga from '../lib/ga';
 
 export default function Landing_automata({ currentIdx }) { 
 
@@ -98,6 +99,12 @@ export default function Landing_automata({ currentIdx }) {
     }
   });
 
+  const play = () => {
+    ga.event({
+      action: 'play',
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -145,7 +152,9 @@ export default function Landing_automata({ currentIdx }) {
         </div>
       </div>
       <Link href="/automata" passHref>
-        <button className={styles.btn_game}>Play Automata</button>
+        <button className={styles.btn_game}
+          onClick={() => play()}
+        >Play Automata</button>
       </Link>
     </div>
   );
