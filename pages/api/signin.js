@@ -23,7 +23,7 @@ export default async function signin(req, res) {
             if (incomingPassword === userInfo.dataValues.password) {
               delete userInfo.dataValues.password;
               delete userInfo.dataValues.salt;
-              const accessToken = await sign(userInfo, process.env.NEXT_PUBLIC_ACCESS_SECRET, { expiresIn: '36000s' });
+              const accessToken = sign(userInfo.dataValues, process.env.NEXT_PUBLIC_ACCESS_SECRET, { expiresIn: '36000s' });
               res.status(200).json(accessToken);
             } else {
               res.status(400).json({ message: 'badrequest' });
