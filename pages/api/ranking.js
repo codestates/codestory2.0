@@ -8,7 +8,7 @@ export default async function ranking(req, res) {
     try {
       const jwt = await isAuthorizedJwt(req);
       if (jwt) {
-        const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
+        const rankingArr = await models.users.findAll({ order: [['score', 'DESC'], ['id', 'ASC']] });
         const followedArr = await models.follower_followeds.findAll({ where: { followerId: jwt.id } });
         const isFollowed = [];
         for (let record of followedArr) {
@@ -21,7 +21,7 @@ export default async function ranking(req, res) {
           following: record.dataValues.id === jwt.id ? 'me' : Boolean(isFollowed[record.dataValues.id])
         })) });
       } else {
-        const rankingArr = await models.users.findAll({ order: [['coin', 'DESC'], ['id', 'ASC']] });
+        const rankingArr = await models.users.findAll({ order: [['score', 'DESC'], ['id', 'ASC']] });
         res.status(200).json({ data: rankingArr.map((record) => ({
           username: record.dataValues.userId,
           photourl: record.dataValues.pictureUrl,
