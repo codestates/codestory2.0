@@ -3,7 +3,6 @@ const { isAuthorizedOauth } = require('../../lib/oauth-token');
 const models = require('../../lib/models');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
-const { serialize } = require('cookie');
 dotenv.config();
 
 export default async function user(req, res) {

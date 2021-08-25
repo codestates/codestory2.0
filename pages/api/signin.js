@@ -1,8 +1,6 @@
 const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
-const { sign } = require('jsonwebtoken');
 const db = require('../../lib/models');
 const crypto = require('crypto');
-const { serialize } = require('cookie');
 
 export default async function signin(req, res) {
   switch (req.method) {
@@ -23,7 +21,7 @@ export default async function signin(req, res) {
             if (incomingPassword === userInfo.dataValues.password) {
               delete userInfo.dataValues.password;
               delete userInfo.dataValues.salt;
-              const accessToken = await generateAccessToken(result.dataValues);
+              const accessToken = await generateAccessToken(userInfo.dataValues);
               sendAccessToken(res, accessToken);
             } else {
               res.status(400).json({ message: 'badrequest' });
