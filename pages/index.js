@@ -23,7 +23,7 @@ export default function Home({ loginHandler, isLogin }) {
   );
   const [isWhite, setIsWhite] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
- 
+
   useEffect(() => {
     if (process.browser) {
       const url = new URL(window.location.href);

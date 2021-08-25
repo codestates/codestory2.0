@@ -5,6 +5,7 @@ import linux from '../public/linux.gif';
 import tips from '../public/tips.gif';
 import gsap, { Power4 } from 'gsap';
 import styles from '../styles/modules/landing_linux.module.scss';
+import * as ga from '../lib/ga';
 
 export default function Landing_linux({ currentIdx }) {
 
@@ -113,6 +114,12 @@ export default function Landing_linux({ currentIdx }) {
     }
   });
 
+  const play = () => {
+    ga.event({
+      action: 'play',
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -166,7 +173,9 @@ export default function Landing_linux({ currentIdx }) {
         </div>
       </div>
       <Link href="/linux" passHref>
-        <button className={styles.btn_game}>Play Linux CLI</button>
+        <button className={styles.btn_game}
+          onClick={() => play()}
+        >Play Linux CLI</button>
       </Link>
     </div>
   );
