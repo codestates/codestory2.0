@@ -76,11 +76,8 @@ export default async function user(req, res) {
             });
             delete result.dataValues.password;
             delete result.dataValues.salt;
-            const accessToken = 'hiru';
-            const jwtAccessToken = 'jwt '+accessToken;
-            res.setHeader('Set-Cookie', serialize('accessToken', jwtAccessToken, { path: '/', sameSite: 'strict', httpOnly: true }));
-            res.statusCode = 200;
-            res.json({ message: 'ok' });
+            const accessToken = await generateAccessToken(result.dataValues);
+            sendAccessToken(res, accessToken);
           });
         });
       }  
