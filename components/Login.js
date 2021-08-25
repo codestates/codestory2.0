@@ -59,7 +59,6 @@ export default function Login({ loginOpenHandler, loginHandler }) {
         'content-type': 'application/json',
         withCredentials: true
       }).then((res) => {
-        console.log(res);
         loginHandler();
         loginOpenHandler(false);
       }).catch(() => {
