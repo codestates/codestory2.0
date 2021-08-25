@@ -1,6 +1,6 @@
 const { isAuthorizedJwt, generateAccessToken, sendAccessToken } = require('../../lib/json-token');
 const { isAuthorizedOauth } = require('../../lib/oauth-token');
-const models = require('../../models');
+const models = require('../../lib/models');
 const crypto = require('crypto');
 const dotenv = require('dotenv');
 const { serialize } = require('cookie');

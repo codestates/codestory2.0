@@ -1,6 +1,6 @@
 const { isAuthorizedJwt } = require('../../lib/json-token');
 const { isAuthorizedOauth } = require('../../lib/oauth-token');
-const models = require('../../models');
+const models = require('../../lib/models');
 
 export default async function follow(req, res) {
   switch (req.method) {

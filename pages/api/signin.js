@@ -1,5 +1,5 @@
 const { generateAccessToken, sendAccessToken } = require('../../lib/json-token');
-const db = require('../../models');
+const db = require('../../lib/models');
 const crypto = require('crypto');
 const { serialize } = require('cookie');
 

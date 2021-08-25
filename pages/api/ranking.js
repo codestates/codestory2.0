@@ -1,5 +1,5 @@
 const { isAuthorizedJwt } = require('../../lib/json-token');
-const models = require('../../models');
+const models = require('../../lib/models');
 
 export default async function ranking(req, res) {
   switch (req.method) {
