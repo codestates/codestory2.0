@@ -7,9 +7,9 @@ import profile from '../public/profile.png';
 export default function Mypage({ isLogin }) {
 
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    photourl: '',
-    coin: 0,
+    userId: '',
+    photoUrl: '',
+    score: 0,
     intro: '',
     ranking: 0,
     follower: 0,
@@ -33,9 +33,9 @@ export default function Mypage({ isLogin }) {
     } else {
       setUserInfo(
         {
-          username: '',
-          photourl: '',
-          coin: 0,
+          userId: '',
+          photoUrl: '',
+          score: 0,
           intro: '안녕하세요',
           ranking: 1,
           follower: 0,
@@ -53,7 +53,7 @@ export default function Mypage({ isLogin }) {
 
   useEffect(() => {
     if (isLogin === true) {
-      setCurrentImage(userInfo.photourl);
+      setCurrentImage(userInfo.photoUrl);
     }
   }, [userInfo]);
 
@@ -131,7 +131,7 @@ export default function Mypage({ isLogin }) {
             사진 업로드
           </div>
         </div>
-        <span className={styles.id}>{userInfo.username}</span>
+        <span className={styles.id}>{userInfo.userId}</span>
       </div>
       {isEditmode 
         ?
