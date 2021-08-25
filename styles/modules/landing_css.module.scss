@@ -1,0 +1,209 @@
+/* Landing_CSS */
+
+@import "../variables";
+@import "../mixins";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $primary-blue;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 50%;
+}
+
+.box_word1 {
+  display: flex;
+  flex-direction: column;
+  font-family: $sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 60px;
+  word-break: keep-all;
+  margin-top: 20px;
+}
+
+.box_word2 {
+  display: none;
+  flex-direction: column;
+  font-family: $sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  word-break: keep-all;
+  margin-top: 70px;
+  margin-right: 40px;
+}
+
+.word1 {
+  color: $white;
+  opacity: 0;
+}
+
+.word2 {
+  color: $white;
+  opacity: 0;
+}
+
+.word3 {
+  color: $white;
+  font-size: 40px;
+  line-height: 60px;
+  opacity: 0;
+}
+
+.word4 {
+  color: $white;
+  font-size: 40px;
+  line-height: 60px;
+  opacity: 0;
+  color: $white;
+}
+
+.img {
+  opacity: 0;
+  width: 300px;
+  height: 200px;
+}
+
+.img2 {
+  display: none;
+  opacity: 0;
+  width: 300px;
+  height: 200px;
+  margin-top: 50px;
+}
+
+.btn_game {
+  width: 165px;
+  height: 60px;
+  border-radius: 50px;
+  border: solid 1px $white;
+  color: $white;
+  background-color: transparent;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 50px;
+  cursor: pointer;
+  z-index: 100;
+  transition: .3s ease-out;
+  &:hover {
+    width: 155px;
+    background-color: $white;
+    color: $gray;
+    transition: .3s ease-out;
+  }
+}
+
+// responsive
+
+@include breakpoint(medium) {
+  .box_word1 {
+    width: 230px;
+    margin-right: 0px;
+  }
+  .box_word2 {
+    width: 280px;
+    margin-right: 0px;
+  }
+  .img {
+    opacity: 0;
+    width: 250px;
+  }
+  .word1 {
+    font-size: 30px;
+    line-height: 35px;
+    opacity: 0;
+  }
+  .word2 {
+    font-size: 30px;
+    line-height: 35px;
+    opacity: 0;
+  }
+  .word3 {
+    font-size: 30px;
+    line-height: 35px;
+    opacity: 0;
+  }
+  .word4 {
+    font-size: 30px;
+    line-height: 35px;
+    opacity: 0;
+  }
+  .word5 {
+    font-size: 30px;
+    line-height: 35px;
+    opacity: 0;
+  }
+}
+
+@media all and (max-width: 750px) {
+  .box {
+    flex-direction: column;
+    align-items: center;
+  }
+  .box_word1 {
+    width: 220px;
+    margin-right: 0px;
+  }
+  .box_word2 {
+    width: 200px;
+    margin-right: 0px;
+  }
+  .word1 {
+    text-align: center;
+  }
+  .word2 {
+    text-align: center;
+  }
+  .word3 {
+    text-align: center;
+    font-size: 24px;
+  }
+  .word4 {
+    text-align: center;
+    font-size: 24px;
+  }
+  .word5 {
+    text-align: center;
+    font-size: 24px;
+  }
+  .img {
+    margin-top: 20px;
+    width: 200px;
+  }
+  .img2 {
+    margin-top: 20px;
+    width: 200px;
+    height: 100px
+  }
+  .box_word2 {
+    width: 240px;
+  }
+  .btn_game {
+    width: 140px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 15px;
+    &:hover {
+      width: 135px;
+    }
+  }
+}
+
+@media all and (max-height: 570px) {
+  .box {
+    display: none;
+  }
+  .btn_game {
+    margin-top: 0px;
+  }
+}

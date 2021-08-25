@@ -5,6 +5,7 @@ import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/landing.module.scss';
 import Landing_linux from './Landing_linux';
 import Landing_automata from './Landing_automata';
+import Landing_css from './Landing_css';
 
 export default function Landing({ colorHandler }) {
 
@@ -32,19 +33,13 @@ export default function Landing({ colorHandler }) {
           <div className={currentIdx === 2 ? styles.btn_arrow_white : styles.btn_arrow}>&gt;</div>
         </div>
         <SwiperSlide>
-          <div className={styles.container}>
-            <Landing_linux currentIdx={currentIdx}/>
-          </div>
+          <Landing_linux currentIdx={currentIdx}/>
         </SwiperSlide>
         <SwiperSlide>
           <Landing_automata currentIdx={currentIdx} />
         </SwiperSlide>
         <SwiperSlide>
-          <div className={styles.container3}>
-            <Link href="/css" passHref>
-              <button className={styles.btn_game_white}>Start CSS</button>
-            </Link>
-          </div>
+          <Landing_css currentIdx={currentIdx} />
         </SwiperSlide>
       </Swiper>
     </div>
