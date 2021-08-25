@@ -5,7 +5,7 @@ import img1 from '../public/automata1.png';
 import gsap, { Power4 } from 'gsap';
 import styles from '../styles/modules/landing_automata.module.scss';
 
-export default function Landing_automata({ currentIdx }) {
+export default function Landing_automata({ currentIdx }) { 
 
   const [textTl] = useState(gsap.timeline({ repeat: -1 , overwrite: 'auto' }));
   const text = {};
@@ -63,12 +63,6 @@ export default function Landing_automata({ currentIdx }) {
           opacity: 1,
           delay: 8,
           display: 'flex',
-          ease: Power4.easeOut,
-        }, 0)
-        .to(text.img2, {
-          delay: 8,
-          display: 'block',
-          y: 15,
           ease: Power4.easeOut,
         }, 0)
         .to(text.text3, {
