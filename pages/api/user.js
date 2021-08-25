@@ -69,7 +69,7 @@ export default async function user(req, res) {
               salt: newSalt,
               coin: 0,
               score: 0,
-              word: '나의 한마디를 클릭하셔서 고쳐주세요^^',
+              word: '안녕하세요',
               createdAt: time,
               updatedAt: time,
             });
