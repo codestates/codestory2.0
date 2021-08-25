@@ -9,6 +9,43 @@
   height: 44vw;
   margin: auto;
   z-index: 1000;
+  :global(#linux_result_background) {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: #614EDB;
+  }
+  :global(#linux_game_container) {
+    width: 38vw;
+    height: 44vw;
+    :global(#linux_check_title) {
+      position: fixed;
+      left: 1vw;
+      top: 35vh;
+      margin-left: 22px;
+      text-align: left;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    :global(#linux_check_ul) {
+      position: fixed;
+      left: 1vw;
+      top: 39vh;
+      width: 28vw;
+    }
+    :global(#linux_check_first),
+    :global(#linux_check_second),
+    :global(#linux_check_third) {
+      margin: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 20px;
+      word-break: keep-all;
+    }
+  } 
 }
 
 .result_container {
@@ -76,6 +113,27 @@
   .game {
     width: 38vw;
     height: 44vw;
+    :global(#linux_game_container) {
+      width: 38vw;
+      height: 44vw;
+      :global(#linux_check_title) {
+        left: 0vw;
+        font-size: 18px;
+      }
+      :global(#linux_check_ul) {
+        left: 1vw;
+        top: 39vh;
+        width: 28vw;
+        line-height: 22px;
+      }
+      :global(#linux_check_first),
+      :global(#linux_check_second),
+      :global(#linux_check_third) {
+        margin: 0px;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    } 
   }
 }
 
@@ -84,26 +142,39 @@
     margin-bottom: 90px;
     width: 335px;
     height: 338px;
+    :global(#linux_game_container) {
+      width: 335px;
+      height: 338px;
+      :global(#linux_check_title) {
+        position: absolute;
+        left: -6vw;
+        top: -22vh;
+        font-size: 16px;
+      }
+      :global(#linux_check_ul) {
+        position: absolute;
+        margin-top: 4px;
+        left: -3vw;
+        top: -19vh;
+        width: 335px;
+        font-size: 16px;
+      }
+    } 
   }
-
   .box_img {
     width: 200px;
     height: 200px;
   }
-
   .word {
     margin-bottom: 35px;
     font-size: $base-font-size * 3;
   }
-
   .subword {
     font-size: $base-font-size * 2;
   }
-
   .btn_container {
     flex-direction: column;
   }
-
   .btn_white {
     margin-bottom: 10px;
   }

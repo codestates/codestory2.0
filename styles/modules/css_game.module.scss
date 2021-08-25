@@ -3,4 +3,8 @@
 .game {
   position: relative;
   margin: auto;
+  :global(#css_game_container) {
+    width: 670px;
+    height: 775px;
+  }
 }
