@@ -107,6 +107,9 @@
     }
   }
   function keyDownHandler(e) {
+    if (e.metaKey) {
+      return 0;
+    }
     switch (e.keyCode) {
     case 8:
       if (sudo !== 1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
@@ -503,6 +506,7 @@
     case 16:
     case 17:
     case 18:
+    case 20:
     case 27:
     case 33:
     case 34:
