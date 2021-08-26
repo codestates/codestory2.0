@@ -8,6 +8,7 @@ import styles from '../styles/modules/automata.module.scss';
 import { useState } from 'react';
 import tips from '../games/automata/automataTips';
 import Login from '../components/Login';
+import Mypage from '../components/Mypage';
 import Automata_game from '../components/Automata_game';
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -53,7 +54,9 @@ export default function Automata({ loginHandler, isLogin, automataGame }) {
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
-          : component[1]
+          : component[0] === 'Mypage'
+            ? <Mypage isLogin={isLogin} />
+            : component[1]
         }
         {isLoginOpen 
           ? <Login 

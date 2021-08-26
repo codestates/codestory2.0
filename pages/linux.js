@@ -8,6 +8,7 @@ import { useState } from 'react';
 import tips from '../games/linux/linuxTips';
 import Login from '../components/Login';
 import Ranking from '../components/Ranking';
+import Mypage from '../components/Mypage';
 import Linux_game from '../components/Linux_game';
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -53,7 +54,9 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
         />
         {component[0] === 'Ranking' 
           ? <Ranking isLogin={isLogin} />
-          : component[1]
+          : component[0] === 'Mypage'
+            ? <Mypage isLogin={isLogin} />
+            : component[1]
         }
         {isLoginOpen 
           ? <Login 
