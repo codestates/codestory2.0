@@ -26,16 +26,6 @@
   const container = document.querySelector('#automata_game_container');
   let { left, top, width, height } = container.getBoundingClientRect();
 
-  // responsive
-  let fontSize;
-  if (window.innerWidth > 1110) {
-    fontSize = 16;
-  } else if (window.innerWidth > 590) {
-    fontSize = 14;
-  } else {
-    fontSize = 14;
-  }
-
   // stage
   const stage = document.createElement('div');
   Object.assign(stage.style, {
