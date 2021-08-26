@@ -8,6 +8,7 @@ import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import * as ga from '../lib/ga';
+import axios from 'axios';
 // import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
 // import awsExports from '../src/aws-exports';
 
@@ -26,11 +27,10 @@ function MyApp({ Component, pageProps, router }) {
     if (isLogin === false) {
       (async () => {
         try {
-          const userInfo = await axios.get(serverUrl+'/user', { withCredentials: true });
-          const followingList = await axios.get(serverUrl+'/follower', { withCredentials: true });
-          setUserInfo(userInfo.data);
-          setFollowingList(followingList.data);
-          setIsLogin(true);
+          const userInfo = await axios.get('api/user', { withCredentials: true });
+          if (userInfo && userInfo.data && userInfo.data.userId) {
+            setIsLogin(true);
+          }
         }
         catch {
           console.log('로그인하세요');

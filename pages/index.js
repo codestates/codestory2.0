@@ -10,6 +10,7 @@ import axios from 'axios';
 
 export default function Home({ loginHandler, isLogin }) {
 
+
   const colorHandler = (e) => {
     if (e === 2) {
       setIsWhite(true);
@@ -79,23 +80,4 @@ export default function Home({ loginHandler, isLogin }) {
       <Footer isWhite={isWhite}/>
     </Layout>
   );
-}
-
-export async function getServerSideProps(context) {
-  try {
-    const { data } = await axios.get('http://localhost:3000/api/user', { headers: { cookie: `accessToken=${context.req.cookies.accessToken}` } });
-    return {
-      props: {
-        isLogin: true,
-        userId: data.userId
-      }
-    };
-  }
-  catch {
-    return {
-      props: {
-        isLogin: false
-      }
-    };
-  }
 }
