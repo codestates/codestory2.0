@@ -9,7 +9,7 @@ export default async function follow(req, res) {
       const jwt = await isAuthorizedJwt(req);
       const oauth = await isAuthorizedOauth(req);
       if (jwt) {
-        const followed = await models.users.findOne({ where: { userId: req.body.username } });
+        const followed = await models.users.findOne({ where: { userId: req.body.userId } });
         await models.follower_followeds.create({
           followerId: jwt.id,
           followedId: followed.dataValues.id
@@ -31,7 +31,7 @@ export default async function follow(req, res) {
       const jwt = await isAuthorizedJwt(req);
       const oauth = await isAuthorizedOauth(req);
       if (jwt) {
-        const followed = await models.users.findOne({ where: { userId: req.body.username } });
+        const followed = await models.users.findOne({ where: { userId: req.body.userId } });
         await models.follower_followeds.destroy({ where: {
           followerId: jwt.id,
           followedId: followed.dataValues.id
@@ -57,11 +57,11 @@ export default async function follow(req, res) {
         const userArr = await models.users.findAll();
         const userinfoArr = [];
         for (let record of userArr) {
-          userinfoArr[record.dataValues.id] = { username: record.dataValues.userId, photourl: record.dataValues.pictureUrl };
+          userinfoArr[record.dataValues.id] = { userId: record.dataValues.userId, photoUrl: record.dataValues.pictureUrl };
         }
         res.json({ data: followingArr.map((record) => userinfoArr[record.dataValues.followedId]) });
       } else if (oauth) {
-        res.json({ data: [{ username: '회원가입 하시면', photourl: '' }, { username: '이용하실 수 있습니다', photourl: '' }] });
+        res.json({ data: [{ userId: '회원가입 하시면', photoUrl: '' }, { userId: '이용하실 수 있습니다', photoUrl: '' }] });
       } else {
         res.status(400).json({ message: 'InvalidToken' });
       }

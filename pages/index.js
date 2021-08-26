@@ -87,7 +87,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         isLogin: true,
-        username: data.username
+        userId: data.userId
       }
     };
   }

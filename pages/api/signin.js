@@ -7,9 +7,9 @@ export default async function signin(req, res) {
   case 'POST':
     try {
       const password = req.body.password;
-      const username = req.body.username;
+      const userId = req.body.userId;
       const userInfo = await db.users.findOne({
-        where: { userId: username }
+        where: { userId: userId }
       });
       if (!userInfo) {
         res.status(400).json({ message: 'badrequest' });
