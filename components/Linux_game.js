@@ -53,7 +53,7 @@ export default function Linux_game({ linuxSource, isLogin }) {
       }
       );
     }
-    if (e.target.textContent === 'paly again') {
+    if (e.target.textContent === 'play again') {
       let gameResult = document.querySelector('#linux_display');
       gameResult.setAttribute('id', 'linux_result_background');
       setReplay(!replay);
