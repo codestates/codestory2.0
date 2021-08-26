@@ -64,7 +64,7 @@
       Object.assign(img, {
         src: circleSource,
         className: 'single',
-        style: `position: absolute; left: ${e.clientX - left - 25 - 20}px; top: ${e.clientY - top - 25 - 20}px; width: 40px; height: 40px; border-radius: 20px;`,
+        style: `position: absolute; left: ${e.clientX - left - .05 * width - 20}px; top: ${e.clientY - top - .05 * height - 20}px; width: 40px; height: 40px; border-radius: 20px;`,
         onclick: () => {
           if (img.classList.contains('moving')) {
             img.classList.remove('moving');
@@ -74,8 +74,8 @@
         },
         onmousemove: (e) => {
           if (img.classList.contains('moving')) {
-            img.style.left = `${e.clientX - left - 25 - 20}px`;
-            img.style.top = `${e.clientY - top - 25 - 20}px`;
+            img.style.left = `${e.clientX - left - .05 * width - 20}px`;
+            img.style.top = `${e.clientY - top - .05 * height - 20}px`;
           }
         },
         oncontextmenu: (e) => {
@@ -108,8 +108,8 @@
     onmousedown: (e) => {
       if (e.button === 0) {
         isDrawing = true;
-        prevX = e.clientX - left - 25;
-        prevY = e.clientY - top - 25;
+        prevX = e.clientX - left - .05 * width;
+        prevY = e.clientY - top - .05 * height;
         const imgs = [];
         for (let child of board.children) {
           if (child.tagName === 'IMG') {
@@ -170,7 +170,7 @@
       if (isDrawing) {
         ctx.beginPath();
         ctx.moveTo(prevX, prevY);
-        ctx.lineTo(prevX = e.clientX - left - 25, prevY = e.clientY - top - 25);
+        ctx.lineTo(prevX = e.clientX - left - .05 * width, prevY = e.clientY - top - .05 * height);
         ctx.stroke();
       }
     }
@@ -260,7 +260,7 @@
       device.style.color = 'green';
     }
     if (!isDrawing) {
-      Object.assign(canvas, { width: 550, height: 417 });
+      Object.assign(canvas, { width, height });
       ctx.strokeStyle = 'white';
       for (let tr of automaton) {
         const fromx = parseFloat(tr[0].style.left);
