@@ -8,7 +8,7 @@
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
   height: 75px;
   padding: 20px 50px;
@@ -34,7 +34,7 @@
 
 @include breakpoint(extra-small) {
   .container {
-    padding: 10px 10px;
+    height: 35px;
   }
   .box {
     line-height: 20px;
