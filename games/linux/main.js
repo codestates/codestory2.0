@@ -31,7 +31,7 @@
   const delete_me_file = { name: 'delete_me.sh', type: 'file', sudo: false, content: '숨겨왔던 나의 메시지. 방가방가' };
   const delete_me_folder = { name: 'Delete_me', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
   const destination = { name: 'Destination', type: 'folder', sudo: true, children: { '.': null, '..': desktop } };
-  const bar = true;
+  let bar = true;
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
@@ -616,7 +616,7 @@
     }
     if (bar) {
       ctx.beginPath();
-      ctx.rect(0.02 * canvas.width + (textArr[textArr.length - 1].length % lengthLimit) * fontSize * 0.46, 0.717 * canvas.height + (linePosition - 2) * fontSize , fontSize * 0.5, fontSize * 0.9);
+      ctx.rect(0.02 * canvas.width + (textArr[textArr.length - 1].length % lengthLimit) * fontSize * 0.451, 0.717 * canvas.height + (linePosition - 2) * fontSize , fontSize * 0.5, fontSize * 0.9);
       ctx.fillStyle = '#fff';
       ctx.fill();
     }
@@ -675,6 +675,12 @@
   }
 
   const gameRepeater = setInterval(draw, 10);
+  const barRepeater = setInterval(() => {
+    bar = !bar;
+    if (easyList.length === 0 && hardList.length === 0) {
+      clearInterval(barRepeater);
+    }
+  }, 500)
 
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
