@@ -59,7 +59,7 @@ export default function Home({ loginHandler, isLogin }) {
         loginOpenHandler={loginOpenHandler}
         colorHandler={(e) => colorHandler(e)}
         isLogin={isLogin}
-        loginHandler={() => loginHandler}
+        loginHandler={() => loginHandler()}
       />
       {component[0] === 'Landing' 
         ? <Landing colorHandler={colorHandler} key={0} />
