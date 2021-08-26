@@ -9,8 +9,8 @@ export default function Linux_game({ linuxSource, isLogin }) {
 
   const [replay, setReplay] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    photourl: '',
+    userId: '',
+    photoUrl: '',
     score: 0,
     intro: '',
     ranking: 0,
@@ -45,7 +45,8 @@ export default function Linux_game({ linuxSource, isLogin }) {
       await axios.patch('/api/user', {
         data: {
           type: 'score',
-          score: curScore + 120
+          score: curScore + 120,
+          apiPassword: process.env.NEXT_PUBLIC_API_PASSWORD
         }}, {
         'content-type': 'application/json',
         withCredentials: true

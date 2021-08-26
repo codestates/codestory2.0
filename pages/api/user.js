@@ -19,8 +19,8 @@ export default async function user(req, res) {
         const idArr = rankingArr.map((user) => user.dataValues.id);
         const ranking = idArr.indexOf(jwt.id) + 1;
         res.status(200).json({
-          username: result.userId,
-          photourl: result.pictureUrl,
+          userId: result.userId,
+          photoUrl: result.pictureUrl,
           coin: result.coin,
           intro: result.word,
           score: result.score,
@@ -29,11 +29,11 @@ export default async function user(req, res) {
           following
         });
       } else if (oauth) {
-        let username = oauth.data.name;
-        let photourl = oauth.data.picture;
+        let userId = oauth.data.name;
+        let photoUrl = oauth.data.picture;
         res.status(200).json({
-          username: username,
-          photourl: photourl,
+          userId: userId,
+          photoUrl: photoUrl,
           coin: 0,
           score: 0,
           intro: '반갑습니다.',
@@ -51,9 +51,9 @@ export default async function user(req, res) {
     } break;
   case 'POST':
     try{
-      const username = req.body.username;
+      const userId = req.body.userId;
       const password = req.body.password;
-      const data = await models.users.findOne({ where : { userId: username } });
+      const data = await models.users.findOne({ where : { userId: userId } });
       if (data) {
         res.status(400).json({ message:'Bad Request' });
       } else {
@@ -64,7 +64,7 @@ export default async function user(req, res) {
             const newPassword = key.toString('base64');
             const result = await models.users.create({
               pictureUrl: '',
-              userId: username,
+              userId: userId,
               password: newPassword,
               salt: newSalt,
               coin: 0,
@@ -90,7 +90,7 @@ export default async function user(req, res) {
       const jwt = await isAuthorizedJwt(req);
       const oauth = await isAuthorizedOauth(req);
       if (req.body.data && req.body.data.type) {
-        if (req.body.data.type === 'score') {
+        if (req.body.data.type === 'score' && req.body.data.apiPassword === process.env.NEXT_PUBLIC_API_PASSWORD) {
           if (jwt) {
             await models.users.update({ score: req.body.data.score }, { where: { id: jwt.id } });
             res.status(200).json({ message: 'ok' });
@@ -108,6 +108,8 @@ export default async function user(req, res) {
           } else {
             res.status(400).json({ message: 'InvalidToken' });
           }
+        } else {
+          res.status(406).json({ message: 'You should use this api in clinent app'});
         }
       } 
     }

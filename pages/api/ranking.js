@@ -14,16 +14,16 @@ export default async function ranking(req, res) {
           isFollowed[record.dataValues.followedId] = true;
         }
         res.status(200).json({ data: rankingArr.map((record) => ({
-          username: record.dataValues.userId,
-          photourl: record.dataValues.pictureUrl,
+          userId: record.dataValues.userId,
+          photoUrl: record.dataValues.pictureUrl,
           score: record.dataValues.score,
           following: record.dataValues.id === jwt.id ? 'me' : Boolean(isFollowed[record.dataValues.id])
         })) });
       } else {
         const rankingArr = await models.users.findAll({ order: [['score', 'DESC'], ['id', 'ASC']] });
         res.status(200).json({ data: rankingArr.map((record) => ({
-          username: record.dataValues.userId,
-          photourl: record.dataValues.pictureUrl,
+          userId: record.dataValues.userId,
+          photoUrl: record.dataValues.pictureUrl,
           score: record.dataValues.score,
           following: false
         })) });

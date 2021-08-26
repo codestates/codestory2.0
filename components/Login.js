@@ -53,7 +53,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
       setErrorMessage('아이디와 비밀번호를 확인해 주세요');
     } else {
       await axios.post('/api/signin', {
-        username: username,
+        userId: username,
         password: password
       }, {
         'content-type': 'application/json',
@@ -78,7 +78,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
       setErrorMessage('비밀번호를 확인해 주세요');
     } else {
       await axios.post('/api/user', {
-        username: userId,
+        userId: userId,
         password: password2
       }, {
         'content-type': 'application/json',
