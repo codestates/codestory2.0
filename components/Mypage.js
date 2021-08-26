@@ -43,7 +43,7 @@ export default function Mypage({ isLogin }) {
         }
       );
     }
-  }, []);
+  }, [isLogin]);
 
   useEffect(() => {
     if (isLogin === true) {
