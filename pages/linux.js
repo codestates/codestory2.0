@@ -1,7 +1,5 @@
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import styles from '../styles/modules/linux.module.scss';
 import { useState } from 'react';
@@ -71,10 +69,6 @@ export default function Linux({ loginHandler, isLogin, linuxGame }) {
           }
         </div>
       </div>
-      {component[0] === 'Linux_game' 
-        ? <GameFooter isWhite={isWhite}/> 
-        : <Footer isWhite={isWhite}/>
-      }
     </Layout>
   );
 };
