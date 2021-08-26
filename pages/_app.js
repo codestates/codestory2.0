@@ -9,10 +9,10 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import axios from 'axios';
 import * as ga from '../lib/ga';
-import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
-import awsExports from '../src/aws-exports';
+//import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
+//import awsExports from '../src/aws-exports';
 
-Amplify.configure({ ...awsExports, ssr: true });
+//Amplify.configure({ ...awsExports, ssr: true });
 
 Router.events.on('routeChangeStart', () => NProgress.start()); 
 Router.events.on('routeChangeComplete', () => NProgress.done()); 
