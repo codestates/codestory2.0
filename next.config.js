@@ -11,6 +11,9 @@ module.exports = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: ['codestoryimagecontainor.s3.ap-northeast-2.amazonaws.com']
+    domains: [
+      'codestoryimagecontainor.s3.ap-northeast-2.amazonaws.com',
+      'lh3.googleusercontent.com'
+    ]
   }
 };
