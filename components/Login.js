@@ -9,6 +9,7 @@ import slider2 from '../public/login_slider2.png';
 import slider3 from '../public/login_slider3.png';
 import slider4 from '../public/login_slider4.png';
 import btn_google from '../public/btn_google.svg';
+import * as ga from '../lib/ga';
 
 export default function Login({ loginOpenHandler, loginHandler }) {
 
@@ -53,7 +54,7 @@ export default function Login({ loginOpenHandler, loginHandler }) {
       setErrorMessage('아이디와 비밀번호를 확인해 주세요');
     } else {
       await axios.post('/api/signin', {
-        username: username,
+        userId: username,
         password: password
       }, {
         'content-type': 'application/json',
@@ -61,6 +62,13 @@ export default function Login({ loginOpenHandler, loginHandler }) {
       }).then(() => {
         loginHandler();
         loginOpenHandler(false);
+        ga.event({
+          category: 'login',
+          action: 'login button clicked',
+          params : {
+            method: 'JWT'
+          }
+        });
       }).catch(() => {
         setErrorMessage('회원정보가 존재하지 않습니다');
       });
@@ -78,13 +86,17 @@ export default function Login({ loginOpenHandler, loginHandler }) {
       setErrorMessage('비밀번호를 확인해 주세요');
     } else {
       await axios.post('/api/user', {
-        username: userId,
+        userId: userId,
         password: password2
       }, {
         'content-type': 'application/json',
         withCredentials: true
       }).then(() => {
         setIsFinish(true);
+        ga.event({
+          category: 'sign_up',
+          action: 'sign up button clicked',
+        });
       }).catch((err) => {
         console.log(err);
       });
@@ -93,6 +105,13 @@ export default function Login({ loginOpenHandler, loginHandler }) {
 
   const googleLogin = async () => {
     window.location.assign(`${googleLoginUrl}`);
+    ga.event({
+      category: 'login',
+      action: 'login button clicked',
+      params : {
+        method: 'Google'
+      }
+    });
   };
 
   const finishHandler = () => {

@@ -47,13 +47,13 @@ export default function Ranking({ isLogin }) {
       return;
     } else if (e.following === false) {
       await axios.post('/api/follower', {
-        username: e.username
+        userId: e.userId
       }, {
         'content-type': 'application/json',
         withCredentials: true
       }).then((result) => {
         rankingList = rankingList.map((rank) => {
-          if (rank.username === e.username) {
+          if (rank.userId === e.userId) {
             rank.following = result.data.result;
             return rank;
           }
@@ -64,13 +64,13 @@ export default function Ranking({ isLogin }) {
     } else if (e.following === true) {
       await axios.delete('/api/follower', {
         data: {
-          username: e.username
+          userId: e.userId
         },
         'content-type': 'application/json',
         withCredentials: true
       }).then(() => {
         rankingList = rankingList.map((rank) => {
-          if (rank.username === e.username) {
+          if (rank.userId === e.userId) {
             rank.following = false;
             return rank;
           }
@@ -96,7 +96,7 @@ export default function Ranking({ isLogin }) {
       <div className={styles.box}>
         {rankingList.slice(0, 3).map((rank, index) => {
           return (
-            <React.Fragment key={rank.username}>
+            <React.Fragment key={rank.userId}>
               <div className={styles.box_ranking}>
                 <span className={rank.following === 'me'
                   ? styles.ranking_me
@@ -104,9 +104,9 @@ export default function Ranking({ isLogin }) {
                 }>{index + 1}</span>
                 <div className={styles.img}>
                   <Image 
-                    src={rank.photourl === ''
+                    src={rank.photoUrl === ''
                       ? profile
-                      : rank.photourl
+                      : rank.photoUrl
                     }
                     width="160"
                     height="160"
@@ -133,7 +133,7 @@ export default function Ranking({ isLogin }) {
                     ? styles.id_following
                     : styles.id
                 }>
-                  {rank.username}
+                  {rank.userId}
                 </span>
                 <span className={rank.following === 'me'
                   ? styles.score_me
@@ -150,13 +150,13 @@ export default function Ranking({ isLogin }) {
       <div className={styles.box_list}>
         {rankingList.slice(3).map((rank, index) => {
           return (
-            <React.Fragment key={rank.username}>
+            <React.Fragment key={rank.userId}>
               <div className={styles.list}>
                 <div className={rank.following === 'me' 
                   ? styles.list_word_me
                   : styles.list_word
                 }>
-                  {index + 4} {rank.username}
+                  {index + 4} {rank.userId}
                 </div>
                 <div className={rank.following === 'me' 
                   ? styles.list_score_me
