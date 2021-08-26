@@ -26,6 +26,16 @@
   const container = document.querySelector('#automata_game_container');
   let { left, top, width, height } = container.getBoundingClientRect();
 
+  // responsive
+  let fontSize;
+  if (window.innerWidth > 1110) {
+    fontSize = 16;
+  } else if (window.innerWidth > 590) {
+    fontSize = 14;
+  } else {
+    fontSize = 14;
+  }
+
   // stage
   const stage = document.createElement('div');
   Object.assign(stage.style, {
@@ -41,10 +51,10 @@
   const board = document.createElement('div');
   Object.assign(board.style, {
     position: 'absolute',
-    left: '25px',
-    top: '25px',
-    width: '550px',
-    height: '417px',
+    left: '5%',
+    top: '5%',
+    width: '90%',
+    height: '63%',
     overflow: 'hidden'
   });
 
@@ -55,8 +65,8 @@
   let from = null;
   const canvas = document.createElement('canvas');
   Object.assign(canvas, {
-    width: 550,
-    height: 417,
+    width: `${width}px`,
+    height: `${height}px`,
     style: 'all: unset; background-color: #0C1B21;',
     oncontextmenu: (e) => {
       e.preventDefault();
@@ -183,12 +193,12 @@
   const eraser = document.createElement('div');
   Object.assign(eraser.style, {
     position: 'absolute',
-    left: '410px',
-    top: '397px',
-    width: '100px',
+    right: '45px',
+    bottom: '0px',
+    width: '80px',
     height: '20px',
     borderRadius: '10px 10px 0 0',
-    backgroundColor: 'white',
+    backgroundColor: '#cccccc',
     zIndex: 1
   });
 
@@ -197,7 +207,7 @@
   const quiz = document.createElement('div');
   Object.assign(quiz, {
     textContent: quizTexts[0],
-    style: 'position: absolute; left: 25px; top: 475px; width: 550px; height: 70px; background-color: black; color: red; font: 16px \'Source Code Pro\', monospace; word-break: keep-all;',
+    style: 'position: absolute; left: 5%; bottom: 20%; width: 90%; height: 10%; overflow: auto; background-color: black; color: red; font-fize: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; word-break: keep-all;',
     onwheel: (e) => {
       y += e.deltaY;
       level = Math.floor(y / 100) % quizTexts.length;
@@ -210,7 +220,7 @@
 
   // device
   const device = document.createElement('div');
-  device.style = 'position: absolute; left: 25px; top: 570px; width: 550px; height: 100px; background-color: black; font: 16px \'Source Code Pro\', monospace; white-space: pre;';
+  device.style = 'position: absolute; left: 5%; bottom: 5%; width: 90%; height: 14%; background-color: black; font-fize: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; white-space: pre; overflow: auto;';
 
   container.append(stage);
   stage.append(board, quiz, device);
