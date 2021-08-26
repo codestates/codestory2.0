@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import linux from '../public/linux.gif';
-import tips from '../public/tips.gif';
+import tips from '../public/tips.png';
 import gsap, { Power4 } from 'gsap';
 import styles from '../styles/modules/landing_linux.module.scss';
 import * as ga from '../lib/ga';
