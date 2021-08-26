@@ -32,9 +32,7 @@ function MyApp({ Component, pageProps, router }) {
             setIsLogin(true);
           }
         }
-        catch {
-          console.log('로그인하세요');
-        }
+        catch { }
       })();
     }
   }, [isLogin]);
