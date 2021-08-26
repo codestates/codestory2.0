@@ -46,7 +46,7 @@ export default function Linux_game({ linuxSource, isLogin }) {
         data: {
           type: 'score',
           score: curScore + 120,
-          apiPassword: process.env.NEXT_PUBLIC_API_PASSWORD
+          apiPassword: process.env.NEXT_PUBLIC_ACCESS_SECRET
         }}, {
         'content-type': 'application/json',
         withCredentials: true

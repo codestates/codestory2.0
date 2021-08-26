@@ -80,22 +80,3 @@ export default function Home({ loginHandler, isLogin }) {
     </Layout>
   );
 }
-
-export async function getServerSideProps(context) {
-  try {
-    const { data } = await axios.get('http://localhost:3000/api/user', { headers: { cookie: `accessToken=${context.req.cookies.accessToken}` } });
-    return {
-      props: {
-        isLogin: true,
-        userId: data.userId
-      }
-    };
-  }
-  catch {
-    return {
-      props: {
-        isLogin: false
-      }
-    };
-  }
-}

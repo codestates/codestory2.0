@@ -90,7 +90,7 @@ export default async function user(req, res) {
       const jwt = await isAuthorizedJwt(req);
       const oauth = await isAuthorizedOauth(req);
       if (req.body.data && req.body.data.type) {
-        if (req.body.data.type === 'score' && req.body.data.apiPassword === process.env.NEXT_PUBLIC_API_PASSWORD) {
+        if (req.body.data.type === 'score' && req.body.data.apiPassword === process.env.NEXT_PUBLIC_ACCESS_SECRET) {
           if (jwt) {
             await models.users.update({ score: req.body.data.score }, { where: { id: jwt.id } });
             res.status(200).json({ message: 'ok' });
