@@ -69,6 +69,13 @@ const tips = [
     description3: '[cp 이름.확장자 폴더이름] 폴더에 파일복사',
     example: '$ cp -rf temp temp1'
   },
+  {
+    command: 'clear',
+    description1: '유래: clear',
+    description2: '[clear] 터미널의 입력 기록을 삭제',
+    description3: '터미널 화면의 기록들을 삭제',
+    example: '$ clear'
+  },
 ]; 
 
 export default tips;

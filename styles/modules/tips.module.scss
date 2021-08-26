@@ -132,4 +132,12 @@
   .example {
     font-size: $base-font-size * 0.9;
   }
+  .close {
+    width: 70px;
+    height: 35px;
+    font-size: $base-font-size * 0.8; 
+  }
+  .close:hover {
+    width: 60px;
+  }
 }
