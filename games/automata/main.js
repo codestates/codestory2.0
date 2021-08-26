@@ -197,7 +197,7 @@
   const quiz = document.createElement('div');
   Object.assign(quiz, {
     textContent: quizTexts[0],
-    style: 'position: absolute; left: 5%; bottom: 20%; width: 90%; height: 10%; overflow: auto; background-color: black; color: red; font-fize: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; word-break: keep-all;',
+    style: 'position: absolute; left: 5%; bottom: 20%; width: 90%; height: 10%; overflow: auto; background-color: black; color: red; font-size: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; word-break: keep-all;',
     onwheel: (e) => {
       y += e.deltaY;
       level = Math.floor(y / 100) % quizTexts.length;
@@ -210,7 +210,7 @@
 
   // device
   const device = document.createElement('div');
-  device.style = 'position: absolute; left: 5%; bottom: 5%; width: 90%; height: 14%; background-color: black; font-fize: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; white-space: pre; overflow: auto;';
+  device.style = 'position: absolute; left: 5%; bottom: 5%; width: 90%; height: 14%; background-color: black; font-size: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; white-space: pre; overflow: auto;';
 
   container.append(stage);
   stage.append(board, quiz, device);
