@@ -27,15 +27,18 @@ function MyApp({ Component, pageProps, router }) {
     if (isLogin === false) {
       (async () => {
         try {
-          const userInfo = await axios.get('api/user', { withCredentials: true });
-          if (userInfo && userInfo.data && userInfo.data.userId) {
-            setIsLogin(true);
+          const cookie = document.cookie.split('; ');
+          if (cookie && cookie.includes('loginState=true')) {
+            const userInfo = await axios.get('api/user', { withCredentials: true });
+            if (userInfo && userInfo.data && userInfo.data.userId) {
+              setIsLogin(true);
+            }
           }
         }
         catch { }
       })();
     }
-  }, [isLogin]);
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
