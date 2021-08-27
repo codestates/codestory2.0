@@ -1,7 +1,5 @@
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import Ranking from '../components/Ranking';
 import styles from '../styles/modules/automata.module.scss';
@@ -71,10 +69,6 @@ export default function Automata({ loginHandler, isLogin, automataGame }) {
           }
         </div>
       </div>
-      {component[0] === 'Automata_game' 
-        ? <GameFooter isWhite={isWhite}/> 
-        : <Footer isWhite={isWhite}/>
-      }
     </Layout>
   );
 };

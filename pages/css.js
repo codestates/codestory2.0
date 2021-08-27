@@ -1,7 +1,5 @@
 import Layout from '../components/Layout';
 import Nav from '../components/Nav';
-import Footer from '../components/Footer';
-import GameFooter from '../components/GameFooter';
 import Tips from '../components/Tips';
 import styles from '../styles/modules/css.module.scss';
 import { useState } from 'react';
@@ -68,10 +66,6 @@ export default function CSS({ loginHandler, isLogin, cssGame }) {
           }
         </div>
       </div>
-      {component[0] === 'Css_game' 
-        ? <GameFooter isWhite={isWhite}/> 
-        : <Footer isWhite={isWhite}/>
-      }
     </Layout>
   );
 };
