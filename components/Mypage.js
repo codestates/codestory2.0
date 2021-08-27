@@ -1,25 +1,75 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../styles/modules/mypage.module.scss';
 import Image from 'next/image';
 import profile from '../public/profile.png';
 
-export default function Mypage() {
+export default function Mypage({ isLogin }) {
 
-  const serverUrl = 'https://';
+  const [userInfo, setUserInfo] = useState({
+    userId: '',
+    photoUrl: '',
+    score: 0,
+    intro: '',
+    ranking: 0,
+    follower: 0,
+    following: 0
+  });
   const [isEditmode, setIsEditmode] = useState(false);
-  const [currentWord, setCurrentWord] = useState('안녕하세요!');
+  const [currentWord, setCurrentWord] = useState('안녕하세요');
+  const [currentImage, setCurrentImage] = useState(profile);
+
+  useEffect(() => {
+    if (isLogin === true) {
+      (async () => {
+        try {
+          const userInfoData = await axios.get('/api/user', { withCredentials: true });
+          setUserInfo(userInfoData.data);
+        }
+        catch (err) {
+
+        }
+      })();
+    } else {
+      setUserInfo(
+        {
+          userId: '',
+          photoUrl: '',
+          score: 0,
+          intro: '안녕하세요',
+          ranking: 1,
+          follower: 0,
+          following: 0
+        }
+      );
+    }
+  }, [isLogin]);
+
+  useEffect(() => {
+    if (isLogin === true) {
+      setCurrentWord(userInfo.intro);
+    }
+  }, [userInfo]);
+
+  useEffect(() => {
+    if (isLogin === true) {
+      setCurrentImage(userInfo.photoUrl);
+    }
+  }, [userInfo]);
 
   const openEditMode = () => {
     setIsEditmode(true);
   };
 
-  const updateImg =  async (e) => {
-    // const formData = new FormData();
-    // formData.append('file', e.target.files[0]);
-    // const res = await axios.post(serverUrl+'/user/image', formData, {
-    //   'content-type' : 'application/json', withCredentials : true 
-    // });
+  const updateImg = async (e) => {
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    await axios.patch('/api/imageupload/', formData, {
+      'content-type' : 'application/json', 
+      withCredentials : true 
+    }).then(result => {
+      setCurrentImage(result.data);
+    });
   };
 
   const updateWord = (e) => {
@@ -30,14 +80,17 @@ export default function Mypage() {
 
   const handleKeyPress = async (e) => {
     if (e.key === 'Enter') {
-      // if (currentWord.length > 0) {
-      //   await axios.patch(serverUrl+'/user', {
-      //     word: currentWord
-      //   }, {
-      //     'content-type': 'application/json',
-      //     withCredentials: true
-      //   });
-      // }
+      if (currentWord.length > 0) {
+        await axios.patch('/api/user', {
+          data: {
+            type: 'word',
+            word: currentWord
+          }
+        }, {
+          'content-type': 'application/json',
+          withCredentials: true
+        });
+      }
       setIsEditmode(false);
     }
   };
@@ -52,20 +105,19 @@ export default function Mypage() {
       <div className={styles.box}>
         <div className={styles.box_ranking}>
           <div className={styles.ranking_text}>Score</div>
-          <div className={styles.ranking_num}>200</div>
+          <div className={styles.ranking_num}>{userInfo.score}</div>
         </div>
         <div className={styles.box_score}>
           <div className={styles.score_text}>Ranking</div>
-          <div className={styles.score_num}>1</div>
+          <div className={styles.score_num}>{userInfo.ranking}</div>
         </div>
       </div>
       <div className={styles.box_img}>
         <div className={styles.img}>
           <Image 
-            // src={userInfo.photourl !== '../?'
-            //   ? userInfo.photourl
-            //   : profile}
-            src={profile}
+            src={currentImage !== '' 
+              ? currentImage 
+              : profile}
             width="160"
             height="160"
             alt="img_profile"
@@ -79,7 +131,7 @@ export default function Mypage() {
             사진 업로드
           </div>
         </div>
-        <span className={styles.id}>Kimcoding</span>
+        <span className={styles.id}>{userInfo.userId}</span>
       </div>
       {isEditmode 
         ?

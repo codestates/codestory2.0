@@ -5,15 +5,135 @@
 
 .game {
   position: relative;
+  margin: auto;
+  z-index: 1000;
   width: 38vw;
   height: 44vw;
-  margin: auto;
+  :global(#linux_result_background) {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: #614EDB;
+  }
+  :global(#linux_game_container) {
+    width: 38vw;
+    height: 75vh;
+    :global(#linux_check_title) {
+      position: fixed;
+      left: 1vw;
+      top: 35vh;
+      margin-left: 22px;
+      text-align: left;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    :global(#linux_check_ul) {
+      position: fixed;
+      left: 1vw;
+      top: 39vh;
+      width: 28vw;
+    }
+    :global(#linux_check_first),
+    :global(#linux_check_second),
+    :global(#linux_check_third) {
+      margin: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 20px;
+      word-break: keep-all;
+    }
+  } 
+}
+
+.result_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  font-family: $base-font-family ;
+  background-color: #614EDB;
+}
+
+.box_img {
+  width: 300px;
+}
+
+.word,
+.subword {
+  margin-bottom: 20px;
+  font-size: $base-font-size * 5;
+  letter-spacing: 0.01rem;
+  font-family: $sans-serif;
+  font-weight: 500;
+  color: $white;
+}
+
+.subword {
+  margin-top: 20px;
+  font-size: $base-font-size * 3;
+}
+
+.btn_container {
+  display: flex;
+}
+
+.btn_white {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 60px;
+  margin: 10px 20px;
+  border-radius: 30px;
+  line-height: 30px;
+  border: 3px solid $white;
+  font-family: $base-font-family;
+  font-size: $base-font-size * 1.3;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+  color: $white;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.btn_white:hover {
+  width: 150px;
+  border: 2px solid $gray;
+  background-color: $gray;
+  color: $white;
 }
 
 @include breakpoint(medium) {
   .game {
     width: 38vw;
     height: 44vw;
+    :global(#linux_game_container) {
+      width: 38vw;
+      height: 44vw;
+      :global(#linux_check_title) {
+        left: 0vw;
+        font-size: 18px;
+      }
+      :global(#linux_check_ul) {
+        left: 1vw;
+        top: 39vh;
+        width: 28vw;
+        line-height: 22px;
+      }
+      :global(#linux_check_first),
+      :global(#linux_check_second),
+      :global(#linux_check_third) {
+        margin: 0px;
+        font-size: 14px;
+        line-height: 16px;
+      }
+    } 
   }
 }
 
@@ -22,5 +142,40 @@
     margin-bottom: 90px;
     width: 335px;
     height: 338px;
+    :global(#linux_game_container) {
+      width: 335px;
+      height: 338px;
+      :global(#linux_check_title) {
+        position: absolute;
+        left: -6vw;
+        top: -22vh;
+        font-size: 16px;
+      }
+      :global(#linux_check_ul) {
+        position: absolute;
+        margin-top: 4px;
+        left: -3vw;
+        top: -19vh;
+        width: 335px;
+        font-size: 16px;
+      }
+    } 
+  }
+  .box_img {
+    width: 200px;
+    height: 200px;
+  }
+  .word {
+    margin-bottom: 35px;
+    font-size: $base-font-size * 3;
+  }
+  .subword {
+    font-size: $base-font-size * 2;
+  }
+  .btn_container {
+    flex-direction: column;
+  }
+  .btn_white {
+    margin-bottom: 10px;
   }
 }

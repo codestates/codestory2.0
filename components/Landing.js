@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styles from '../styles/modules/landing.module.scss';
 import Landing_linux from './Landing_linux';
+import Landing_automata from './Landing_automata';
+import Landing_css from './Landing_css';
 
 export default function Landing({ colorHandler }) {
 
@@ -27,27 +29,17 @@ export default function Landing({ colorHandler }) {
         onSlideChange={(idx) => idxHandler(idx)}
       >
         <div className={styles.box_btn}>
-          <div className={currentIdx === 1 ? styles.btn_arrow_white : styles.btn_arrow}>&lt;</div>
-          <div className={currentIdx === 1 ? styles.btn_arrow_white : styles.btn_arrow}>&gt;</div>
+          <div className={currentIdx === 2 ? styles.btn_arrow_white : styles.btn_arrow}>&lt;</div>
+          <div className={currentIdx === 2 ? styles.btn_arrow_white : styles.btn_arrow}>&gt;</div>
         </div>
         <SwiperSlide>
-          <div className={styles.container}>
-            <Landing_linux />
-          </div>
+          <Landing_linux currentIdx={currentIdx} />
         </SwiperSlide>
         <SwiperSlide>
-          <div className={styles.container2}>
-            <Link href="/css" passHref>
-              <button className={styles.btn_game_white}>Start CSS</button>
-            </Link>
-          </div>
+          <Landing_automata currentIdx={currentIdx} />
         </SwiperSlide>
         <SwiperSlide>
-          <div className={styles.container3}>
-            <Link href="/automata" passHref>
-              <button className={styles.btn_game}>Start Automata</button>
-            </Link>
-          </div>
+          <Landing_css currentIdx={currentIdx} />
         </SwiperSlide>
       </Swiper>
     </div>

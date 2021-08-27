@@ -60,8 +60,6 @@
 
 .page-exit-active {
   opacity: 0;
-  transform: scale(1);
-  transition: opacity 400ms, transform 400ms;
 }
 
 #nprogress .bar {
@@ -78,83 +76,13 @@
   border-left-color: #fff !important;
 }
 
-#linux_game_container {
-  width: 38vw;
-  height: 44vw;
-}
-
-#linux_check_title {
-  position: absolute;
-  display: none;
-  left: -30vw;
-  top: 10vh;
-  width: 28vw;
-  text-align: left;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-#linux_check_ul {
-  position: absolute;
-  left: -30vw;
-  top: 14vh;
-  width: 28vw;
-  list-style-image: url('../public/check.svg');
-  font-size: 12px;
-}
-
-#linux_check_first,
-#linux_check_second,
-#linux_check_third {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-#css_game_container {
-  width: 670px;
-  height: 775px;
-}
-
-#automata_game_container {
-  width: 670px;
-  height: 775px;
-}
-
-@include breakpoint(medium) {
-  #linux_game_container {
-    width: 38vw;
-    height: 44vw;
-  }
-
-  #linux_check_ul {
-    left: -30vw;
-    top: 4vh;
-    width: 28vw;
-  }
-
-  #linux_check_first,
-  #linux_check_second,
-  #linux_check_third {
-    font-size: 12px;
-  }
-}
-
-@include breakpoint(extra-small) {
-  #linux_game_container {
-    width: 335px;
-    height: 338px;
-  }
-
-  #linux_check_ul {
-    left: -3vw;
-    top: -22vh;
-    width: 88vw;
-    font-size: 16px;
-  }
-
-  #linux_check_first,
-  #linux_check_second,
-  #linux_check_third {
-    font-size: 14px;
-  }
+#linux_display {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background-color: #614EDB;
+  z-index: 1;
 }

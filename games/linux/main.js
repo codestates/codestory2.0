@@ -3,6 +3,7 @@
   canvas.style = 'all: unset;';
   const gameContainer = document.querySelector('#linux_game_container');
   gameContainer.append(canvas);
+  let gameResult = document.querySelector('#linux_result_background');
   const ctx = canvas.getContext('2d');
   const checkTitleDiv = document.createElement('div');
   checkTitleDiv.setAttribute('id', 'linux_check_title');
@@ -46,13 +47,13 @@
   error.children['.'] = error;
   error.children['bugKing.js'] = bugKing;
   let sudo = 0;
-  let solvedProblem = 0;
+  let bar = true;
   const linuxPassword = '123456789';
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
   const easyGoal = ['현재 위치에 아무 폴더나 만드시오', '현재 위치에 아무 파일이나 만드시오', '지금까지 쓴 것을 지우시오', '현재 위치를 확인하시오', '현재 위치의 폴더 및 파일을 커맨드 창에서 확인하시오', 
     '현재 위치에서 보이지 않는 폴더 및 파일을 확인하시오', 'Desktop folder에서 open_me.txt 파일을 여시오', 'Desktop folder에서 delete_me.sh 파일을 삭제하시오', 'Desktop folder에서 Delete_me 폴더를 삭제하시오',
-    'Desktop folder에서 move_me.js 파일을 Destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 Destination 폴더로 이동시키시오'];
+    'Desktop folder에서 move_me.js 파일을 Destination 폴더로 이동시키시오', 'Desktop folder에서 copy_me.js 파일을 Destination 폴더로 복사시키시오'];
   const easyHint = ['(hint: mkdir)', '(hint: touch)', '(hint: clear)', '(hint: pwd)', '(hint: ls)', '(hint: ls -a)', '(hint: cat)', '(hint: rm)', '(hint: rm -r)', '(hint: mv)', '(hint: cp)'];
   const hardGoal = [['Desktop에 숨겨진 파일이 하나 있습니다. 그 것을 찾아 여시오.', '파일안의 관리자 비밀번호를 이용해 Error폴더로 이동해 bugKing.js 파일을 지우시오']];
   const hardHint = [['(hint: ls -a, cat)', '(hint: cd, sudo rm)']];
@@ -79,24 +80,49 @@
   firstFolder.src = 'folder_icon.png';
   firstFile.src = 'file_icon.png';
   let textArr = [`Last login: ${new Date().toUTCString()}`, `${wd.name} $ `];
-  const fontSize = 16;
+  let fontSize = 16;
   let lengthLimit = parseInt(canvas.width * 0.1);
   let lineLimit = parseInt(canvas.height * 0.012);
 
-  document.addEventListener('keydown', keyDownHandler);
+  const navOutButton = document.querySelector('.nav_btn_nav_bar__1WxRi');
+  const navInButton = document.querySelector('.nav_btn_nav__2yz27');
+  
+  canvas.addEventListener('click', () => {
+    document.addEventListener('keydown', keyDownHandler, true);
+  });
+  gameContainer.addEventListener('click', () => {
+    document.addEventListener('keydown', keyDownHandler, true);
+  });
+  navOutButton.addEventListener('click', () => {
+    document.removeEventListener('keydown', keyDownHandler, true);
+  });
+  navInButton.addEventListener('click', () => {
+    document.removeEventListener('keydown', keyDownHandler, true);
+  });
+
   function setSize() {
     if (window.innerWidth > 1110) {
+      lengthLimit = 60;
+      fontSize = canvas.width * 0.03;
       canvas.width = window.innerWidth * 0.38;
       canvas.height = window.innerWidth * 0.44;
     } else if (window.innerWidth > 590) {
+      lengthLimit = 53;
+      fontSize = 16;
       canvas.width = window.innerWidth * 0.38;
       canvas.height = window.innerWidth * 0.44;
     } else {
+      lengthLimit = 45;
+      fontSize = 16;
       canvas.width = 335;
       canvas.height = 388;
     }
   }
+
   function keyDownHandler(e) {
+    if (e.metaKey) {
+      return 0;
+    }
     switch (e.keyCode) {
     case 8:
       if (sudo !== 1 && textArr[textArr.length - 1].length > wd.name.length + 3) {
@@ -287,7 +313,6 @@
               }
             }
           }
-
           return fileLengthForLine;
         }
         function makeList(lsForm, listArray) {
@@ -473,7 +498,6 @@
           }
         }
       ];
-
       const hardAnswerCheckList = [
         () => {
           if (!error.children['bugKing.js']) {
@@ -481,7 +505,6 @@
           }
         }
       ];
-      
       if (easyList.length !== 0) {
         for (let i = 0; i < 3; i++) {
           if (easyList[i] || easyList[i] === 0) {
@@ -496,6 +519,7 @@
     case 16:
     case 17:
     case 18:
+    case 20:
     case 27:
     case 33:
     case 34:
@@ -530,7 +554,7 @@
     ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#eee';
     ctx.fill();
-    ctx.font = `${canvas.width * 0.035}px Courier New`;
+    ctx.font = `${fontSize}px Ubuntu mono`;
     ctx.fillStyle = 'black';
     ctx.fillText(leftfolder[0], 0.035 * canvas.width, 0.12 * canvas.height);
     ctx.fillText(leftfolder[1], 0.035 * canvas.width, 0.2 * canvas.height);
@@ -543,7 +567,7 @@
     ctx.rect(0, 0, canvas.width, 0.05 * canvas.height);
     ctx.fillStyle = 'rgb(63,63,63)';
     ctx.fill();
-    ctx.font = `${fontSize}px Courier New`;
+    ctx.font = `${fontSize}px Ubuntu mono`;
     ctx.fillStyle = 'white';
     ctx.fillText(wd.name, 0.035 * canvas.width, 0.035 * canvas.height);
     ctx.closePath();
@@ -582,18 +606,18 @@
       }
       ctx.fill();
       ctx.closePath();
-      ctx.font = `${fontSize}px Courier New`;
+      ctx.font = `${fontSize}px Ubuntu Mono`;
       ctx.fillStyle = '#000000';
       const lengthLimit = parseInt(canvas.width * 0.023);
       if (f.length > lengthLimit) {
-        ctx.fillText(`${f.slice(0, lengthLimit-2)}..`, lineX + 0.15 * fWidth, lineY + fHeight);
+        ctx.fillText(`${f.slice(0, lengthLimit - 2)}..`, lineX + 0.15 * fWidth, lineY + fHeight);
       } else {
         ctx.fillText(f, lineX + 0.15 * fWidth, lineY + fHeight);
       }
     }
   }
   function drawText() {
-    ctx.font = `${fontSize}px Courier New`;
+    ctx.font = `bold ${fontSize - 2}px Ubuntu Mono`;
     ctx.fillStyle = 'white';
     let linePosition = 1;
     for (let i = Math.max(textArr.length - lineLimit, 0); i < textArr.length; ++i) {
@@ -602,47 +626,77 @@
         ++linePosition;
       }
     }
+    if (bar) {
+      ctx.beginPath();
+      ctx.rect(0.02 * canvas.width + (textArr[textArr.length - 1].length % lengthLimit) * fontSize * 0.450, 0.717 * canvas.height + (linePosition - 2) * fontSize , fontSize * 0.5, fontSize * 0.9);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+    }
   }
   function drawCheckList() {
     checkTitleDiv.textContent = `CheckList (${easyGoal.length + 1 - easyList.length - hardList.length}/${easyGoal.length + 1})`;
     if (easyList.length !== 0) {
       checkList = [...easyList];
       firstCheckList.textContent = `${easyGoal[checkList[0]]} ${easyHint[checkList[0]]}`;
+      firstCheckList.style.listStyleImage = 'url("check.svg")';
       if (easyList[1] || easyList[1] === 0) {
         secondCheckList.textContent = `${easyGoal[checkList[1]]} ${easyHint[checkList[1]]}`;
+        secondCheckList.style.listStyleImage = 'url("check.svg")';
       } else {
         secondCheckList.textContent = '';
+        secondCheckList.style.listStyle = 'none';
       }
       if (easyList[2] || easyList[2] === 0) {
         thirdCheckList.textContent = `${easyGoal[checkList[2]]} ${easyHint[checkList[2]]}`;
+        thirdCheckList.style.listStyleImage = 'url("check.svg")';
       } else {
         thirdCheckList.textContent = '';
+        thirdCheckList.style.listStyle = 'none';
       }
     } else {
       if (hardList.length !== 0) {
         checkList = [hardList[0]];
         firstCheckList.textContent = `${hardGoal[checkList[0]][0]} ${hardHint[checkList[0]][0]}`;
+        firstCheckList.style.listStyleImage = 'url("check.svg")';
         if (hardGoal[checkList[0]][1]) {
           secondCheckList.textContent = `${hardGoal[checkList[0]][1]} ${hardHint[checkList[0]][1]}`;
+          secondCheckList.style.listStyleImage = 'url("check.svg")';
         } else {
           secondCheckList.textContent = '';
+          secondCheckList.style.listStyle = 'none';
         }
         if (hardGoal[checkList[0][2]]) {
           thirdCheckList.textContent = `${hardGoal[checkList[0]][2]} ${hardHint[checkList[0]][2]}`;
+          thirdCheckList.style.listStyleImage = 'url("check.svg")';
         } else {
           thirdCheckList.textContent = '';
+          thirdCheckList.style.listStyle = 'none';
         }
       } else {
         firstCheckList.textContent = '';
+        firstCheckList.style.listStyle = 'none';
         secondCheckList.textContent = '';
+        secondCheckList.style.listStyle = 'none';
         thirdCheckList.textContent = '';
+        thirdCheckList.style.listStyle = 'none';
+        gameResult.setAttribute('id', 'linux_display');
+        canvas.setAttribute('style', 'display: none');
+        checkTitleDiv.setAttribute('style', 'display: none');
       }
     }
   }
+
+  const gameRepeater = setInterval(draw, 10);
+  const barRepeater = setInterval(() => {
+    bar = !bar;
+    if (easyList.length === 0 && hardList.length === 0) {
+      clearInterval(barRepeater);
+    }
+  }, 500)
+
   function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setSize();
-    lengthLimit = parseInt(canvas.width * 0.1);
     lineLimit = parseInt(canvas.height * 0.012);
     drawCheckList();
     drawBackGround();
@@ -650,6 +704,8 @@
     drawCLI();
     drawGUI();
     drawText();
+    if (easyList.length === 0 && hardList.length === 0) {
+      clearInterval(gameRepeater);
+    }
   }
-  setInterval(draw, 10);
 })();

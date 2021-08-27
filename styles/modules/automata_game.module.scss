@@ -1,6 +1,35 @@
 /* Automata Game */
 
+@import "../variables";
+@import "../mixins";
+
 .game {
   position: relative;
   margin: auto;
+  :global(#automata_game_container) {
+    width: 560px;
+    height: 600px;
+    margin-bottom: -20px;
+  }
+}
+
+@include breakpoint(medium) {
+  .game {
+    :global(#automata_game_container) {
+      margin-top: 40px;
+      width: 480px;
+      height: 520px;
+    } 
+  }
+}
+
+@include breakpoint(extra-small) {
+  .game {
+    :global(#automata_game_container) {
+      margin-top: 80px;
+      margin-bottom: -30px;
+      width: 86vw;
+      height: 60vh;
+    }
+  }
 }

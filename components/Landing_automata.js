@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import linux from '../public/linux.gif';
-import tips from '../public/tips.png';
+import img1 from '../public/automata1.png';
 import gsap, { Power4 } from 'gsap';
-import styles from '../styles/modules/landing_linux.module.scss';
+import styles from '../styles/modules/landing_automata.module.scss';
 import * as ga from '../lib/ga';
 
-export default function Landing_linux({ currentIdx }) {
+export default function Landing_automata({ currentIdx }) { 
 
   const [textTl] = useState(gsap.timeline({ repeat: -1 , overwrite: 'auto' }));
   const text = {};
 
   useEffect(() => {
-    if (currentIdx === 0) {
+    if (currentIdx === 1) {
       textTl
         .restart(true, true)
         .from(text.box1, {
@@ -67,12 +66,6 @@ export default function Landing_linux({ currentIdx }) {
           display: 'flex',
           ease: Power4.easeOut,
         }, 0)
-        .to(text.img2, {
-          delay: 8,
-          display: 'block',
-          y: 15,
-          ease: Power4.easeOut,
-        }, 0)
         .to(text.text3, {
           duration: 2,
           delay: 8,
@@ -87,7 +80,7 @@ export default function Landing_linux({ currentIdx }) {
           y: 15,
           ease: Power4.easeOut,
         }, 0)
-        .to(text.img2, {
+        .to(text.text5, {
           duration: 2,
           delay: 10,
           opacity: 1,
@@ -100,14 +93,6 @@ export default function Landing_linux({ currentIdx }) {
           opacity: 0,
           display: 'none',
           ease: Power4.easeOut,
-        }, 0)
-        .to(text.img2, {
-          duration: 1,
-          delay: 15,
-          opacity: 0,
-          display: 'none',
-          y: 15,
-          ease: Power4.easeOut,
         }, 0);
     } else {
       textTl.kill();
@@ -117,7 +102,7 @@ export default function Landing_linux({ currentIdx }) {
   const play = () => {
     ga.event({
       category: 'select_content',
-      action: 'linux play button clicked'
+      action: 'automata play button clicked'
     });
   };
 
@@ -135,17 +120,16 @@ export default function Landing_linux({ currentIdx }) {
           <span className={styles.word2}
             ref={e => (text['text2'] = e)}
           >
-            Linux CLI
+            Automata
           </span>
         </div>
         <div className={styles.img}
           ref={e => (text['img1'] = e)}
         >
-          <Image 
-            src={linux}
-            width="520"
-            height="600"
-            alt="linux_game"
+          <Image src={img1}
+            width="419"
+            height="323"
+            alt="automata1"
           />
         </div>
         <div className={styles.box_word2}
@@ -154,29 +138,24 @@ export default function Landing_linux({ currentIdx }) {
           <span className={styles.word3}
             ref={e => (text['text3'] = e)}
           >
-            실제 CLI 명령어로
+            오토마타 게임을 통해
           </span>
           <span className={styles.word4}
             ref={e => (text['text4'] = e)}
           >
-            학습을 진행합니다
+            컴퓨팅 사고능력을
+          </span>
+          <span className={styles.word5}
+            ref={e => (text['text5'] = e)}
+          >
+            키워보세요
           </span>
         </div>
-        <div className={styles.img2}
-          ref={e => (text['img2'] = e)}
-        >
-          <Image 
-            src={tips}
-            width="450"
-            height="300"
-            alt="linux_tips"
-          />
-        </div>
       </div>
-      <Link href="/linux" passHref>
+      <Link href="/automata" passHref>
         <button className={styles.btn_game}
           onClick={() => play()}
-        >Play Linux CLI</button>
+        >Play Automata</button>
       </Link>
     </div>
   );

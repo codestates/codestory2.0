@@ -7,9 +7,9 @@ export default async function signin(req, res) {
   case 'POST':
     try {
       const password = req.body.password;
-      const username = req.body.username;
+      const userId = req.body.userId;
       const userInfo = await db.users.findOne({
-        where: { userId: username }
+        where: { userId: userId }
       });
       if (!userInfo) {
         res.status(400).json({ message: 'badrequest' });
@@ -21,7 +21,7 @@ export default async function signin(req, res) {
             if (incomingPassword === userInfo.dataValues.password) {
               delete userInfo.dataValues.password;
               delete userInfo.dataValues.salt;
-              const accessToken = generateAccessToken(userInfo.dataValues);
+              const accessToken = await generateAccessToken(userInfo.dataValues);
               sendAccessToken(res, accessToken);
             } else {
               res.status(400).json({ message: 'badrequest' });

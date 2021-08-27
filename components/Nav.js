@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
@@ -9,7 +10,15 @@ import Landing from './Landing';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
 
-export default function Nav({ componentHandler, isWhite, loginOpenHandler, colorHandler }) {
+export default function Nav({ 
+  componentHandler, 
+  isWhite, 
+  loginOpenHandler, 
+  colorHandler, 
+  isLogin, 
+  loginHandler, 
+  homeClickHandler
+}) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [menuTl] = useState(gsap.timeline({ paused: true }));
@@ -57,15 +66,21 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
     setIsOpen(!isOpen);
     menuTl.reversed(!menuTl.reversed());
     componentHandler(component);
-    if (component.type.name === 'About' ||
-      component.type.name === 'Ranking' ||
-      component.type.name === 'Mypage') {
-      colorHandler(1);
+    if (component[0] !== 'Landing') {
+      colorHandler(2);
     }
   };
 
   const logoClickHandler = (component) => {
     componentHandler(component);
+  };
+
+  const logoutHandler = (component) => {
+    axios.get('/api/signout', { withCredentials: true });
+    loginHandler(false);
+    componentHandler(component);
+    setIsOpen(!isOpen);
+    menuTl.reversed(!menuTl.reversed());
   };
 
   const loginClickHandler = () => {
@@ -79,8 +94,10 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
       <Link href='/' passHref>
         <span className={isWhite ? styles.logo_white : styles.logo} 
           onClick={router.pathname === '/' 
-            ? () => logoClickHandler(<Landing colorHandler={colorHandler}/>) 
-            : null
+            ? () => logoClickHandler(
+              [ 'Landing', <Landing colorHandler={colorHandler} key={0} /> ]
+            ) 
+            : () => homeClickHandler()
           }
         >
           Code<br/>Story
@@ -118,23 +135,42 @@ export default function Nav({ componentHandler, isWhite, loginOpenHandler, color
                 <Link href="/" passHref>
                   <button className={isWhite ? styles.btn_word_white : styles.btn_word}
                     onClick={router.pathname === '/'
-                      ? () => navClickHandler(<Landing colorHandler={colorHandler} />)
+                      ? () => navClickHandler(
+                        [ 'Landing', <Landing colorHandler={colorHandler} key={0} /> ]
+                      )
                       : null
                     }
                   >Home</button>
                 </Link> 
                 <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={() => navClickHandler(<About />)}
+                  onClick={() => navClickHandler(
+                    [ 'About', <About key={1} /> ]
+                  )}
                 >About</button>
                 <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={() => navClickHandler(<Ranking />)}
+                  onClick={() => navClickHandler(
+                    [ 'Ranking', <Ranking key={2} /> ]
+                  )}
                 >Ranking</button>
-                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={() => navClickHandler(<Mypage />)}
-                >My page</button>
-                <button className={isWhite ? styles.btn_word_white : styles.btn_word}
-                  onClick={() => loginClickHandler()}
-                >Login</button>
+                {isLogin 
+                  ? <>
+                    <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                      onClick={() => navClickHandler(                    
+                        [ 'Mypage', <Mypage key={3} /> ]
+                      )}
+                    >My page</button>
+                    <Link href="/" passHref>
+                      <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                        onClick={() => logoutHandler(
+                          [ 'Landing', <Landing colorHandler={colorHandler} key={0} /> ]
+                        )}
+                      >Logout</button>
+                    </Link>
+                  </>
+                  : <button className={isWhite ? styles.btn_word_white : styles.btn_word}
+                    onClick={() => loginClickHandler()}
+                  >Login</button>
+                }
               </div>
             </div> 
           </div>

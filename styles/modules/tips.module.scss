@@ -14,13 +14,14 @@
   width: 100%;
   height: 100vh;
   background-color: rgba($gray, .4);
-  z-index: 3;
+  z-index: 1001;
 }
 
 .container {
   width: 100%;
-  height: 60vh;
-  z-index: 3;
+  height: 40vh;
+  z-index: 1001;
+  border-radius: 80px 80px 0 0;
   background-color: $white;
 }
 
@@ -50,6 +51,7 @@
   right: 65px;
   background-color: transparent;
   font-weight: 600;
+  letter-spacing: 0.05rem;
   cursor: pointer;
 }
 
@@ -59,6 +61,7 @@
   right: 65px;
   background-color: transparent;
   font-weight: 600;
+  letter-spacing: 0.05rem;
   cursor: pointer;
   color: $white;
 }
@@ -69,8 +72,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60vh;
+  height: 40vh;
   padding: 20px 80px;
+  z-index: 1001;
 }
 
 .command {
@@ -90,16 +94,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 45px;
-  border: 2px solid $black;
+  width: 90px;
+  height: 50px;
+  border: 2px solid $gray;
   border-radius: 50px;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 2px 4px;
   background-color: $white;
-  font-size: $base-font-size * 1.4;
-  font-weight: 600;
+  font-size: $base-font-size * 1.1;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 250ms ease-out;
+}
+
+.close:hover {
+  width: 80px;
+  color: $white;
+  background-color: $gray;
 }
 
 @include breakpoint(medium) {
@@ -119,6 +130,14 @@
   }
   .description,
   .example {
-    font-size: $base-font-size ;
+    font-size: $base-font-size * 0.9;
+  }
+  .close {
+    width: 70px;
+    height: 35px;
+    font-size: $base-font-size * 0.8; 
+  }
+  .close:hover {
+    width: 60px;
   }
 }
