@@ -9,7 +9,8 @@ export default async function signout(req, res) {
       const jwt = await isAuthorizedJwt(req);
       const oauth = await isAuthorizedOauth(req);
       if (jwt || oauth) {
-        res.setHeader('Set-Cookie', serialize('accessToken', 'jwt invalidToken', { path: '/', sameSite: 'strict', httpOnly: true }));
+        res.setHeader('Set-Cookie', [serialize('accessToken', 'jwt invalidToken', { path: '/', sameSite: 'strict', httpOnly: true }), 
+          serialize('loginState', false, { path: '/', sameSite: 'strict' })]);
         res.statusCode = 200;
         res.json({ message: 'ok' });
       } else {

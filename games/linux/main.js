@@ -616,7 +616,7 @@
     }
     if (bar) {
       ctx.beginPath();
-      ctx.rect(0.02 * canvas.width + (textArr[textArr.length - 1].length % lengthLimit) * fontSize * 0.451, 0.717 * canvas.height + (linePosition - 2) * fontSize , fontSize * 0.5, fontSize * 0.9);
+      ctx.rect(0.02 * canvas.width + (textArr[textArr.length - 1].length % lengthLimit) * fontSize * 0.450, 0.717 * canvas.height + (linePosition - 2) * fontSize , fontSize * 0.5, fontSize * 0.9);
       ctx.fillStyle = '#fff';
       ctx.fill();
     }

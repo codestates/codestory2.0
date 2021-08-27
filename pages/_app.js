@@ -8,10 +8,11 @@ import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import * as ga from '../lib/ga';
-import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
-import awsExports from '../src/aws-exports';
+import axios from 'axios';
+// import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
+// import awsExports from '../src/aws-exports';
 
-Amplify.configure({ ...awsExports, ssr: true });
+// Amplify.configure({ ...awsExports, ssr: true });
 
 Router.events.on('routeChangeStart', () => NProgress.start()); 
 Router.events.on('routeChangeComplete', () => NProgress.done()); 
@@ -26,15 +27,19 @@ function MyApp({ Component, pageProps, router }) {
     if (isLogin === false) {
       (async () => {
         try {
-          const userInfo = await axios.get('api/user', { withCredentials: true });
-          if (userInfo && userInfo.data && userInfo.data.userId) {
-            setIsLogin(true);
+          const cookie = document.cookie.split('; ');
+
+          if (cookie && cookie.includes('loginState=true')) {
+            const userInfo = await axios.get('api/user', { withCredentials: true });
+            if (userInfo && userInfo.data && userInfo.data.userId) {
+              setIsLogin(true);
+            }
           }
         }
         catch { }
       })();
     }
-  }, [isLogin]);
+  }, []);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
