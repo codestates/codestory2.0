@@ -8,6 +8,7 @@ import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import * as ga from '../lib/ga';
+import axios from 'axios';
 // import { Amplify, withSSRContext } from 'aws-amplify'; //배포 시 활성
 // import awsExports from '../src/aws-exports';
 
