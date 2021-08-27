@@ -39,13 +39,17 @@
 
   // board
   const board = document.createElement('div');
-  Object.assign(board.style, {
-    position: 'absolute',
-    left: '5%',
-    top: '5%',
-    width: '90%',
-    height: '63%',
-    overflow: 'hidden'
+  Object.assign(board, {
+    textContent: quizTexts[0],
+    style: 'position: absolute; left: 5%; top: 5%; width: 90%; height: 63%; background-color: #126849; color: white; word-break: keep-all; padding: 5px; overflow: hidden;'
+  });
+
+  // score
+  const isSolved = new Array(quizTexts.length).fill(false);
+  const score = document.createElement('div');
+  Object.assign(score, {
+    textContent: '현재 점수: 0점',
+    style: 'position: absolute; left: 5%; bottom: 5%; color: white; white-space: pre'
   });
 
   // canvas
@@ -53,11 +57,12 @@
   let prevX;
   let prevY;
   let from = null;
+  let y = 0;
   const canvas = document.createElement('canvas');
   Object.assign(canvas, {
     width: `${width}px`,
     height: `${height}px`,
-    style: 'all: unset; background-color: #0C1B21;',
+    style: 'all: unset; position: absolute; left: 0; top: 0;',
     oncontextmenu: (e) => {
       e.preventDefault();
       const img = document.createElement('img');
@@ -173,6 +178,14 @@
         ctx.lineTo(prevX = e.clientX - left - .05 * width, prevY = e.clientY - top - .05 * height);
         ctx.stroke();
       }
+    },
+    onwheel: (e) => {
+      y += e.deltaY;
+      level = Math.floor(y / 100) % quizTexts.length;
+      if (level < 0) {
+        level += quizTexts.length;
+      }
+      board.childNodes[0].nodeValue = quizTexts[level];
     }
   });
 
@@ -192,29 +205,13 @@
     zIndex: 1
   });
 
-  // quiz
-  let y = 0;
-  const quiz = document.createElement('div');
-  Object.assign(quiz, {
-    textContent: quizTexts[0],
-    style: 'position: absolute; left: 5%; bottom: 20%; width: 90%; height: 10%; overflow: auto; background-color: black; color: red; font-size: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; word-break: keep-all;',
-    onwheel: (e) => {
-      y += e.deltaY;
-      level = Math.floor(y / 100) % quizTexts.length;
-      if (level < 0) {
-        level += quizTexts.length;
-      }
-      quiz.textContent = quizTexts[level];
-    }
-  });
-
   // device
   const device = document.createElement('div');
-  device.style = 'position: absolute; left: 5%; bottom: 5%; width: 90%; height: 14%; background-color: black; font-size: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; white-space: pre; overflow: auto;';
+  device.style = 'position: absolute; left: 5%; bottom: 5%; width: 90%; height: 25%; background-color: black; font-size: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; white-space: pre;';
 
   container.append(stage);
-  stage.append(board, quiz, device);
-  board.append(canvas, eraser);
+  stage.append(board, device);
+  board.append(score, canvas, eraser);
 
   setInterval(() => {
     ({ left, top, width, height } = container.getBoundingClientRect());
@@ -258,6 +255,8 @@
     } else {
       device.textContent = '정답입니다.';
       device.style.color = 'green';
+      isSolved[level] = true;
+      score.textContent = `현재 점수: ${20 * isSolved.reduce((a, c) => a + Number(c), 0)}점`;
     }
     if (!isDrawing) {
       Object.assign(canvas, { width, height });
