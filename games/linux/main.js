@@ -31,7 +31,6 @@
   const delete_me_file = { name: 'delete_me.sh', type: 'file', sudo: false, content: '숨겨왔던 나의 메시지. 방가방가' };
   const delete_me_folder = { name: 'Delete_me', type: 'folder', sudo: false, children: { '.': null, '..': desktop } };
   const destination = { name: 'Destination', type: 'folder', sudo: true, children: { '.': null, '..': desktop } };
-  let bar = true;
   homeDir.children['.'] = homeDir;
   homeDir.children.Desktop = desktop;
   desktop.children['.'] = desktop;
@@ -48,7 +47,7 @@
   error.children['.'] = error;
   error.children['bugKing.js'] = bugKing;
   let sudo = 0;
-  let solvedProblem = 0;
+  let bar = true;
   const linuxPassword = '123456789';
   let wd = desktop;
   let leftfolder = ['Recent', 'Desktop', 'Document', 'Download'];
@@ -85,10 +84,22 @@
   let lengthLimit = parseInt(canvas.width * 0.1);
   let lineLimit = parseInt(canvas.height * 0.012);
 
-  function handleDisplay() {
-    gameResult.removeAttribute('style');
-  }
-  document.addEventListener('keydown', keyDownHandler);
+  const navOutButton = document.querySelector('.nav_btn_nav_bar__1WxRi');
+  const navInButton = document.querySelector('.nav_btn_nav__2yz27');
+  
+  canvas.addEventListener('click', () => {
+    document.addEventListener('keydown', keyDownHandler, true);
+  });
+  gameContainer.addEventListener('click', () => {
+    document.addEventListener('keydown', keyDownHandler, true);
+  });
+  navOutButton.addEventListener('click', () => {
+    document.removeEventListener('keydown', keyDownHandler, true);
+  });
+  navInButton.addEventListener('click', () => {
+    document.removeEventListener('keydown', keyDownHandler, true);
+  });
+
   function setSize() {
     if (window.innerWidth > 1110) {
       lengthLimit = 60;
@@ -107,6 +118,7 @@
       canvas.height = 388;
     }
   }
+
   function keyDownHandler(e) {
     if (e.metaKey) {
       return 0;
