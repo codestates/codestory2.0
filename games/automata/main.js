@@ -180,7 +180,6 @@
       }
     },
     onwheel: (e) => {
-      console.log(e.deltaY);
       y += e.deltaY;
       level = Math.floor(y / 100) % quizTexts.length;
       if (level < 0) {
