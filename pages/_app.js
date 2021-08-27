@@ -28,7 +28,6 @@ function MyApp({ Component, pageProps, router }) {
       (async () => {
         try {
           const cookie = document.cookie.split('; ');
-
           if (cookie && cookie.includes('loginState=true')) {
             const userInfo = await axios.get('api/user', { withCredentials: true });
             if (userInfo && userInfo.data && userInfo.data.userId) {
