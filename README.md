@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# codestory2.0
 
-## Getting Started
+# 프로젝트 소개:
 
-First, run the development server:
+## LOGO
+![](https://raw.githubusercontent.com/seoyong-lee/images/main/banner_typo.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## About
+코딩을 공부하고 계신가요?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+혹시 코딩 공부를 더 재미있게 하고 싶진 않으신가요?
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+흥미진진한 게임을 통해 코딩 실력을 키워보세요! 당신이 믿을 것은 오직 당신의 코딩 실력 뿐!
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+"게임으로 배우는 코딩!”
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+CodeStory입니다 :)
 
-## Learn More
+<br>
 
-To learn more about Next.js, take a look at the following resources:
+## 팀원 소개
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+|이름|역할|포지션|Github 주소|
+|---|---|---|---|
+|조경일|팀장|Full-Stack|[satoshi25](https://github.com/satoshi25)|
+|이서용|팀원|Front-end|[seoyong-lee](https://github.com/seoyong-lee)|
+|강래준|팀원|Full-Stack|[ruleBased848](https://github.com/ruleBased848/)|
+|김정빈|팀원|Back-end|[candyroom136](https://github.com/Candyroom136/)|
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br>
 
-## Deploy on Vercel
+## Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img src="https://raw.githubusercontent.com/seoyong-lee/images/main/stack4.png">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## System Architecture
+
+<img src="https://raw.githubusercontent.com/seoyong-lee/images/main/architecture.png">
+
+## 배포 링크
+
+[ac.codestory.academy](https://ac.codestory.academy/)
