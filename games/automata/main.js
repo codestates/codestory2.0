@@ -1,4 +1,7 @@
 (() => {
+  const createElement = document.createElement.bind(document);
+  const querySelector = document.querySelector.bind(document);
+
   // data
   const quizTexts = [
     'Q0. a와 b로 구성된 문자열 중에서 a가 적어도 한 개인 문자열을 인식하는 유한 상태 기계를 만드시오.',
@@ -23,11 +26,11 @@
   let automaton = [];
 
   // container
-  const container = document.querySelector('#automata_game_container');
+  const container = querySelector('#automata_game_container');
   let { left, top, width, height } = container.getBoundingClientRect();
 
   // stage
-  const stage = document.createElement('div');
+  const stage = createElement('div');
   Object.assign(stage.style, {
     all: 'unset',
     display: 'block',
@@ -38,7 +41,7 @@
   });
 
   // board
-  const board = document.createElement('div');
+  const board = createElement('div');
   Object.assign(board, {
     textContent: quizTexts[0],
     style: 'position: absolute; left: 5%; top: 5%; width: 90%; height: 63%; background-color: #126849; color: white; word-break: keep-all; padding: 5px; overflow: hidden;'
@@ -46,7 +49,7 @@
 
   // score
   const isSolved = new Array(quizTexts.length).fill(false);
-  const score = document.createElement('div');
+  const score = createElement('div');
   Object.assign(score, {
     textContent: '현재 점수: 0점',
     style: 'position: absolute; left: 5%; bottom: 5%; color: white; white-space: pre'
@@ -58,14 +61,14 @@
   let prevY;
   let from = null;
   let y = 0;
-  const canvas = document.createElement('canvas');
+  const canvas = createElement('canvas');
   Object.assign(canvas, {
     width: `${width}px`,
     height: `${height}px`,
     style: 'all: unset; position: absolute; left: 0; top: 0;',
     oncontextmenu: (e) => {
       e.preventDefault();
-      const img = document.createElement('img');
+      const img = createElement('img');
       Object.assign(img, {
         src: circleSource,
         className: 'single',
@@ -153,7 +156,7 @@
           }
         }
         if (from && nearestImg && automaton.every((e) => e[0] !== from || e[1] !== nearestImg)) {
-          const input = document.createElement('input');
+          const input = createElement('input');
           Object.assign(input, {
             type: 'text',
             style: 'all: unset; position: absolute; left: 0px; top: 0px; width: 20px; color: white',
@@ -193,7 +196,7 @@
   const ctx = canvas.getContext('2d');
 
   // eraser
-  const eraser = document.createElement('div');
+  const eraser = createElement('div');
   Object.assign(eraser.style, {
     position: 'absolute',
     right: '45px',
@@ -206,7 +209,7 @@
   });
 
   // device
-  const device = document.createElement('div');
+  const device = createElement('div');
   device.style = 'position: absolute; left: 5%; bottom: 5%; width: 90%; height: 25%; background-color: black; font-size: 16px; line-height: 20px; padding: 5px; font-family: \'Source Code Pro\', monospace; white-space: pre;';
 
   container.append(stage);
